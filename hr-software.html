@@ -4663,11 +4663,13 @@
 <!-- ===================== WHAT IS HR SOFTWARE ===================== -->
 <section class="what-is-section">
     <div class="container">
+        <div style="text-align:center; margin-bottom: 32px;">
+            <span class="section-label">Overview</span>
+        </div>
         <div class="what-is-grid">
 
             <!-- Left: text -->
             <div class="what-is-text">
-                <span class="section-label">Overview</span>
                 <h2 class="section-title">What Is <span class="text-accent">HR Software?</span></h2>
                 <p class="section-desc">HR software represents a type of tool that can simplify all types of people operations processes in a single centralised platform. Optimizing all the HR related activities and automating various routine cycles allows the human resources team to focus on what matters most — building a company culture, streamlining employee communications, and focusing on productivity growth.</p>
                 <p class="section-desc">Staffco.io is one of the emerging workforce management software solutions with an all-in-one approach. The platform incorporates a traditional HRIS software system with:</p>
@@ -5408,21 +5410,88 @@ if (mobileToggle) {
 </script>
 
 <script>
-function showFeature(id, btn) {
+// Core Functions auto-rotation
+let featureUserSelected = false;
+let featureTimer = null;
+
+function showFeature(id, btn, fromAuto) {
     document.querySelectorAll('.feature-panel').forEach(p => p.classList.remove('active'));
     document.querySelectorAll('.sidebar-btn').forEach(b => b.classList.remove('active'));
     document.getElementById('fpanel-' + id).classList.add('active');
     btn.classList.add('active');
+    if (!fromAuto) {
+        featureUserSelected = true;
+        clearInterval(featureTimer);
+    }
 }
+
+(function() {
+    function startFeatureAutoplay() {
+        featureTimer = setInterval(function() {
+            if (featureUserSelected) return;
+            const btns = Array.from(document.querySelectorAll('.sidebar-btn'));
+            const activeIdx = btns.findIndex(b => b.classList.contains('active'));
+            const nextIdx = (activeIdx + 1) % btns.length;
+            const nextBtn = btns[nextIdx];
+            const onclickAttr = nextBtn.getAttribute('onclick');
+            const match = onclickAttr && onclickAttr.match(/showFeature\('([^']+)'/);
+            if (match) showFeature(match[1], nextBtn, true);
+        }, 3000);
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+        startFeatureAutoplay();
+        document.querySelectorAll('.sidebar-btn').forEach(btn => {
+            btn.addEventListener('mouseenter', function() {
+                featureUserSelected = true;
+                clearInterval(featureTimer);
+                const onclickAttr = btn.getAttribute('onclick');
+                const match = onclickAttr && onclickAttr.match(/showFeature\('([^']+)'/);
+                if (match) showFeature(match[1], btn, false);
+            });
+        });
+    });
+})();
 </script>
 
 <script>
-function showBhrTab(id, btn) {
+// Who It's For auto-rotation
+let bhrUserSelected = false;
+let bhrTimer = null;
+
+function showBhrTab(id, btn, fromAuto) {
     document.querySelectorAll('.bhr-tab-panel').forEach(p => p.classList.remove('active'));
     document.querySelectorAll('.bhr-tab-btn').forEach(b => b.classList.remove('active'));
     document.getElementById('bhrtab-' + id).classList.add('active');
     btn.classList.add('active');
+    if (!fromAuto) {
+        bhrUserSelected = true;
+        clearInterval(bhrTimer);
+    }
 }
+
+(function() {
+    function startBhrAutoplay() {
+        bhrTimer = setInterval(function() {
+            if (bhrUserSelected) return;
+            const btns = Array.from(document.querySelectorAll('.bhr-tab-btn'));
+            const activeIdx = btns.findIndex(b => b.classList.contains('active'));
+            const nextIdx = (activeIdx + 1) % btns.length;
+            const nextBtn = btns[nextIdx];
+            const onclickAttr = nextBtn.getAttribute('onclick');
+            const match = onclickAttr && onclickAttr.match(/showBhrTab\('([^']+)'/);
+            if (match) showBhrTab(match[1], nextBtn, true);
+        }, 3000);
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+        startBhrAutoplay();
+        document.querySelectorAll('.bhr-tab-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                bhrUserSelected = true;
+                clearInterval(bhrTimer);
+            });
+        });
+    });
+})();
 </script>
 </body>
 </html>
