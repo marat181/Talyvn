@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Effective Time and Attendance Tracking Solutions by StaffCo</title>
+<meta name="description" content="Automate employee attendance tracking with StaffCo. Start monitoring shifts, delays, absences, and overtime with real-time reporting tools. Book a Demo!">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 664 664'%3E%3Cpath d='M283.91 238L99.92 437.73C64.39 476.3 0 451.16 0 398.72V238H283.91Z' fill='%2322C55E'/%3E%3Cpath d='M283.91 0V238H0V206.41C0 92.41 92.41 0 206.41 0H283.92H283.91Z' fill='%23027F56'/%3E%3Cpath d='M595.82 11.85V79.56C595.82 167.07 524.88 238 437.38 238H283.92V0H583.98C590.52 0 595.83 5.30001 595.83 11.85H595.82Z' fill='%230EA5E9'/%3E%3Cpath d='M380.09 426L564.08 226.27C599.61 187.7 664 212.84 664 265.28V426H380.09Z' fill='%237C3AED'/%3E%3Cpath d='M380.09 664V426H664V457.59C664 571.59 571.59 664 457.59 664H380.08H380.09Z' fill='%230726D9'/%3E%3Cpath d='M68.18 652.15V584.44C68.18 496.93 139.12 426 226.62 426H380.08V664H80.02C73.48 664 68.17 658.7 68.17 652.15H68.18Z' fill='%230EA5E9'/%3E%3C/svg%3E">
+<svg height="0" style="position:absolute;overflow:hidden" width="0" xmlns="http://www.w3.org/2000/svg"><defs><filter filterUnits="objectBoundingBox" height="110%" id="lg-nav" width="110%" x="-5%" y="-5%"><feTurbulence baseFrequency="0.015" numOctaves="1" result="n" seed="8" type="fractalNoise"><animate attributeName="seed" dur="16s" from="1" repeatCount="indefinite" to="80"/></feTurbulence><feGaussianBlur in="n" result="bn" stdDeviation="4"/><feDisplacementMap in="SourceGraphic" in2="bn" scale="8" xChannelSelector="R" yChannelSelector="G"/></filter></defs></svg>
+<style>
+:root{--bg:#f5f7fb;--bg-el:#fff;--surf:#fff;--surf-h:#f1f4f9;--bdr:rgba(15,23,42,.08);--txt:#0f172a;--txt2:#475569;--txt3:#64748b;--acc:#3b82f6;--acc-g:rgba(59,130,246,.18);--grn:#22c55e;--grn-g:rgba(34,197,94,.16);--pur:#8b5cf6;--pur-g:rgba(139,92,246,.16);--sky:#0ea5e9;--sky-g:rgba(14,165,233,.16);--org:#f97316;--org-g:rgba(249,115,22,.16);--gb:rgba(255,255,255,.55);--gb-h:rgba(255,255,255,.7);--gbdr:rgba(255,255,255,.72);--gh:rgba(255,255,255,.9);--gsh:rgba(15,23,42,.1);--orb:.18;--gl:rgba(15,23,42,.035);--gm:radial-gradient(ellipse 70% 60% at 50% 40%,black 20%,transparent 70%);--fr:rgba(59,130,246,.35);--rsm:8px;--rmd:14px;--rlg:20px;--rxl:28px;--ff:'Outfit',sans-serif;--ease:cubic-bezier(.16,1,.3,1);color-scheme:light}
+[data-theme="dark"]{--bg:#0a0b0f;--bg-el:#12131a;--surf:#1a1b24;--surf-h:#22232e;--bdr:rgba(255,255,255,.06);--txt:#f0f0f5;--txt2:#8b8d9e;--txt3:#5a5c6e;--acc-g:rgba(59,130,246,.25);--grn-g:rgba(34,197,94,.2);--pur-g:rgba(139,92,246,.2);--sky-g:rgba(14,165,233,.2);--org-g:rgba(249,115,22,.2);--gb:rgba(255,255,255,.03);--gb-h:rgba(255,255,255,.06);--gbdr:rgba(255,255,255,.08);--gh:rgba(255,255,255,.15);--gsh:rgba(0,0,0,.4);--orb:.32;--gl:rgba(255,255,255,.015);color-scheme:dark}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{font-family:var(--ff);background:var(--bg);color:var(--txt);line-height:1.6;overflow-x:hidden}
+a{color:inherit;text-decoration:none} ul{list-style:none} button{font-family:inherit;cursor:pointer;border:none;background:none}
+:focus{outline:none} :focus-visible{outline:3px solid var(--fr);outline-offset:3px;border-radius:10px}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+
+/* BG */
+.page-bg{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.orb{position:absolute;border-radius:50%;filter:blur(120px);opacity:var(--orb)}
+.orb1{width:600px;height:600px;background:radial-gradient(circle,var(--acc) 0%,transparent 70%);top:-200px;left:-100px;animation:of1 20s ease-in-out infinite}
+.orb2{width:500px;height:500px;background:radial-gradient(circle,var(--pur) 0%,transparent 70%);top:40%;right:-150px;animation:of2 25s ease-in-out infinite}
+.orb3{width:400px;height:400px;background:radial-gradient(circle,var(--grn) 0%,transparent 70%);bottom:-100px;left:30%;animation:of3 22s ease-in-out infinite}
+@keyframes of1{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(80px,60px) scale(1.1)}66%{transform:translate(-40px,30px) scale(.95)}}
+@keyframes of2{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(-60px,-80px) scale(1.05)}66%{transform:translate(40px,40px) scale(.9)}}
+@keyframes of3{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(50px,-40px) scale(1.08)}66%{transform:translate(-70px,20px) scale(.92)}}
+.page-bg::after{content:'';position:absolute;inset:0;background-image:linear-gradient(var(--gl) 1px,transparent 1px),linear-gradient(90deg,var(--gl) 1px,transparent 1px);background-size:60px 60px;mask-image:var(--gm)}
+
+/* NAV */
+.nav{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:1000;width:calc(100% - 32px);max-width:1100px}
+.nav-inner{position:relative;display:flex;align-items:center;justify-content:space-between;padding:12px 20px;border-radius:var(--rxl);border:1px solid var(--gbdr);background:var(--gb);isolation:isolate;overflow:visible;box-shadow:0 4px 24px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.1)}
+.nav-inner::before{content:'';position:absolute;inset:-80%;pointer-events:none;backdrop-filter:blur(24px) saturate(1.5) brightness(1.02);-webkit-backdrop-filter:blur(24px) saturate(1.5) brightness(1.02);filter:url(#lg-nav);z-index:-2}
+.nav-inner::after{content:'';position:absolute;inset:0;pointer-events:none;border-radius:inherit;background:linear-gradient(135deg,rgba(255,255,255,.07) 0%,rgba(255,255,255,.01) 50%,rgba(255,255,255,.04) 100%);box-shadow:inset 1px 1px 0 rgba(255,255,255,.12),inset -1px -1px 0 rgba(255,255,255,.03);z-index:-1}
+.nav-logo{display:flex;align-items:center;gap:10px;z-index:2}
+.nav-logo svg{width:32px;height:32px}
+.nav-logo-text{font-weight:700;font-size:18px;letter-spacing:-.02em}
+.nav-links{display:flex;align-items:center;gap:4px;z-index:2}
+.nav-link{display:flex;align-items:center;gap:4px;padding:8px 14px;font-size:14px;font-weight:500;color:var(--txt2);border-radius:var(--rsm);transition:all .2s}
+.nav-link:hover{color:var(--txt);background:var(--surf-h)}
+.nav-link svg{width:14px;height:14px;opacity:.5;transition:transform .2s}
+.nav-link:hover svg{transform:rotate(180deg)}
+.nav-item{position:relative;display:inline-block}
+.nav-dd{position:absolute;top:calc(100% + 16px);left:50%;transform:translateX(-50%) translateY(-8px);min-width:700px;background:rgba(26,27,36,.98);backdrop-filter:blur(32px);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:28px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .3s,visibility .3s,transform .3s;z-index:9999;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+:root .nav-dd{background:rgba(255,255,255,.96);border-color:rgba(15,23,42,.12);box-shadow:0 20px 60px rgba(15,23,42,.15)}
+.nav-item:hover .nav-dd{opacity:1;visibility:visible;pointer-events:auto;transform:translateX(-50%) translateY(0)}
+.dd-grid{display:grid;gap:0 24px}
+.dd-3{grid-template-columns:repeat(3,1fr)}
+.dd-2{grid-template-columns:repeat(2,1fr)}
+.dd-1{grid-template-columns:1fr}
+.dd-sec{display:flex;flex-direction:column;gap:3px}
+.dd-lbl{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--txt3);padding:8px 0 6px;border-bottom:1px solid var(--bdr);margin-bottom:5px}
+.dd-a{display:block;padding:6px 10px;font-size:14px;color:var(--txt2);border-radius:8px;transition:all .15s}
+.dd-a:hover{color:var(--txt);background:var(--surf-h)}
+.nav-actions{display:flex;align-items:center;gap:8px;z-index:2}
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--ff);font-weight:600;font-size:14px;padding:10px 20px;border-radius:var(--rmd);transition:all .25s var(--ease);cursor:pointer;white-space:nowrap}
+.btn-ghost{color:var(--txt2);background:transparent}
+.btn-ghost:hover{color:var(--txt);background:var(--surf-h)}
+.btn-pri{color:#fff;background:var(--acc);box-shadow:0 2px 12px var(--acc-g),inset 0 1px 0 rgba(255,255,255,.15)}
+.btn-pri:hover{background:#4b8ef7;transform:translateY(-1px)}
+.btn-sec{color:var(--txt);background:rgba(255,255,255,.06);border:1px solid var(--gbdr)}
+.btn-sec:hover{background:rgba(255,255,255,.1);transform:translateY(-1px)}
+.btn-ncta{font-size:13px;font-weight:600;padding:8px 14px;border-radius:var(--rmd);color:#fff;background:var(--acc);display:inline-flex;align-items:center}
+.theme-toggle{padding:8px;border-radius:var(--rsm);width:36px;height:36px;display:flex;align-items:center;justify-content:center}
+.theme-toggle svg{width:20px;height:20px}
+.theme-toggle .icon-moon{display:none}
+[data-theme="dark"] .theme-toggle .icon-sun{display:none}
+[data-theme="dark"] .theme-toggle .icon-moon{display:inline}
+.mob-nav-a{display:none;align-items:center;gap:4px;z-index:2}
+.mob-tog{display:flex;z-index:2;width:36px;height:36px;align-items:center;justify-content:center;color:var(--txt)}
+.mob-tog svg{width:22px;height:22px}
+.mob-menu{position:fixed;inset:0;z-index:1200;display:none}
+.mob-menu.open{display:block}
+.mob-bd{position:absolute;inset:0;background:rgba(2,6,23,.28)}
+.mob-panel{position:absolute;top:14px;left:14px;right:14px;border-radius:var(--rxl);border:1px solid var(--gbdr);background:rgba(255,255,255,.62);box-shadow:0 20px 60px rgba(15,23,42,.18);overflow:hidden;transform:translateY(-8px);opacity:0;transition:all .28s var(--ease)}
+[data-theme="dark"] .mob-panel{background:rgba(10,11,15,.62);box-shadow:0 20px 60px rgba(0,0,0,.35)}
+.mob-menu.open .mob-panel{transform:translateY(0);opacity:1}
+.mob-hd{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid var(--bdr)}
+.mob-cls{width:40px;height:40px;display:inline-flex;align-items:center;justify-content:center;border-radius:12px;color:var(--txt);background:rgba(255,255,255,.35);border:1px solid rgba(255,255,255,.55)}
+[data-theme="dark"] .mob-cls{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12)}
+.mob-links{display:grid;padding:10px 10px 4px;gap:6px}
+.mob-link{padding:12px;border-radius:14px;font-weight:600;color:var(--txt);background:rgba(255,255,255,.35);border:1px solid rgba(255,255,255,.55)}
+[data-theme="dark"] .mob-link{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12)}
+.mob-acts{display:grid;gap:10px;padding:14px 12px 16px;border-top:1px solid var(--bdr)}
+
+/* SHARED */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 7px var(--grn-g)}50%{opacity:.6;box-shadow:0 0 14px var(--grn-g)}}
+
+/* BADGE — matches HR Software green pill exactly, centered above every section header */
+.badge-wrap{text-align:center;margin-bottom:18px}
+.badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px 6px 10px;border-radius:100px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+.badge-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.b-grn{color:var(--grn);border:1px solid rgba(34,197,94,.25);background:rgba(34,197,94,.08)}
+.b-grn .badge-dot{background:var(--grn);box-shadow:0 0 7px var(--grn-g);animation:pulse 2s ease-in-out infinite}
+.b-blu{color:var(--acc);border:1px solid rgba(59,130,246,.25);background:rgba(59,130,246,.08)}
+.b-blu .badge-dot{background:var(--acc);box-shadow:0 0 7px var(--acc-g)}
+.b-org{color:var(--org);border:1px solid rgba(249,115,22,.25);background:rgba(249,115,22,.08)}
+.b-org .badge-dot{background:var(--org);box-shadow:0 0 7px var(--org-g)}
+.b-sky{color:var(--sky);border:1px solid rgba(14,165,233,.25);background:rgba(14,165,233,.08)}
+.b-sky .badge-dot{background:var(--sky);box-shadow:0 0 7px var(--sky-g)}
+.b-pur{color:var(--pur);border:1px solid rgba(139,92,246,.25);background:rgba(139,92,246,.08)}
+.b-pur .badge-dot{background:var(--pur);box-shadow:0 0 7px var(--pur-g)}
+
+.sec-title{font-size:clamp(28px,3.5vw,44px);font-weight:800;letter-spacing:-.03em;line-height:1.15;margin-bottom:16px}
+.tc{text-align:center}
+.sec-sub{font-size:16px;color:var(--txt2);max-width:560px;margin:0 auto;line-height:1.7}
+.t-acc{background:linear-gradient(135deg,var(--acc) 0%,var(--sky) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.t-grn{background:linear-gradient(135deg,var(--grn) 0%,#86efac 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.t-org{background:linear-gradient(135deg,var(--org) 0%,#fbbf24 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.t-sky{background:linear-gradient(135deg,var(--sky) 0%,#7dd3fc 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.t-pur{background:linear-gradient(135deg,var(--pur) 0%,#c4b5fd 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+.section{position:relative;z-index:1;padding:100px 0;border-top:1px solid var(--gbdr)}
+[data-theme="light"] .section{border-top-color:rgba(15,23,42,.08)}
+
+/* ── HERO ── */
+.hero{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:100px 0 60px}
+.hero-in{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.hero-left{display:flex;flex-direction:column;align-items:flex-start;text-align:left}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px 6px 10px;border-radius:100px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--grn);border:1px solid rgba(34,197,94,.25);background:rgba(34,197,94,.08);margin-bottom:22px;animation:fadeUp .8s var(--ease) both}
+.hero-badge-dot{width:7px;height:7px;border-radius:50%;background:var(--grn);box-shadow:0 0 7px var(--grn-g);animation:pulse 2s ease-in-out infinite;flex-shrink:0}
+.hero-title{font-size:clamp(34px,3.8vw,58px);font-weight:800;line-height:1.06;letter-spacing:-.04em;margin:0 0 20px;animation:fadeUp .8s var(--ease) .1s both}
+.hero-ta{background:linear-gradient(135deg,var(--grn) 0%,var(--sky) 60%,var(--acc) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-p{font-size:clamp(15px,1.3vw,17px);color:var(--txt2);margin:0 0 12px;line-height:1.7;animation:fadeUp .8s var(--ease) .15s both}
+.hero-p2{font-size:clamp(14px,1.2vw,16px);color:var(--txt2);margin:0 0 0;line-height:1.7;animation:fadeUp .8s var(--ease) .2s both}
+.hero-cta{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:32px;animation:fadeUp .8s var(--ease) .3s both}
+.hero-right{animation:fadeUp .8s var(--ease) .25s both}
+.hero-vis{width:100%;aspect-ratio:4/3;border-radius:var(--rxl);background:var(--gb);border:1.5px dashed var(--gbdr);display:flex;align-items:center;justify-content:center;color:var(--txt3);box-shadow:0 20px 60px rgba(0,0,0,.2);position:relative;overflow:hidden}
+.hero-vis::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 40% 50%,rgba(34,197,94,.08) 0%,transparent 60%)}
+[data-theme="light"] .hero-vis{background:rgba(15,23,42,.02);border-color:rgba(15,23,42,.12)}
+.hero-vis-in{display:flex;flex-direction:column;align-items:center;gap:10px;position:relative;z-index:1}
+.hero-vis-in span{font-size:13px;font-weight:500}
+@media(max-width:900px){.hero-in{grid-template-columns:1fr}.hero-left{align-items:center;text-align:center}.hero-right{display:none}}
+.btn-hp{color:#fff;background:var(--acc);padding:14px 28px;font-size:15px;border-radius:var(--rmd);box-shadow:0 4px 20px var(--acc-g),inset 0 1px 0 rgba(255,255,255,.15);font-weight:600;transition:all .25s var(--ease);display:inline-flex;align-items:center}
+.btn-hp:hover{background:#4b8ef7;transform:translateY(-2px);box-shadow:0 8px 28px var(--acc-g)}
+.btn-hg{color:var(--txt);background:rgba(255,255,255,.06);border:1px solid var(--gbdr);padding:14px 28px;font-size:15px;border-radius:var(--rmd);font-weight:600;transition:all .25s var(--ease);display:inline-flex;align-items:center}
+.btn-hg:hover{background:rgba(255,255,255,.1);transform:translateY(-2px)}
+[data-theme="light"] .btn-hg{border-color:rgba(15,23,42,.18)}
+.inline-link{color:var(--acc);text-decoration:underline;text-decoration-color:rgba(59,130,246,.3);text-underline-offset:3px;transition:color .2s,text-decoration-color .2s}
+.inline-link:hover{color:#60a5fa;text-decoration-color:rgba(96,165,250,.6)}
+
+/* ── S2 WHAT IS ── */
+.what-g{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.what-t p{font-size:16px;color:var(--txt2);line-height:1.75;margin-bottom:16px}
+.sv{background:var(--surf);border:1px solid var(--gbdr);border-radius:var(--rxl);padding:32px;box-shadow:0 8px 40px var(--gsh),inset 0 1px 0 var(--gh)}
+[data-theme="light"] .sv{background:#fff;border-color:rgba(15,23,42,.18);box-shadow:0 4px 16px rgba(15,23,42,.09),0 12px 36px rgba(15,23,42,.06)}
+.sv-lbl{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--txt3);margin-bottom:14px}
+.s-rows{display:flex;flex-direction:column;gap:8px}
+.s-row{display:flex;align-items:center;justify-content:space-between;padding:13px 16px;border-radius:var(--rmd);background:var(--gb);border:1px solid var(--gbdr)}
+[data-theme="light"] .s-row{background:var(--surf-h);border-color:rgba(15,23,42,.06)}
+.s-row-l{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:500}
+.sdot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.schip{font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:.04em}
+.cg{background:rgba(34,197,94,.12);color:#22c55e}
+.ca{background:rgba(251,191,36,.12);color:#fbbf24}
+.cr{background:rgba(248,113,113,.12);color:#f87171}
+.co{background:rgba(251,146,60,.12);color:#fb923c}
+.cp{background:rgba(167,139,250,.12);color:#a78bfa}
+
+/* ── S3 FAILS ── */
+.fails-row{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-bottom:32px}
+.fail-item{position:relative;display:flex;flex-direction:column;align-items:center;gap:10px;padding:28px 20px 22px;border-radius:var(--rlg);border:1px solid rgba(248,113,113,.2);background:linear-gradient(160deg,rgba(248,113,113,.07) 0%,rgba(248,113,113,.02) 100%);width:160px;transition:all .3s var(--ease)}
+.fail-item:hover{border-color:rgba(248,113,113,.4);transform:translateY(-4px);box-shadow:0 8px 28px rgba(248,113,113,.1)}
+[data-theme="light"] .fail-item{background:rgba(248,113,113,.07);border-color:rgba(248,113,113,.3);box-shadow:0 2px 12px rgba(248,113,113,.08)}
+.fail-x{position:absolute;top:10px;right:12px;font-size:11px;font-weight:800;color:#f87171;letter-spacing:.05em;opacity:.7}
+.fail-icon-wrap{font-size:36px;filter:grayscale(60%) brightness(0.7);line-height:1}
+.fail-label{font-size:12px;font-weight:600;color:#f87171;text-align:center;line-height:1.4;opacity:.85}
+.fails-arrow{display:flex;justify-content:center;margin:4px 0 28px;opacity:.7}
+.fails-sol{display:flex;flex-direction:column;align-items:center;border-radius:var(--rxl);border:1px solid rgba(34,197,94,.35);padding:28px 40px;background:linear-gradient(135deg,rgba(34,197,94,.1) 0%,rgba(34,197,94,.03) 70%);box-shadow:0 0 0 1px rgba(34,197,94,.1),0 8px 32px rgba(34,197,94,.12)}
+[data-theme="light"] .fails-sol{background:linear-gradient(135deg,rgba(34,197,94,.08) 0%,rgba(34,197,94,.02) 70%);border-color:rgba(34,197,94,.3);box-shadow:0 0 0 1px rgba(34,197,94,.08),0 4px 20px rgba(34,197,94,.1)}
+.fsol-t{flex:1}
+.fsol-title{font-size:22px;font-weight:700;margin-bottom:12px;letter-spacing:-.02em}
+.fsol-desc{font-size:15px;color:var(--txt2);line-height:1.75}
+.fsol-ico{font-size:64px;flex-shrink:0}
+
+/* ── S4 HOW IT WORKS CARDS ── */
+.how-intro{max-width:960px;margin:0 auto;text-align:center;display:flex;flex-direction:column;gap:20px}
+.how-intro p{font-size:17px;color:var(--txt2);line-height:1.85;max-width:860px;margin:0 auto}
+.how-statuses{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;padding:8px 0}
+.hst{display:inline-flex;align-items:center;gap:6px;padding:7px 16px;border-radius:100px;font-size:13px;font-weight:600}
+.hst-grn{background:rgba(34,197,94,.1);color:#22c55e;border:1px solid rgba(34,197,94,.2)}
+.hst-amb{background:rgba(251,191,36,.1);color:#fbbf24;border:1px solid rgba(251,191,36,.2)}
+.hst-red{background:rgba(248,113,113,.1);color:#f87171;border:1px solid rgba(248,113,113,.2)}
+.hst-org{background:rgba(251,146,60,.1);color:#fb923c;border:1px solid rgba(251,146,60,.2)}
+.hst-pur{background:rgba(167,139,250,.1);color:#a78bfa;border:1px solid rgba(167,139,250,.2)}
+.cap-divider{text-align:center;margin:72px 0 48px;padding-top:56px;border-top:1px solid var(--gbdr)}
+[data-theme="light"] .cap-divider{border-top-color:rgba(15,23,42,.08)}
+.cap-title{font-size:clamp(22px,2.5vw,34px);font-weight:800;letter-spacing:-.03em;margin-bottom:12px}
+.cap-sub{font-size:16px;color:var(--txt2);max-width:560px;margin:0 auto;line-height:1.7}
+.how-g{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.how-c{border-radius:var(--rlg);border:1px solid rgba(255,255,255,.13);background:var(--gb);padding:32px 28px;transition:all .35s var(--ease);display:flex;flex-direction:column;gap:16px;position:relative;overflow:hidden}
+.how-c::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 20% 20%,rgba(249,115,22,.08) 0%,transparent 60%);opacity:0;transition:opacity .35s}
+.how-c:hover{border-color:rgba(249,115,22,.35);box-shadow:0 14px 48px rgba(249,115,22,.12);transform:translateY(-8px)}
+.how-c:hover::before{opacity:1}
+[data-theme="light"] .how-c{background:#fff;border-color:rgba(15,23,42,.18);box-shadow:0 2px 12px rgba(15,23,42,.08),0 6px 24px rgba(15,23,42,.06)}
+.how-step{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--org)}
+.how-ico{width:52px;height:52px;border-radius:14px;background:rgba(249,115,22,.12);display:flex;align-items:center;justify-content:center;font-size:24px}
+.how-ttl{font-size:19px;font-weight:700;letter-spacing:-.02em;line-height:1.25}
+.how-pts{display:flex;flex-direction:column;gap:10px}
+.how-pt{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--txt2);line-height:1.6}
+.how-dot{width:6px;height:6px;border-radius:50%;background:var(--org);margin-top:7px;flex-shrink:0}
+
+/* ── S5 SIDEBAR ── */
+.sb-wrap{display:grid;grid-template-columns:260px 1fr;gap:32px;align-items:start}
+.sb-nav{position:sticky;top:100px;display:flex;flex-direction:column;gap:8px}
+.sb-lbl{font-size:11px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--txt3);padding:4px 12px 10px}
+.sb-btn{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:var(--rmd);font-size:14px;font-weight:500;color:var(--txt2);cursor:pointer;transition:all .2s;text-align:left;background:var(--gb);border:1px solid var(--gbdr);font-family:var(--ff);width:100%}
+.sb-btn:hover{color:var(--txt);background:var(--gb-h);border-color:rgba(249,115,22,.3);transform:translateX(2px)}
+[data-theme="light"] .sb-btn{background:#fff;border-color:rgba(15,23,42,.14);box-shadow:0 1px 4px rgba(15,23,42,.06)}
+[data-theme="light"] .sb-btn:hover{background:#fafafa;border-color:rgba(249,115,22,.45);box-shadow:0 2px 10px rgba(249,115,22,.1);transform:translateX(2px)}
+.sb-btn.active{color:var(--txt);background:rgba(249,115,22,.1);border-color:rgba(249,115,22,.4);border-left:3px solid var(--org);box-shadow:0 2px 12px rgba(249,115,22,.15)}
+[data-theme="light"] .sb-btn.active{background:rgba(249,115,22,.07);border-color:rgba(249,115,22,.4);border-left:3px solid var(--org);box-shadow:0 2px 12px rgba(249,115,22,.12)}
+.sb-icon{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px;background:var(--surf-h);transition:background .18s}
+[data-theme="light"] .sb-icon{background:var(--surf-h)}
+.sb-btn.active .sb-icon{background:rgba(249,115,22,.2)}
+.sb-div{display:none}
+[data-theme="light"] .sb-div{display:none}
+.fp-wrap{min-height:460px}
+.fp{display:none;animation:fpFade .28s ease}
+.fp.active{display:block}
+@keyframes fpFade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.panel{background:var(--bg-el);border:1px solid var(--gbdr);border-radius:20px;padding:40px}
+[data-theme="light"] .panel{background:#fff;border-color:rgba(15,23,42,.18);box-shadow:0 4px 16px rgba(15,23,42,.09),0 12px 36px rgba(15,23,42,.06)}
+.p-hd{display:flex;align-items:center;gap:16px;margin-bottom:24px}
+.p-ico{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.pio{background:rgba(249,115,22,.15)}
+.pib{background:rgba(59,130,246,.15)}
+.pig{background:rgba(34,197,94,.12)}
+.pip{background:rgba(139,92,246,.12)}
+.p-eye{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--txt3);margin-bottom:4px}
+.p-ttl{font-size:22px;font-weight:700;line-height:1.2}
+.p-desc{font-size:15px;line-height:1.75;color:var(--txt2);margin-bottom:28px}
+.p-cards{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.p-card{background:var(--surf);border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:16px 18px;display:flex;align-items:flex-start;gap:12px;transition:border-color .18s}
+[data-theme="light"] .p-card{background:#fff;border-color:rgba(15,23,42,.18);box-shadow:0 1px 6px rgba(15,23,42,.07),0 4px 14px rgba(15,23,42,.05)}
+.p-card:hover{border-color:rgba(249,115,22,.35)}
+.p-cdot{width:7px;height:7px;border-radius:50%;margin-top:6px;flex-shrink:0}
+.p-ct{font-size:13px;color:var(--txt2);line-height:1.6}
+.p-ct strong{display:block;color:var(--txt);font-size:14px;font-weight:600;margin-bottom:3px}
+.p-ph{width:100%;aspect-ratio:16/7;border-radius:14px;background:var(--gb);border:1.5px dashed var(--gbdr);display:flex;align-items:center;justify-content:center;color:var(--txt3);margin-top:20px}
+[data-theme="light"] .p-ph{background:rgba(15,23,42,.03);border-color:rgba(15,23,42,.15)}
+
+/* ── S6 REMOTE ── */
+.rem-g{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.rem-t p{font-size:16px;color:var(--txt2);line-height:1.75;margin-bottom:24px}
+.rem-cards{display:flex;flex-direction:column;gap:12px}
+.rem-c{display:flex;align-items:flex-start;gap:14px;padding:16px 18px;border-radius:var(--rmd);border:1px solid var(--gbdr);background:var(--gb);transition:all .25s}
+.rem-c:hover{border-color:rgba(14,165,233,.3);transform:translateX(4px)}
+[data-theme="light"] .rem-c{background:#fff;border-color:rgba(15,23,42,.18);box-shadow:0 1px 6px rgba(15,23,42,.07)}
+[data-theme="light"] .rem-c:hover{border-color:rgba(14,165,233,.3)}
+.rem-ci{width:36px;height:36px;border-radius:10px;background:rgba(14,165,233,.12);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.rem-ct{font-size:14px;color:var(--txt2);line-height:1.6}
+.rem-ct strong{display:block;font-size:15px;font-weight:600;color:var(--txt);margin-bottom:2px}
+.rem-vis{aspect-ratio:4/3;border-radius:var(--rxl);background:var(--gb);border:1.5px dashed var(--gbdr);display:flex;align-items:center;justify-content:center;color:var(--txt3);position:relative;overflow:hidden}
+.rem-vis::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 40%,rgba(14,165,233,.08) 0%,transparent 60%)}
+[data-theme="light"] .rem-vis{background:rgba(15,23,42,.03);border-color:rgba(15,23,42,.15)}
+
+/* ── S7 WHY ── */
+.why-g{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.why-c{position:relative;isolation:isolate;overflow:hidden;border-radius:var(--rlg);border:1px solid rgba(255,255,255,.13);padding:30px 26px;background:var(--gb);display:flex;flex-direction:column;gap:14px;transition:all .35s var(--ease);box-shadow:0 4px 20px rgba(0,0,0,.1),inset 0 1px 0 var(--gh)}
+.why-c::after{content:'';position:absolute;inset:0;pointer-events:none;border-radius:inherit;background:linear-gradient(145deg,rgba(255,255,255,.06) 0%,rgba(255,255,255,.01) 35%,transparent 60%,rgba(255,255,255,.03) 100%);box-shadow:inset 1px 1px 0 rgba(255,255,255,.1);z-index:1;transition:all .35s}
+.why-c:hover{border-color:rgba(139,92,246,.25);box-shadow:0 8px 40px rgba(0,0,0,.15),inset 0 1px 0 rgba(255,255,255,.2);transform:translateY(-4px)}
+[data-theme="light"] .why-c{background:#fff;border-color:rgba(15,23,42,.18);box-shadow:0 2px 12px rgba(15,23,42,.08),0 6px 24px rgba(15,23,42,.06);}
+[data-theme="light"] .why-c:nth-child(1){border-top:2px solid var(--pur)}
+[data-theme="light"] .why-c:nth-child(2){border-top:2px solid var(--grn)}
+[data-theme="light"] .why-c:nth-child(3){border-top:2px solid var(--acc)}
+[data-theme="light"] .why-c:nth-child(4){border-top:2px solid var(--sky)}
+[data-theme="light"] .why-c:nth-child(5){border-top:2px solid var(--org)}
+[data-theme="light"] .why-c:nth-child(6){border-top:2px solid #fbbf24}
+[data-theme="light"] .how-c:nth-child(1){border-top:2px solid var(--org)}
+[data-theme="light"] .how-c:nth-child(2){border-top:2px solid var(--org)}
+[data-theme="light"] .how-c:nth-child(3){border-top:2px solid var(--org)}
+.why-ico{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;position:relative;z-index:2}
+.why-ttl{font-size:16px;font-weight:700;letter-spacing:-.01em;position:relative;z-index:2}
+.why-dsc{font-size:14px;color:var(--txt2);line-height:1.65;position:relative;z-index:2}
+
+/* ── CTA ── */
+.cta-s{padding:80px 0 120px;position:relative;z-index:1}
+.cta-in{position:relative;background:var(--bg-el);border:1px solid var(--gbdr);border-radius:28px;padding:80px 60px;overflow:hidden;text-align:center}
+[data-theme="light"] .cta-in{background:#fff;border-color:rgba(15,23,42,.08);box-shadow:0 8px 40px rgba(15,23,42,.08)}
+.cta-glow{position:absolute;border-radius:50%;pointer-events:none;filter:blur(80px)}
+.cta-g1{width:400px;height:400px;background:rgba(59,130,246,.12);top:-100px;left:-80px}
+.cta-g2{width:300px;height:300px;background:rgba(34,197,94,.1);bottom:-80px;right:-60px}
+.cta-cnt{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:20px}
+.cta-ttl{font-size:clamp(28px,4vw,48px);font-weight:700;line-height:1.2;max-width:700px}
+.cta-dsc{font-size:17px;line-height:1.75;color:var(--txt2);max-width:560px}
+.cta-acts{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:8px}
+@media(max-width:600px){.cta-in{padding:48px 28px}.cta-ttl{font-size:26px}}
+
+/* ── FOOTER ── */
+.footer{position:relative;z-index:1;border-top:1px solid var(--gbdr);padding:64px 0 32px}
+.ft-g{display:grid;grid-template-columns:200px repeat(8,1fr);gap:20px;margin-bottom:48px}
+.ft-logo{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.ft-logo-t{font-weight:700;font-size:17px;letter-spacing:-.02em}
+.ft-brand{font-size:13px;color:var(--txt3);line-height:1.6;max-width:160px;margin-bottom:16px}
+.ft-soc{display:flex;gap:10px}
+.ft-soc a{display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:8px;color:var(--txt3);background:var(--gb);border:1px solid var(--gbdr);transition:all .2s}
+.ft-soc a:hover{color:var(--txt);background:var(--gb-h)}
+.ft-soc svg{width:15px;height:15px}
+.ft-col{display:flex;flex-direction:column;gap:8px}
+.ft-col-t{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--txt3);margin-bottom:4px}
+.ft-col a{font-size:13px;color:var(--txt2);transition:color .2s}
+.ft-col a:hover{color:var(--txt)}
+.ft-bot{display:flex;align-items:center;justify-content:space-between;padding-top:24px;border-top:1px solid var(--gbdr)}
+.ft-copy{font-size:13px;color:var(--txt3)}
+.ft-leg{display:flex;gap:20px}
+.ft-leg a{font-size:13px;color:var(--txt3);transition:color .2s}
+.ft-leg a:hover{color:var(--txt)}
+
+/* RESPONSIVE */
+@media(max-width:1000px){
+  .ft-g{grid-template-columns:repeat(4,1fr)}
+  .what-g,.rem-g{grid-template-columns:1fr;gap:40px}
+  .why-g{grid-template-columns:repeat(2,1fr)}
+  .how-g{grid-template-columns:1fr}
+  .sb-wrap{grid-template-columns:1fr}
+  .sb-nav{position:static;flex-direction:row;flex-wrap:wrap}
+  .sb-lbl,.sb-div{display:none}
+  .p-cards{grid-template-columns:1fr}
+  .fails-sol{flex-direction:column;gap:20px;padding:28px}
+}
+@media(max-width:640px){
+  .why-g{grid-template-columns:1fr}
+  .nav-links,.nav-actions{display:none}
+  .mob-nav-a{display:flex}
+  .ft-g{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+
+<div class="page-bg"><div class="orb orb1"></div><div class="orb orb2"></div><div class="orb orb3"></div></div>
+
+<!-- NAV -->
+<nav class="nav"><div class="nav-inner">
+<a class="nav-logo" href="/"><svg fill="none" viewbox="0 0 664 664" width="32" height="32"><path d="M283.91 238L99.92 437.73C64.39 476.3 0 451.16 0 398.72V238H283.91Z" fill="#22C55E"/><path d="M283.91 0V238H0V206.41C0 92.41 92.41 0 206.41 0H283.92H283.91Z" fill="#027F56"/><path d="M595.82 11.85V79.56C595.82 167.07 524.88 238 437.38 238H283.92V0H583.98C590.52 0 595.83 5.3 595.83 11.85H595.82Z" fill="#0EA5E9"/><path d="M380.09 426L564.08 226.27C599.61 187.7 664 212.84 664 265.28V426H380.09Z" fill="#7C3AED"/><path d="M380.09 664V426H664V457.59C664 571.59 571.59 664 457.59 664H380.08H380.09Z" fill="#0726D9"/><path d="M68.18 652.15V584.44C68.18 496.93 139.12 426 226.62 426H380.08V664H80.02C73.48 664 68.17 658.7 68.17 652.15H68.18Z" fill="#0EA5E9"/></svg><span class="nav-logo-text">StaffCo</span></a>
+<div class="nav-links">
+<div class="nav-item"><a class="nav-link" href="/product/">Product <svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></a><div class="nav-dd"><div class="dd-grid dd-3"><div class="dd-sec"><div class="dd-lbl">Overview</div><a href="/product/time-tracking-software" class="dd-a">Time-tracking Software</a><a href="/product/hr-software" class="dd-a">HR Software</a><a href="/product/employee-management-software" class="dd-a">Employee Management Software</a><a href="/product/payroll" class="dd-a">Payroll</a><a href="/product/employee-monitoring-software" class="dd-a">Employee Monitoring Software</a><a href="/product/workforce-intelligence-platform" class="dd-a">Workforce Intelligence Platform</a></div><div class="dd-sec"><div class="dd-lbl">Features</div><a href="/features/timesheets" class="dd-a">Timesheets</a><a href="/features/productivity-insights" class="dd-a">Productivity Insights</a><a href="/features/leave-management" class="dd-a">Leave Management</a><a href="/features/reporting-analytics" class="dd-a">Reporting & Analytics</a><a href="/features/performance-management" class="dd-a">Performance Management</a><a href="/features/activity-monitoring" class="dd-a">Activity Monitoring</a><a href="/features/team-management" class="dd-a">Team Management</a><a href="/features/ai-engines" class="dd-a">AI Engines</a><a href="/features/behavioral-risk-detection" class="dd-a">Behavioral Risk Detection</a><a href="/features/hr-ticketing" class="dd-a">HR Ticketing</a><a href="/features/e-signatures" class="dd-a">E-signatures</a><a href="/features/employee-profile" class="dd-a">Employee Profile</a></div><div class="dd-sec"><div class="dd-lbl">Integrations</div><a href="/integrations/jira" class="dd-a">Jira</a><a href="/integrations/slack" class="dd-a">Slack</a></div></div></div></div>
+<div class="nav-item"><a class="nav-link" href="/solutions/">Solutions <svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></a><div class="nav-dd"><div class="dd-grid dd-2"><div class="dd-sec"><div class="dd-lbl">By use case</div><a href="/solutions/remote-work" class="dd-a">Remote Work</a><a href="/solutions/hybrid-work" class="dd-a">Hybrid Work</a><a href="/solutions/small-business" class="dd-a">Small Business</a><a href="/solutions/employee-productivity" class="dd-a">Employee Productivity</a><a href="/solutions/workforce-compliance" class="dd-a">Workforce Compliance</a><a href="/solutions/client-billing-reporting" class="dd-a">Client Billing & Reporting</a><a href="/solutions/invoicing-billing" class="dd-a">Invoicing & Billing</a><a href="/solutions/project-management" class="dd-a">Project Management</a><a href="/solutions/budget-cost-control" class="dd-a">Budget & Cost Control</a></div><div class="dd-sec"><div class="dd-lbl">By industry</div><a href="/industries/startups" class="dd-a">Startups</a><a href="/industries/it-services" class="dd-a">IT Services</a><a href="/industries/finance-teams" class="dd-a">Finance Teams</a><a href="/industries/agencies" class="dd-a">Agencies</a></div></div></div></div>
+<a class="nav-link" href="/pricing/">Pricing</a>
+<div class="nav-item"><a class="nav-link" href="/resources/">Resources <svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></a><div class="nav-dd"><div class="dd-grid dd-1"><div class="dd-sec"><div class="dd-lbl">Resources</div><a href="/resources/templates" class="dd-a">Templates</a><a href="/resources/glossary" class="dd-a">Glossary</a><a href="/resources/guides" class="dd-a">Guides</a><a href="/blog" class="dd-a">Blog</a><a href="/resources/calculators" class="dd-a">Calculators</a><a href="/resources/case-studies" class="dd-a">Case Studies</a><a href="/resources/software-reviews" class="dd-a">Software Reviews</a></div></div></div></div>
+<a class="nav-link" href="/apps/">Download</a>
+</div>
+<div class="nav-actions">
+<button class="btn btn-ghost theme-toggle" id="thT"><span class="theme-toggle-icon"><svg class="icon-sun" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12Z"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg><svg class="icon-moon" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M21 12.8A8.5 8.5 0 0 1 11.2 3a6.5 6.5 0 1 0 9.8 9.8Z"/></svg></span></button>
+<a class="btn btn-ghost" href="/login/">Log in</a>
+<a class="btn btn-pri" href="/signup/">Start Free Trial</a>
+</div>
+<div class="mob-nav-a" id="mNA">
+<a class="btn-ncta" href="/demo/">Get a Demo</a>
+<button class="btn btn-ghost theme-toggle" id="thTM"><span class="theme-toggle-icon"><svg class="icon-sun" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12Z"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg><svg class="icon-moon" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M21 12.8A8.5 8.5 0 0 1 11.2 3a6.5 6.5 0 1 0 9.8 9.8Z"/></svg></span></button>
+<button class="mob-tog" id="mTog"><svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+</div>
+</div></nav>
+
+<!-- MOBILE MENU -->
+<div class="mob-menu" id="mMenu"><div class="mob-bd" id="mBd"></div><div class="mob-panel"><div class="mob-hd"><a class="nav-logo" href="/"><svg fill="none" viewbox="0 0 664 664" width="28" height="28"><path d="M283.91 238L99.92 437.73C64.39 476.3 0 451.16 0 398.72V238H283.91Z" fill="#22C55E"/><path d="M283.91 0V238H0V206.41C0 92.41 92.41 0 206.41 0H283.92H283.91Z" fill="#027F56"/><path d="M595.82 11.85V79.56C595.82 167.07 524.88 238 437.38 238H283.92V0H583.98C590.52 0 595.83 5.3 595.83 11.85H595.82Z" fill="#0EA5E9"/><path d="M380.09 426L564.08 226.27C599.61 187.7 664 212.84 664 265.28V426H380.09Z" fill="#7C3AED"/><path d="M380.09 664V426H664V457.59C664 571.59 571.59 664 457.59 664H380.08H380.09Z" fill="#0726D9"/><path d="M68.18 652.15V584.44C68.18 496.93 139.12 426 226.62 426H380.08V664H80.02C73.48 664 68.17 658.7 68.17 652.15H68.18Z" fill="#0EA5E9"/></svg><span class="nav-logo-text">StaffCo</span></a><button class="mob-cls" id="mCls"><svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="20" height="20"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div><div class="mob-links"><a class="mob-link" href="/product/">Product</a><a class="mob-link" href="/solutions/">Solutions</a><a class="mob-link" href="/pricing/">Pricing</a><a class="mob-link" href="/resources/">Resources</a><a class="mob-link" href="/apps/">Download</a></div><div class="mob-acts"><a class="btn btn-pri" href="/signup/">Start Free Trial</a><a class="btn btn-sec" href="/demo/">Book a Demo</a></div></div></div>
+
+<main>
+
+<!-- ── HERO ── -->
+<section class="hero">
+<div class="container">
+  <div class="badge-wrap" style="margin-bottom:28px"><span class="hero-badge"><span class="hero-badge-dot"></span>Attendance Tracking</span></div>
+  <div class="hero-in">
+  <div class="hero-left">
+    <h1 class="hero-title">Attendance Tracking that <span class="hero-ta">Actually Tells You</span> What's Happening</h1>
+    <p class="hero-p">To put it bluntly, attendance tracking shouldn't require guesswork, separate spreadsheets, or chasing employees on Slack. Yet many teams rely on manual check-ins and outdated time clock systems that cannot accurately reflect actual work patterns.</p>
+    <p class="hero-p2">StaffCo's <a class="inline-link" href="/product/time-tracking-software">attendance tracking software</a> provides you with automated, real-time visibility into when work starts, when it ends, and what happens in between the shifts. Say goodbye to the manual logs, and chaotic spreadsheets by utilizing the transparent <a class="inline-link" href="/features/attendance-tracking">employee attendance tracking system</a> at StaffCo.</p>
+    <div class="hero-cta"><a class="btn-hp" href="/request-demo">Book a Demo →</a><a class="btn-hg" href="/signup">Start Now</a></div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-vis"><div class="hero-vis-in"><svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24" opacity="0.25"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9l4-4 4 4 4-6 4 6"/><circle cx="8.5" cy="8.5" r="1.5"/></svg><span>Attendance Tracking Dashboard</span></div></div>
+  </div>
+</div></div>
+</section>
+
+<!-- ── S2: WHAT IS ── -->
+<section class="section">
+<div class="container">
+  <div style="text-align:center;margin-bottom:48px">
+    <div class="badge-wrap"><span class="badge b-blu"><span class="badge-dot"></span>Overview</span></div>
+    <h2 class="sec-title tc">What is the StaffCo Attendance Tracking <span class="t-acc">Feature All About?</span></h2>
+  </div>
+  <div class="what-g">
+    <div class="what-t">
+      <p>StaffCo offers an advanced <a class="inline-link" href="/product/time-tracking-software">attendance tracking system</a> that compares scheduled shifts with the actual time-tracking data to automatically classify the attendance status of an employee.</p>
+      <p>It functions as both a <a class="inline-link" href="/product/time-tracking-software">time clock attendance tracking system</a> and <a class="inline-link" href="/features/attendance-tracking">attendance management software</a> to provide structured insights.</p>
+      <p>Whether you are mostly working with in-office teams, remote employees, or hybrid departments, you can use StaffCo to complete automated and accurate attendance monitoring.</p>
+    </div>
+    <div class="sv">
+      <div class="sv-lbl">Auto-classified Attendance Statuses</div>
+      <div class="s-rows">
+        <div class="s-row"><div class="s-row-l"><span class="sdot" style="background:#22c55e"></span>On Time</div><span class="schip cg">Active</span></div>
+        <div class="s-row"><div class="s-row-l"><span class="sdot" style="background:#fbbf24"></span>Delayed</div><span class="schip ca">Flagged</span></div>
+        <div class="s-row"><div class="s-row-l"><span class="sdot" style="background:#f87171"></span>Missed Shift</div><span class="schip cr">Alert</span></div>
+        <div class="s-row"><div class="s-row-l"><span class="sdot" style="background:#fb923c"></span>Left Early</div><span class="schip co">Notice</span></div>
+        <div class="s-row"><div class="s-row-l"><span class="sdot" style="background:#a78bfa"></span>Overstayed</div><span class="schip cp">Review</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ── S3: WHY OLD SCHOOL FAILS ── -->
+<section class="section">
+<div class="container">
+  <div style="text-align:center;margin-bottom:56px">
+    <div class="badge-wrap"><span class="badge b-blu"><span class="badge-dot"></span>The Problem</span></div>
+    <h2 class="sec-title tc">Why Old School Attendance <span class="t-acc">Monitoring Fails?</span></h2>
+    <p class="sec-sub">Many organizations struggle to track attendance effectively. Here's what's silently costing you time, money, and team trust every day.</p>
+  </div>
+
+  <div class="fails-row">
+    <div class="fail-item">
+      <div class="fail-x">✕</div>
+      <div class="fail-icon-wrap">📋</div>
+      <div class="fail-label">Manual tracking</div>
+    </div>
+    <div class="fail-item">
+      <div class="fail-x">✕</div>
+      <div class="fail-icon-wrap">👻</div>
+      <div class="fail-label">Delays go unnoticed</div>
+    </div>
+    <div class="fail-item">
+      <div class="fail-x">✕</div>
+      <div class="fail-icon-wrap">📡</div>
+      <div class="fail-label">No real-time visibility</div>
+    </div>
+    <div class="fail-item">
+      <div class="fail-x">✕</div>
+      <div class="fail-icon-wrap">🕳️</div>
+      <div class="fail-label">Inconsistent absence logs</div>
+    </div>
+    <div class="fail-item">
+      <div class="fail-x">✕</div>
+      <div class="fail-icon-wrap">📉</div>
+      <div class="fail-label">Zero analytics</div>
+    </div>
+    <div class="fail-item">
+      <div class="fail-x">✕</div>
+      <div class="fail-icon-wrap">🔁</div>
+      <div class="fail-label">Patterns repeat unseen</div>
+    </div>
+  </div>
+
+  <div class="fails-arrow">
+    <svg width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="var(--grn)" stroke-width="2.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+  </div>
+
+  <div class="fails-sol" style="flex-direction:column;align-items:center;text-align:center;padding:28px 40px 30px">
+    <div class="fsol-title" style="font-size:clamp(18px,2vw,24px);margin-bottom:12px;text-align:center;width:100%">StaffCo eliminates all of these blind spots</div>
+    <div style="max-width:680px;width:100%;margin:0 auto">
+      <div class="fsol-desc" style="font-size:15px;text-align:center;margin:0 auto">StaffCo eliminates these blind spots and ensures that small attendance issues won't become a repeated pattern across your organization. With automated classification, real-time reporting, and configurable policy controls — you get the full picture, every shift, every day.</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ── S4+S5: HOW IT WORKS + CAPABILITIES (merged) ── -->
+<section class="section">
+<div class="container">
+
+  <!-- Badge + title + description -->
+  <div style="text-align:center;margin-bottom:40px">
+    <div class="badge-wrap"><span class="badge b-org"><span class="badge-dot"></span>How It Works</span></div>
+    <h2 class="sec-title tc">How the StaffCo Attendance <span class="t-org">Monitoring System Works</span></h2>
+    <p class="sec-sub" style="max-width:700px">StaffCo's employee attendance management system operates smoothly by connecting three core layers: Scheduling &amp; Shifts, Time Tracking Activity, and Automated Classification.</p>
+  </div>
+
+  <!-- Explanation text -->
+  <div class="how-intro">
+    <p>When the employee shift is assigned, the system automatically compares the planned schedule with the actual activity data. Then, StaffCo <a class="inline-link" href="/product/time-tracking-software">time attendance software</a> classifies the results as:</p>
+    <p>In the admin dashboard, organizations can customize these metrics according to their company's policies and requirements. With this <a class="inline-link" href="/features/attendance-tracking">online attendance tracking solution</a>, there is no need for manual reviews as it is based on real-time data.</p>
+  </div>
+
+  <!-- Status badges between text and layer cards -->
+  <div class="how-statuses" style="margin-top:28px;margin-bottom:8px">
+    <span class="hst hst-grn">✔ On Time</span>
+    <span class="hst hst-amb">⏱ Delayed</span>
+    <span class="hst hst-red">✕ Missed Shift</span>
+    <span class="hst hst-org">⚡ Left Early</span>
+    <span class="hst hst-pur">🔄 Overstayed</span>
+  </div>
+
+  <!-- 3 hover cards -->
+  <div class="how-g" style="margin-top:48px">
+    <div class="how-c">
+      <div class="how-step">Layer 01</div>
+      <div class="how-ico">📅</div>
+      <div class="how-ttl">Scheduling &amp; Shifts</div>
+      <div class="how-pts">
+        <div class="how-pt"><span class="how-dot"></span>When the employee shift is assigned, the system automatically registers it as the baseline for comparison</div>
+        <div class="how-pt"><span class="how-dot"></span>Supports recurring shifts for in-office, remote, and hybrid teams without double bookings</div>
+        <div class="how-pt"><span class="how-dot"></span>Integrates notifications to send shift reminders ahead of time to all employees</div>
+        <div class="how-pt"><span class="how-dot"></span>Automatically prevents scheduling conflicts before they create operational problems</div>
+      </div>
+    </div>
+    <div class="how-c">
+      <div class="how-step">Layer 02</div>
+      <div class="how-ico">⏱️</div>
+      <div class="how-ttl">Time Tracking Activity</div>
+      <div class="how-pts">
+        <div class="how-pt"><span class="how-dot"></span>Captures actual clock-in and clock-out times in real time with no manual input required</div>
+        <div class="how-pt"><span class="how-dot"></span>Tracks start time, end time, and break patterns throughout each shift</div>
+        <div class="how-pt"><span class="how-dot"></span>Maintains a full audit log of all activity for compliance, HR reviews, and reporting</div>
+        <div class="how-pt"><span class="how-dot"></span>Works seamlessly for both remote and in-office employees across all time zones</div>
+      </div>
+    </div>
+    <div class="how-c">
+      <div class="how-step">Layer 03</div>
+      <div class="how-ico">🤖</div>
+      <div class="how-ttl">Automated Classification</div>
+      <div class="how-pts">
+        <div class="how-pt"><span class="how-dot"></span>Compares planned schedule against actual activity and classifies each result automatically</div>
+        <div class="how-pt"><span class="how-dot"></span>Statuses assigned: <strong>On Time · Delayed · Missed Shift · Left Early · Overstayed</strong></div>
+        <div class="how-pt"><span class="how-dot"></span>Organizations can customize these metrics in the admin dashboard to match their policies</div>
+        <div class="how-pt"><span class="how-dot"></span>No manual reviews needed — based entirely on real-time data, with no guesswork involved</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Divider before capabilities -->
+  <div class="cap-divider">
+    <h3 class="cap-title">Built-in Controls, Analytics <span class="t-org">&amp; Smart Alerts</span></h3>
+    <p class="cap-sub">Explore each capability of StaffCo's attendance management system — from policy controls to real-time analytics and smart notifications.</p>
+  </div>
+  <div class="sb-wrap">
+    <div class="sb-nav">
+      <div class="sb-lbl">Capabilities</div>
+      <button class="sb-btn active" onclick="showFP('config',this)"><span class="sb-icon">⚙️</span>Built-in Configuration &amp; Policy Controls</button>
+      <div class="sb-div"></div>
+      <button class="sb-btn" onclick="showFP('reporting',this)"><span class="sb-icon">📊</span>Real Time Reporting &amp; Analytics</button>
+      <div class="sb-div"></div>
+      <button class="sb-btn" onclick="showFP('metrics',this)"><span class="sb-icon">📈</span>Key Metrics You Can Monitor with StaffCo</button>
+      <div class="sb-div"></div>
+      <button class="sb-btn" onclick="showFP('notifs',this)"><span class="sb-icon">🔔</span>Notifications that Keep Everyone Informed</button>
+    </div>
+    <div class="fp-wrap">
+
+      <div class="fp active" id="fp-config"><div class="panel">
+        <div class="p-hd"><div class="p-ico pio">⚙️</div><div><div class="p-eye">Configuration</div><div class="p-ttl">Built-in Configuration &amp; Policy Controls</div></div></div>
+        <p class="p-desc">As a customizable <a class="inline-link" href="/features/attendance-tracking">attendance tracking solution</a>, StaffCo enables companies to define grace periods for delays, enable or disable specific statuses, set minimum shift duration requirements, and trigger automatic notifications for repeated missed shifts. For companies that need policy alignment, StaffCo offers flexible solutions and configurable settings that they can utilize for employee attendance tracking.</p>
+        <div class="p-cards">
+          <div class="p-card"><div class="p-cdot" style="background:var(--org)"></div><div class="p-ct"><strong>Define Grace Periods</strong>Set how many minutes of delay are acceptable before the system flags an employee as late.</div></div>
+          <div class="p-card"><div class="p-cdot" style="background:var(--org)"></div><div class="p-ct"><strong>Enable / Disable Statuses</strong>Turn specific attendance statuses on or off to match your internal classification policy.</div></div>
+          <div class="p-card"><div class="p-cdot" style="background:var(--org)"></div><div class="p-ct"><strong>Minimum Shift Duration</strong>Set requirements for how long a shift must be tracked before it counts as completed.</div></div>
+          <div class="p-card"><div class="p-cdot" style="background:var(--org)"></div><div class="p-ct"><strong>Auto Alerts for Repeated Missed Shifts</strong>Automatically trigger notifications when an employee repeatedly misses scheduled shifts.</div></div>
+        </div>
+        <div class="p-ph"><svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24" opacity="0.25"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9l4-4 4 4 4-6 4 6"/><circle cx="8.5" cy="8.5" r="1.5"/></svg></div>
+      </div></div>
+
+      <div class="fp" id="fp-reporting"><div class="panel">
+        <div class="p-hd"><div class="p-ico pib">📊</div><div><div class="p-eye">Analytics</div><div class="p-ttl">Real Time Reporting &amp; Analytics</div></div></div>
+        <p class="p-desc">Without understanding the patterns, the attendance tracking process will be just about marking presence. To eliminate this issue, StaffCo provides you with an advanced <a class="inline-link" href="/features/reporting-analytics">reporting dashboard</a> through which you can view total late arrivals, total missed shifts, average delay time, attendance rate %, and absence tracking trends. Filter the results by User, Team, Date range, or Attendance status and export the report as CSV or PDF for further analysis.</p>
+        <div class="p-cards">
+          <div class="p-card"><div class="p-cdot" style="background:var(--acc)"></div><div class="p-ct"><strong>Total Late Arrivals</strong>See how often each employee starts after their scheduled time, filterable by team or date range.</div></div>
+          <div class="p-card"><div class="p-cdot" style="background:var(--acc)"></div><div class="p-ct"><strong>Total Missed Shifts</strong>Track every missed shift across your organization with full historical context.</div></div>
+          <div class="p-card"><div class="p-cdot" style="background:var(--acc)"></div><div class="p-ct"><strong>Average Delay Time</strong>Understand the average lateness per employee and spot teams that consistently need attention.</div></div>
+          <div class="p-card"><div class="p-cdot" style="background:var(--acc)"></div><div class="p-ct"><strong>Attendance Rate %</strong>A high-level view of your team's overall attendance performance over any selected period.</div></div>
+        </div>
+        <div class="p-ph"><svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24" opacity="0.25"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9l4-4 4 4 4-6 4 6"/><circle cx="8.5" cy="8.5" r="1.5"/></svg></div>
+      </div></div>
+
+      <div class="fp" id="fp-metrics"><div class="panel">
+        <div class="p-hd"><div class="p-ico pig">📈</div><div><div class="p-eye">Monitoring</div><div class="p-ttl">Key Metrics You Can Monitor with StaffCo</div></div></div>
+        <p class="p-desc">With StaffCo <a class="inline-link" href="/product/hr-software">staff attendance software</a>, you can monitor missed shift count, attendance rate percentage, total late arrivals per employee, overtime patterns, average delay times, and absence tracking history. For organizations that place strong emphasis on accountability and structured time management, these features make StaffCo one of the best <a class="inline-link" href="/product/time-tracking-software">time and attendance software</a> options.</p>
+        <div class="p-cards">
+          <div class="p-card"><div class="p-cdot" style="background:var(--grn)"></div><div class="p-ct"><strong>Missed Shift Count</strong>A running tally of missed shifts per employee, searchable by team or timeframe.</div></div>
+          <div class="p-card"><div class="p-cdot" style="background:var(--grn)"></div><div class="p-ct"><strong>Total Late Arrivals per Employee</strong>Understand which employees are consistently delayed and quantify exactly how much time is lost.</div></div>
+          <div class="p-card"><div class="p-cdot" style="background:var(--grn)"></div><div class="p-ct"><strong>Overtime Patterns</strong>Identify recurring overtime trends before they become a compliance or employee burnout risk.</div></div>
+          <div class="p-card"><div class="p-cdot" style="background:var(--grn)"></div><div class="p-ct"><strong>Absence Tracking History</strong>A full record of each employee's absence history for HR reviews, audits, and reporting.</div></div>
+        </div>
+        <div class="p-ph"><svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24" opacity="0.25"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9l4-4 4 4 4-6 4 6"/><circle cx="8.5" cy="8.5" r="1.5"/></svg></div>
+      </div></div>
+
+      <div class="fp" id="fp-notifs"><div class="panel">
+        <div class="p-hd"><div class="p-ico pip">🔔</div><div><div class="p-eye">Alerts</div><div class="p-ttl">Notifications that Keep Everyone Informed</div></div></div>
+        <p class="p-desc">StaffCo's attendance tracking system is built to automatically trigger alerts for upcoming shifts, missed shifts, delayed starts, and shift reassignments. The smart notification feature helps managers get timely reports on their employees' attendance and respond promptly to fix underlying issues.</p>
+        <div class="p-cards">
+          <div class="p-card"><div class="p-cdot" style="background:var(--pur)"></div><div class="p-ct"><strong>Upcoming Shift Reminders</strong>Employees receive timely reminders before their scheduled shift starts — no excuses for being unprepared.</div></div>
+          <div class="p-card"><div class="p-cdot" style="background:var(--pur)"></div><div class="p-ct"><strong>Missed Shift Alerts</strong>Managers are instantly notified when a shift has been missed with no activity recorded at all.</div></div>
+          <div class="p-card"><div class="p-cdot" style="background:var(--pur)"></div><div class="p-ct"><strong>Delayed Start Notifications</strong>An automatic flag is raised when an employee's clock-in falls outside the defined grace period.</div></div>
+          <div class="p-card"><div class="p-cdot" style="background:var(--pur)"></div><div class="p-ct"><strong>Shift Reassignment Updates</strong>All relevant parties are notified immediately when a shift is reassigned or modified.</div></div>
+        </div>
+        <div class="p-ph"><svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24" opacity="0.25"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9l4-4 4 4 4-6 4 6"/><circle cx="8.5" cy="8.5" r="1.5"/></svg></div>
+      </div></div>
+
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ── S6: REMOTE & HYBRID ── -->
+<section class="section">
+<div class="container">
+  <div style="text-align:center;margin-bottom:48px">
+    <div class="badge-wrap"><span class="badge b-sky"><span class="badge-dot"></span>Who It Is For</span></div>
+    <h2 class="sec-title tc">Attendance Tracking for <span class="t-sky">Remote &amp; Hybrid Teams</span></h2>
+  </div>
+  <div class="rem-g">
+    <div class="rem-t">
+      <p>Managing <a class="inline-link" href="/solutions/remote-work">remote teams</a>, as well as freelance employees requires more than just a basic <a class="inline-link" href="/features/attendance-tracking">app for attendance tracking</a>.</p>
+      <div class="rem-cards">
+        <div class="rem-c"><div class="rem-ci">🔄</div><div class="rem-ct"><strong>Compares scheduled shifts to tracked activity</strong>Automatically measures planned vs. actual working hours across all locations and time zones.</div></div>
+        <div class="rem-c"><div class="rem-ci">📆</div><div class="rem-ct"><strong>Supports recurring shifts</strong>Set up repeating schedules for distributed teams once and let StaffCo handle the rest automatically.</div></div>
+        <div class="rem-c"><div class="rem-ci">🚫</div><div class="rem-ct"><strong>Prevents double bookings</strong>Automatically detects and flags scheduling conflicts before they create operational problems.</div></div>
+        <div class="rem-c"><div class="rem-ci">📲</div><div class="rem-ct"><strong>Integrates notifications for shift reminders</strong>Keeps remote employees on schedule with automated alerts tied to their assigned shifts.</div></div>
+      </div>
+      <p style="margin-top:20px">With StaffCo, you can ensure consistent <a class="inline-link" href="/features/attendance-tracking">attendance tracking</a> even when your employees work remotely.</p>
+    </div>
+    <div class="rem-vis"><svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24" opacity="0.25"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9l4-4 4 4 4-6 4 6"/><circle cx="8.5" cy="8.5" r="1.5"/></svg></div>
+  </div>
+</div>
+</section>
+
+<!-- ── S7: WHY STAFFCO ── -->
+<section class="section">
+<div class="container">
+  <div style="text-align:center;margin-bottom:56px">
+    <div class="badge-wrap"><span class="badge b-pur"><span class="badge-dot"></span>Why StaffCo</span></div>
+    <h2 class="sec-title tc">Why Teams Choose StaffCo for <span class="t-pur">Attendance Tracking</span></h2>
+    <p class="sec-sub">Organizations prefer StaffCo app for attendance tracking because it offers configurable monitoring, real-time visibility, centralized reporting, and full audit logging — all in one system.</p>
+  </div>
+  <div class="why-g">
+    <div class="why-c"><div class="why-ico" style="background:rgba(139,92,246,.12)">⚙️</div><div class="why-ttl">Configurable Attendance Monitoring System</div><div class="why-dsc">Set grace periods, enable or disable statuses, and align the system precisely to your company's attendance policies and requirements.</div></div>
+    <div class="why-c"><div class="why-ico" style="background:rgba(34,197,94,.12)">⚡</div><div class="why-ttl">Real-time Work Attendance Tracker</div><div class="why-dsc">See who is on time, delayed, or missing — as it happens, not hours or days later when the damage is already done.</div></div>
+    <div class="why-c"><div class="why-ico" style="background:rgba(59,130,246,.12)">📊</div><div class="why-ttl">Centralized Reporting Dashboard</div><div class="why-dsc">All attendance data in one place, filterable by user, team, date range, or status — exportable as CSV or PDF. See it in our <a class="inline-link" href="/features/reporting-analytics">reporting &amp; analytics</a> feature.</div></div>
+    <div class="why-c"><div class="why-ico" style="background:rgba(14,165,233,.12)">🔒</div><div class="why-ttl">Secure, Role-based Access to Sensitive Data</div><div class="why-dsc">Control who can view, edit, or export attendance records with granular, role-based permission settings.</div></div>
+    <div class="why-c"><div class="why-ico" style="background:rgba(249,115,22,.12)">🤖</div><div class="why-ttl">Automated Employee Attendance Tracking</div><div class="why-dsc">Eliminate manual check-ins entirely. StaffCo classifies every shift automatically based on real-time tracking data.</div></div>
+    <div class="why-c"><div class="why-ico" style="background:rgba(251,191,36,.12)">📋</div><div class="why-ttl">Full Audit Logging</div><div class="why-dsc">Every attendance event is logged with a timestamp, giving you a complete, tamper-proof record for compliance.</div></div>
+  </div>
+</div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="cta-s">
+<div class="container"><div class="cta-in">
+  <div class="cta-glow cta-g1"></div><div class="cta-glow cta-g2"></div>
+  <div class="cta-cnt">
+    <div class="badge-wrap"><span class="badge b-grn"><span class="badge-dot"></span>Get Started</span></div>
+    <h2 class="cta-ttl">Ready to Start?</h2>
+    <p class="cta-dsc">Are you tired of relying on outdated attendance spreadsheets and guessing who showed up to work on time? Then, start using the StaffCo attendance tracking system to enjoy structured, automated, and transparent attendance insights now.</p>
+    <div class="cta-acts"><a class="btn-hp" href="/request-demo">Book a Demo →</a><a class="btn-hg" href="/signup">Start Now</a></div>
+  </div>
+</div></div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer"><div class="container">
+<div class="ft-g">
+<div><div class="ft-logo"><svg fill="none" height="32" viewbox="0 0 664 664" width="32"><path d="M283.91 238L99.92 437.73C64.39 476.3 0 451.16 0 398.72V238H283.91Z" fill="#22C55E"/><path d="M283.91 0V238H0V206.41C0 92.41 92.41 0 206.41 0H283.92H283.91Z" fill="#027F56"/><path d="M595.82 11.85V79.56C595.82 167.07 524.88 238 437.38 238H283.92V0H583.98C590.52 0 595.83 5.3 595.83 11.85H595.82Z" fill="#0EA5E9"/><path d="M380.09 426L564.08 226.27C599.61 187.7 664 212.84 664 265.28V426H380.09Z" fill="#7C3AED"/><path d="M380.09 664V426H664V457.59C664 571.59 571.59 664 457.59 664H380.08H380.09Z" fill="#0726D9"/><path d="M68.18 652.15V584.44C68.18 496.93 139.12 426 226.62 426H380.08V664H80.02C73.48 664 68.17 658.7 68.17 652.15H68.18Z" fill="#0EA5E9"/></svg><span class="ft-logo-t">StaffCo</span></div><p class="ft-brand">Workforce management built for modern teams.</p><div class="ft-soc"><a aria-label="Twitter" href="https://twitter.com/staffco"><svg fill="currentColor" viewbox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a><a aria-label="LinkedIn" href="https://linkedin.com/company/staffco"><svg fill="currentColor" viewbox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a><a aria-label="GitHub" href="https://github.com/staffco"><svg fill="currentColor" viewbox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a></div></div>
+<div class="ft-col"><div class="ft-col-t">Product</div><a href="/product">Product Overview</a><a href="/product/time-tracking-software">Time Tracking Software</a><a href="/product/employee-monitoring-software">Employee Monitoring Software</a><a href="/product/workforce-intelligence-platform">Workforce Intelligence Platform</a><a href="/product/hr-software">HR Software</a><a href="/product/payroll">Payroll</a><a href="/product/employee-management-software">Employee Management Software</a></div>
+<div class="ft-col"><div class="ft-col-t">Features</div><a href="/features">Features Hub</a><a href="/features/timesheets">Timesheets</a><a href="/features/productivity-insights">Productivity Insights</a><a href="/features/leave-management">Leave Management</a><a href="/features/performance-management">Performance Management</a><a href="/features/activity-monitoring">Activity Monitoring</a><a href="/features/team-management">Team Management</a><a href="/features/hr-ticketing">HR Ticketing</a><a href="/features/reporting-analytics">Reporting & Analytics</a><a href="/features/ai-engines">AI Engines</a><a href="/features/e-signatures">E-signatures</a><a href="/features/employee-profile">Employee Profile</a></div>
+<div class="ft-col"><div class="ft-col-t">Solutions</div><a href="/solutions">Solutions Overview</a><a href="/solutions/remote-work">Remote Work</a><a href="/solutions/hybrid-work">Hybrid Work</a><a href="/solutions/small-business">Small Business</a><a href="/solutions/employee-productivity">Employee Productivity</a><a href="/solutions/workforce-compliance">Workforce Compliance</a><a href="/solutions/client-billing-reporting">Client Billing & Reporting</a><a href="/solutions/invoicing-billing">Invoicing & Billing</a><a href="/solutions/project-management">Project Management</a><a href="/solutions/budget-cost-control">Budget & Cost Control</a></div>
+<div class="ft-col"><div class="ft-col-t">Industries</div><a href="/industries">Industries Overview</a><a href="/industries/startups">Startups</a><a href="/industries/it-services">IT Services</a><a href="/industries/finance-teams">Finance Teams</a><a href="/industries/agencies">Agencies</a></div>
+<div class="ft-col"><div class="ft-col-t">Resources</div><a href="/resources">Resources Overview</a><a href="/resources/guides">Guides</a><a href="/resources/templates">Templates</a><a href="/resources/glossary">Glossary</a><a href="/resources/calculators">Calculators</a><a href="/resources/case-studies">Case Studies</a><a href="/resources/software-reviews">Software Reviews</a><a href="/blog">Blog</a></div>
+<div class="ft-col"><div class="ft-col-t">Compare</div><a href="/compare">Compare Overview</a><a href="/compare/staffco-vs-clockify">StaffCo vs Clockify</a><a href="/compare/staffco-vs-hubstaff">StaffCo vs Hubstaff</a><a href="/compare/staffco-vs-toggl">StaffCo vs Toggl</a><a href="/compare/staffco-vs-time-doctor">StaffCo vs Time Doctor</a></div>
+<div class="ft-col"><div class="ft-col-t">Support</div><a href="/help">Help Center</a><a href="/faq">FAQ</a><a href="/contact">Contact</a></div>
+<div class="ft-col"><div class="ft-col-t">Legal</div><a href="/about">About</a><a href="/customers">Customers</a><a href="/terms">Terms</a><a href="/privacy-policy">Privacy Policy</a><a href="/legal/compliance-security">Compliance & Security</a><a href="/legal/ethical-employee-monitoring">Ethical Employee Monitoring</a></div>
+</div>
+<div class="ft-bot"><p class="ft-copy">© 2025 StaffCo. All rights reserved.</p><div class="ft-leg"><a href="/privacy-policy">Privacy</a><a href="/terms">Terms</a><a href="/legal/compliance-security">Security</a></div></div>
+</div></footer>
+
+<script>
+// Theme
+const allT = document.querySelectorAll('.theme-toggle');
+const sv = localStorage.getItem('theme') || 'dark';
+document.documentElement.setAttribute('data-theme', sv);
+function upIco(t){ allT.forEach(tg=>{ const s=tg.querySelector('.icon-sun'),m=tg.querySelector('.icon-moon'); if(s&&m){s.style.display=t==='dark'?'none':'block';m.style.display=t==='dark'?'block':'none'} }) }
+upIco(sv);
+allT.forEach(tg=>tg.addEventListener('click',()=>{ const c=document.documentElement.getAttribute('data-theme'); const n=c==='dark'?'light':'dark'; document.documentElement.setAttribute('data-theme',n); localStorage.setItem('theme',n); upIco(n); }));
+
+// Mobile menu
+const mTog=document.getElementById('mTog'), mMenu=document.getElementById('mMenu'), mCls=document.getElementById('mCls'), mBd=document.getElementById('mBd');
+if(mTog) mTog.addEventListener('click',()=>{ mMenu.classList.add('open'); document.body.style.overflow='hidden'; });
+[mCls,mBd].forEach(el=>{ if(el) el.addEventListener('click',()=>{ mMenu.classList.remove('open'); document.body.style.overflow=''; }); });
+
+// Sidebar panels
+const _sbIds = ['config','reporting','metrics','notifs'];
+let _sbIdx = 0;
+let _sbUserPicked = false;
+let _sbTimer = null;
+
+function showFP(id, btn, byUser){
+  document.querySelectorAll('.fp').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.sb-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('fp-'+id).classList.add('active');
+  btn.classList.add('active');
+  if(byUser){ _sbUserPicked = true; if(_sbTimer) clearInterval(_sbTimer); }
+}
+
+// Patch onclick buttons to pass byUser=true
+document.querySelectorAll('.sb-btn').forEach((btn,i)=>{
+  const orig = btn.getAttribute('onclick');
+  btn.removeAttribute('onclick');
+  btn.addEventListener('click',()=>{
+    showFP(_sbIds[i], btn, true);
+  });
+});
+
+// Auto-cycle until user picks
+function _sbNext(){
+  if(_sbUserPicked) return;
+  _sbIdx = (_sbIdx + 1) % _sbIds.length;
+  const btn = document.querySelectorAll('.sb-btn')[_sbIdx];
+  showFP(_sbIds[_sbIdx], btn, false);
+}
+_sbTimer = setInterval(_sbNext, 2000);
+</script>
+</body>
+</html>
