@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Automated, Secure & Effective Timesheets by StaffCo</title>
-<meta name="description" content="Ensure productivity with automated timesheets, approval workflow, comprehensive reporting, export tools, and a built-in timesheet calculator at StaffCo.">
+<title>Automated, Secure & Effective Timesheets by Talyvn</title>
+<meta name="description" content="Ensure productivity with automated timesheets, approval workflow, comprehensive reporting, export tools, and a built-in timesheet calculator at Talyvn.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 664 664'%3E%3Cpath d='M283.91 238L99.92 437.73C64.39 476.3 0 451.16 0 398.72V238H283.91Z' fill='%2322C55E'/%3E%3Cpath d='M283.91 0V238H0V206.41C0 92.41 92.41 0 206.41 0H283.92H283.91Z' fill='%23027F56'/%3E%3Cpath d='M595.82 11.85V79.56C595.82 167.07 524.88 238 437.38 238H283.92V0H583.98C590.52 0 595.83 5.30001 595.83 11.85H595.82Z' fill='%230EA5E9'/%3E%3Cpath d='M380.09 426L564.08 226.27C599.61 187.7 664 212.84 664 265.28V426H380.09Z' fill='%237C3AED'/%3E%3Cpath d='M380.09 664V426H664V457.59C664 571.59 571.59 664 457.59 664H380.08H380.09Z' fill='%230726D9'/%3E%3Cpath d='M68.1799 652.15V584.44C68.1799 496.93 139.12 426 226.62 426H380.08V664H80.0199C73.4799 664 68.1699 658.7 68.1699 652.15H68.1799Z' fill='%230EA5E9'/%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400;1,9..40,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="https://sbia1.github.io/512x512.png">
 
 <!-- SVG Filters -->
 <svg height="0" style="position:absolute;overflow:hidden" width="0" xmlns="http://www.w3.org/2000/svg">
@@ -31,58 +31,58 @@
    ROOT & VARIABLES
 ======================================== */
 :root {
-  --color-bg: #f5f7fb;
+  --color-bg: #F5F6FA;
   --color-elevated: #ffffff;
   --color-surface: #ffffff;
-  --color-surface-hover: #f1f4f9;
-  --color-border: rgba(15,23,42,0.08);
-  --color-text-primary: #0f172a;
-  --color-text-secondary: #64748b;
-  --color-text-tertiary: #94a3b8;
-  --color-accent: #3b82f6;
-  --color-accent-glow: rgba(59,130,246,0.18);
-  --color-green: #22c55e;
-  --color-green-glow: rgba(34,197,94,0.16);
-  --color-purple: #8b5cf6;
-  --color-purple-glow: rgba(139,92,246,0.16);
-  --color-sky: #0ea5e9;
-  --color-sky-glow: rgba(14,165,233,0.16);
+  --color-surface-hover: #EDEEF5;
+  --color-border: rgba(17,17,39,0.08);
+  --color-text-primary: #111127;
+  --color-text-secondary: #44445E;
+  --color-text-tertiary: #6B6D84;
+  --color-accent: #075BEC;
+  --color-accent-glow: rgba(7,91,236,0.18);
+  --color-green: #00EFD3;
+  --color-green-glow: rgba(0,239,211,0.16);
+  --color-purple: #8A3AFB;
+  --color-purple-glow: rgba(138,58,251,0.16);
+  --color-sky: #00BBD2;
+  --color-sky-glow: rgba(0,187,210,0.16);
   --glass-bg: rgba(255,255,255,0.55);
   --glass-bg-hover: rgba(255,255,255,0.7);
   --glass-border: rgba(255,255,255,0.72);
   --glass-highlight: rgba(255,255,255,0.9);
-  --glass-shadow: rgba(15,23,42,0.10);
+  --glass-shadow: rgba(17,17,39,0.10);
   --orb-opacity: 0.18;
-  --grid-line: rgba(15,23,42,0.035);
+  --grid-line: rgba(17,17,39,0.035);
   --grid-mask: radial-gradient(ellipse 70% 60% at 50% 40%, black 20%, transparent 70%);
-  --focus-ring: rgba(59,130,246,0.35);
+  --focus-ring: rgba(7,91,236,0.35);
   --radius-sm: 8px;
   --radius-md: 14px;
   --radius-lg: 20px;
   --radius-xl: 28px;
-  --font-display: 'Outfit', sans-serif;
+  --font-display: 'Aktiv Grotesk','DM Sans',sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
   --ease-out-expo: cubic-bezier(0.16,1,0.3,1);
   --ease-spring: cubic-bezier(0.34,1.56,0.64,1);
   color-scheme: light;
 }
 [data-theme="dark"] {
-  --color-bg: #0a0b0f;
-  --color-elevated: #12131a;
-  --color-surface: #1a1b24;
-  --color-surface-hover: #22232e;
+  --color-bg: #0A0A0F;
+  --color-elevated: #111120;
+  --color-surface: #1A1A2A;
+  --color-surface-hover: #222234;
   --color-border: rgba(255,255,255,0.06);
-  --color-text-primary: #f0f0f5;
-  --color-text-secondary: #8b8d9e;
+  --color-text-primary: #EAEEF6;
+  --color-text-secondary: #8B8DA0;
   --color-text-tertiary: #5a5c6e;
-  --color-accent: #3b82f6;
-  --color-accent-glow: rgba(59,130,246,0.25);
-  --color-green: #22c55e;
-  --color-green-glow: rgba(34,197,94,0.2);
-  --color-purple: #8b5cf6;
-  --color-purple-glow: rgba(139,92,246,0.2);
-  --color-sky: #0ea5e9;
-  --color-sky-glow: rgba(14,165,233,0.2);
+  --color-accent: #075BEC;
+  --color-accent-glow: rgba(7,91,236,0.25);
+  --color-green: #00EFD3;
+  --color-green-glow: rgba(0,239,211,0.2);
+  --color-purple: #8A3AFB;
+  --color-purple-glow: rgba(138,58,251,0.2);
+  --color-sky: #00BBD2;
+  --color-sky-glow: rgba(0,187,210,0.2);
   --glass-bg: rgba(255,255,255,0.03);
   --glass-bg-hover: rgba(255,255,255,0.06);
   --glass-border: rgba(255,255,255,0.08);
@@ -111,14 +111,14 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
    ANIMATED BACKGROUND
 ======================================== */
 .page-bg{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
-.page-bg-orb{position:absolute;border-radius:50%;filter:blur(120px);opacity:var(--orb-opacity)}
+.page-bg-orb{position:absolute;border-radius:50%;filter:blur(160px);opacity:var(--orb-opacity)}
 .page-bg-orb--1{width:600px;height:600px;background:radial-gradient(circle,var(--color-accent) 0%,transparent 70%);top:-200px;left:-100px;animation:orbFloat1 20s ease-in-out infinite}
 .page-bg-orb--2{width:500px;height:500px;background:radial-gradient(circle,var(--color-purple) 0%,transparent 70%);top:40%;right:-150px;animation:orbFloat2 25s ease-in-out infinite}
 .page-bg-orb--3{width:400px;height:400px;background:radial-gradient(circle,var(--color-green) 0%,transparent 70%);bottom:-100px;left:30%;animation:orbFloat3 22s ease-in-out infinite}
 @keyframes orbFloat1{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(80px,60px) scale(1.1)}66%{transform:translate(-40px,30px) scale(0.95)}}
 @keyframes orbFloat2{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(-60px,-80px) scale(1.05)}66%{transform:translate(40px,40px) scale(0.9)}}
 @keyframes orbFloat3{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(50px,-40px) scale(1.08)}66%{transform:translate(-70px,20px) scale(0.92)}}
-.page-bg::after{content:'';position:absolute;inset:0;background-image:linear-gradient(var(--grid-line) 1px,transparent 1px),linear-gradient(90deg,var(--grid-line) 1px,transparent 1px);background-size:60px 60px;mask-image:var(--grid-mask)}
+.page-bg::after{content:'';position:absolute;inset:0;background-image:linear-gradient(var(--grid-line) 1px,transparent 1px),linear-gradient(90deg,var(--grid-line) 1px,transparent 1px);background-size:80px 80px;opacity:.5;mask-image:var(--grid-mask)}
 
 /* ========================================
    NAVIGATION
@@ -128,7 +128,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .nav-inner::before{content:'';position:absolute;inset:-80%;pointer-events:none;-webkit-backdrop-filter:blur(24px) saturate(1.5) brightness(1.02);backdrop-filter:blur(24px) saturate(1.5) brightness(1.02);filter:url(#liquid-glass-nav);z-index:-2}
 .nav-inner::after{content:'';position:absolute;inset:0;pointer-events:none;border-radius:inherit;background:linear-gradient(135deg,rgba(255,255,255,0.07) 0%,rgba(255,255,255,0.01) 50%,rgba(255,255,255,0.04) 100%);box-shadow:inset 1px 1px 0 rgba(255,255,255,0.12),inset -1px -1px 0 rgba(255,255,255,0.03);z-index:-1}
 .nav-logo{display:flex;align-items:center;gap:10px;z-index:2}
-.nav-logo svg{width:32px;height:32px}
+.nav-logo img{width:32px;height:32px}
 .nav-logo-text{font-weight:700;font-size:18px;letter-spacing:-0.02em}
 .nav-links{display:flex;align-items:center;gap:4px;z-index:2}
 .nav-link{display:flex;align-items:center;gap:4px;padding:8px 14px;font-size:14px;font-weight:500;color:var(--color-text-secondary);border-radius:var(--radius-sm);transition:all 0.2s ease}
@@ -137,17 +137,17 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .nav-link:hover svg{transform:rotate(180deg)}
 .nav-item{position:relative;display:inline-block}
 .nav-dropdown{position:absolute;top:calc(100% + 16px);left:50%;transform:translateX(-50%) translateY(-8px);min-width:850px;max-width:1000px;background:rgba(26,27,36,0.98);backdrop-filter:blur(32px) saturate(1.5) brightness(1.05);-webkit-backdrop-filter:blur(32px) saturate(1.5) brightness(1.05);border:1px solid rgba(255,255,255,0.12);border-radius:20px;padding:32px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity 0.3s ease,visibility 0.3s ease,transform 0.3s ease;z-index:9999;box-shadow:0 20px 60px rgba(0,0,0,0.6),inset 0 1px 0 rgba(255,255,255,0.1)}
-:root .nav-dropdown{background:rgba(255,255,255,0.95);border:1px solid rgba(15,23,42,0.12);box-shadow:0 20px 60px rgba(15,23,42,0.15),inset 0 1px 0 rgba(255,255,255,0.8)}
-:root .dropdown-label{color:#64748b;border-bottom:1px solid rgba(15,23,42,0.08)}
-:root .dropdown-link{color:#64748b}
-:root .dropdown-link:hover{color:#0f172a}
+:root .nav-dropdown{background:rgba(255,255,255,0.95);border:1px solid rgba(17,17,39,0.12);box-shadow:0 20px 60px rgba(17,17,39,0.15),inset 0 1px 0 rgba(255,255,255,0.8)}
+:root .dropdown-label{color:#6B6D84;border-bottom:1px solid rgba(17,17,39,0.08)}
+:root .dropdown-link{color:#6B6D84}
+:root .dropdown-link:hover{color:#111127}
 [data-theme="dark"] .nav-dropdown{background:rgba(26,27,36,0.98);border:1px solid rgba(255,255,255,0.12);box-shadow:0 20px 60px rgba(0,0,0,0.6),inset 0 1px 0 rgba(255,255,255,0.1)}
 [data-theme="dark"] .dropdown-label{color:#5a5c6e;border-bottom:1px solid rgba(255,255,255,0.06)}
 [data-theme="dark"] .dropdown-link{color:#8b8d9e}
-[data-theme="dark"] .dropdown-link:hover{color:#f0f0f5}
+[data-theme="dark"] .dropdown-link:hover{color:#EAEEF6}
 .nav-item:hover .nav-dropdown,.nav-dropdown:hover{opacity:1;visibility:visible;pointer-events:auto;transform:translateX(-50%) translateY(0)}
 .nav-dropdown::before{content:'';position:absolute;top:-9px;left:50%;transform:translateX(-50%) rotate(45deg);width:16px;height:16px;backdrop-filter:blur(32px)}
-:root .nav-dropdown::before{background:rgba(255,255,255,0.95);border-left:1px solid rgba(15,23,42,0.12);border-top:1px solid rgba(15,23,42,0.12)}
+:root .nav-dropdown::before{background:rgba(255,255,255,0.95);border-left:1px solid rgba(17,17,39,0.12);border-top:1px solid rgba(17,17,39,0.12)}
 [data-theme="dark"] .nav-dropdown::before{background:rgba(26,27,36,0.98);border-left:1px solid rgba(255,255,255,0.12);border-top:1px solid rgba(255,255,255,0.12)}
 .dropdown-grid{display:grid;gap:40px}
 .dropdown-grid-2{grid-template-columns:1fr 1.5fr 0.8fr;min-width:600px}
@@ -180,7 +180,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .mobile-menu{position:fixed;inset:0;z-index:1200;display:none}
 .mobile-menu.open{display:block}
 .mobile-menu-backdrop{position:absolute;inset:0;background:rgba(2,6,23,0.28)}
-.mobile-menu-panel{position:absolute;top:14px;left:14px;right:14px;border-radius:var(--radius-xl);border:1px solid var(--glass-border);background:rgba(255,255,255,0.62);box-shadow:0 20px 60px rgba(15,23,42,0.18),inset 0 1px 0 rgba(255,255,255,0.7);overflow:hidden;transform:translateY(-8px);opacity:0;transition:all 0.28s var(--ease-out-expo)}
+.mobile-menu-panel{position:absolute;top:14px;left:14px;right:14px;border-radius:var(--radius-xl);border:1px solid var(--glass-border);background:rgba(255,255,255,0.62);box-shadow:0 20px 60px rgba(17,17,39,0.18),inset 0 1px 0 rgba(255,255,255,0.7);overflow:hidden;transform:translateY(-8px);opacity:0;transition:all 0.28s var(--ease-out-expo)}
 [data-theme="dark"] .mobile-menu-panel{background:rgba(10,11,15,0.62);box-shadow:0 20px 60px rgba(0,0,0,0.35),inset 0 1px 0 rgba(255,255,255,0.08)}
 .mobile-menu.open .mobile-menu-panel{transform:translateY(0);opacity:1}
 .mobile-menu-header{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid var(--color-border)}
@@ -194,7 +194,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 /* ========================================
    SHARED SECTION UTILITIES
 ======================================== */
-.section-label{display:inline-block;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--color-accent);margin-bottom:0;padding:4px 12px;border-radius:100px;border:1px solid rgba(59,130,246,0.2);background:rgba(59,130,246,0.06)}
+.section-label{display:inline-block;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--color-accent);margin-bottom:0;padding:4px 12px;border-radius:100px;border:1px solid rgba(7,91,236,0.2);background:rgba(7,91,236,0.06)}
 .section-title{font-size:clamp(28px,3.5vw,44px);font-weight:800;letter-spacing:-0.03em;line-height:1.15;color:var(--color-text-primary)}
 .text-accent{color:var(--color-accent)}
 .section-header-centered{text-align:center;margin-bottom:64px;display:flex;flex-direction:column;align-items:center;gap:16px}
@@ -434,9 +434,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   border-radius: 5px;
   text-align: center;
 }
-.hm-status--approved { background: rgba(34,197,94,0.12); color: var(--color-green); border: 1px solid rgba(34,197,94,0.25); }
+.hm-status--approved { background: rgba(0,239,211,0.12); color: var(--color-green); border: 1px solid rgba(0,239,211,0.25); }
 .hm-status--pending  { background: rgba(245,158,11,0.12); color: #f59e0b; border: 1px solid rgba(245,158,11,0.25); }
-.hm-status--review   { background: rgba(59,130,246,0.12); color: var(--color-accent); border: 1px solid rgba(59,130,246,0.25); }
+.hm-status--review   { background: rgba(7,91,236,0.12); color: var(--color-accent); border: 1px solid rgba(7,91,236,0.25); }
 .hm-footer {
   display: flex;
   align-items: center;
@@ -479,19 +479,19 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
    LIGHT MODE FIXES
 ======================================== */
 [data-theme="light"] .btn-hero-ghost {
-  border-color: rgba(15,23,42,0.18);
+  border-color: rgba(17,17,39,0.18);
   color: var(--color-text-primary);
 }
 [data-theme="light"] .btn-hero-ghost:hover {
-  background: rgba(15,23,42,0.05);
-  border-color: rgba(15,23,42,0.30);
+  background: rgba(17,17,39,0.05);
+  border-color: rgba(17,17,39,0.30);
 }
 [data-theme="light"] .hero-mockup {
-  box-shadow: 0 20px 60px rgba(15,23,42,0.12);
+  box-shadow: 0 20px 60px rgba(17,17,39,0.12);
 }
 [data-theme="light"] .hero-chip {
   background: #ffffff;
-  border-color: rgba(15,23,42,0.10);
+  border-color: rgba(17,17,39,0.10);
 }
 
 /* ========================================
@@ -500,7 +500,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .footer{background:var(--glass-bg);border-top:1px solid var(--glass-border);backdrop-filter:blur(20px);padding:60px 0 32px;position:relative;z-index:1;margin-top:120px}
 .footer-grid{display:grid;grid-template-columns:1.6fr repeat(9,1fr);gap:32px;margin-bottom:48px}
 .footer-logo{display:flex;align-items:center;gap:10px;margin-bottom:12px}
-.footer-logo svg{width:32px;height:32px}
+.footer-logo img{width:32px;height:32px}
 .footer-logo-text{font-size:16px;font-weight:700}
 .footer-brand-text{font-size:13px;color:var(--color-text-secondary);line-height:1.6;margin-bottom:20px;max-width:200px}
 .footer-social{display:flex;gap:12px}
@@ -605,8 +605,8 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  background: rgba(59,130,246,0.08);
-  border: 1px solid rgba(59,130,246,0.15);
+  background: rgba(7,91,236,0.08);
+  border: 1px solid rgba(7,91,236,0.15);
   color: var(--color-accent);
 }
 .auto-bullet-icon svg { width: 16px; height: 16px; }
@@ -624,8 +624,8 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .auto-result-icon {
   width: 36px; height: 36px;
   border-radius: 9px;
-  background: rgba(34,197,94,0.1);
-  border: 1px solid rgba(34,197,94,0.2);
+  background: rgba(0,239,211,0.1);
+  border: 1px solid rgba(0,239,211,0.2);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -684,8 +684,8 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--color-green);
-  background: rgba(34,197,94,0.1);
-  border: 1px solid rgba(34,197,94,0.25);
+  background: rgba(0,239,211,0.1);
+  border: 1px solid rgba(0,239,211,0.25);
   padding: 3px 9px;
   border-radius: 20px;
 }
@@ -833,10 +833,10 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 
 /* light mode */
 [data-theme="light"] .auto-mockup {
-  box-shadow: 0 12px 40px rgba(15,23,42,0.10);
+  box-shadow: 0 12px 40px rgba(17,17,39,0.10);
 }
 [data-theme="light"] .auto-result {
-  box-shadow: 0 2px 12px rgba(15,23,42,0.05);
+  box-shadow: 0 2px 12px rgba(17,17,39,0.05);
 }
 
 @media (max-width: 960px) {
@@ -851,15 +851,15 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 :root {
   --bg:#0a0b0f;--elevated:#12131a;--surface-hover:#22232e;
   --border:rgba(255,255,255,0.06);--text:#f0f0f5;--text-2:#8b8d9e;--text-3:#5a5c6e;
-  --accent:#3b82f6;--green:#22c55e;--purple:#8b5cf6;--sky:#0ea5e9;--amber:#f59e0b;--teal:#14b8a6;
+  --accent:#075BEC;--green:#00EFD3;--purple:#8A3AFB;--sky:#00BBD2;--amber:#f59e0b;--teal:#14b8a6;
   --glass-bg:rgba(255,255,255,0.03);--glass-border:rgba(255,255,255,0.08);
-  --shadow:rgba(0,0,0,0.5);--font:"Outfit",sans-serif;--mono:"JetBrains Mono",monospace;
+  --shadow:rgba(0,0,0,0.5);--font:"Aktiv Grotesk","DM Sans",sans-serif;--mono:"JetBrains Mono",monospace;
   --ease:cubic-bezier(0.16,1,0.3,1);
 }
 [data-theme="light"] {
   --bg:#f5f7fb;--elevated:#ffffff;--surface-hover:#f1f4f9;
-  --border:rgba(15,23,42,0.08);--text:#0f172a;--text-2:#64748b;--text-3:#94a3b8;
-  --shadow:rgba(15,23,42,0.10);
+  --border:rgba(17,17,39,0.08);--text:#0f172a;--text-2:#64748b;--text-3:#94a3b8;
+  --shadow:rgba(17,17,39,0.10);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-font-smoothing:antialiased}
@@ -868,7 +868,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);padding:60px
 .container{max-width:1200px;margin:0 auto;padding:0 24px}
 
 .sec-header{text-align:center;margin-bottom:48px;display:flex;flex-direction:column;align-items:center;gap:14px}
-.sec-label{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);padding:4px 12px;border-radius:100px;border:1px solid rgba(59,130,246,.2);background:rgba(59,130,246,.06)}
+.sec-label{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);padding:4px 12px;border-radius:100px;border:1px solid rgba(7,91,236,.2);background:rgba(7,91,236,.06)}
 .sec-title{font-size:clamp(26px,3vw,40px);font-weight:800;letter-spacing:-.03em;line-height:1.12}
 .text-accent{color:var(--accent)}
 .sec-desc{font-size:15px;color:var(--text-2);max-width:600px;line-height:1.7}
@@ -889,10 +889,10 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);padding:60px
 .tab-btn.active{color:#fff}
 .tab-icon{width:16px;height:16px;opacity:.7;flex-shrink:0}
 .tab-btn.active .tab-icon{opacity:1}
-.tab-btn.active.t-blue  {background:var(--accent);   box-shadow:0 4px 16px rgba(59,130,246,.35)}
-.tab-btn.active.t-green {background:var(--green);    box-shadow:0 4px 16px rgba(34,197,94,.35)}
-.tab-btn.active.t-purple{background:var(--purple);   box-shadow:0 4px 16px rgba(139,92,246,.35)}
-.tab-btn.active.t-sky   {background:var(--sky);      box-shadow:0 4px 16px rgba(14,165,233,.35)}
+.tab-btn.active.t-blue  {background:var(--accent);   box-shadow:0 4px 16px rgba(7,91,236,.35)}
+.tab-btn.active.t-green {background:var(--green);    box-shadow:0 4px 16px rgba(0,239,211,.35)}
+.tab-btn.active.t-purple{background:var(--purple);   box-shadow:0 4px 16px rgba(138,58,251,.35)}
+.tab-btn.active.t-sky   {background:var(--sky);      box-shadow:0 4px 16px rgba(0,187,210,.35)}
 .tab-btn.active.t-amber {background:var(--amber);    box-shadow:0 4px 16px rgba(245,158,11,.35)}
 .tab-btn.active.t-red   {background:#ef4444;         box-shadow:0 4px 16px rgba(239,68,68,.35)}
 .tab-btn.active.t-indigo{background:#6366f1;         box-shadow:0 4px 16px rgba(99,102,241,.35)}
@@ -916,11 +916,11 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);padding:60px
 .panel-bullets{display:flex;flex-direction:column;gap:9px;margin-bottom:16px}
 .panel-bullet{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--text-2);line-height:1.5}
 .bdot{width:6px;height:6px;border-radius:50%;margin-top:7px;flex-shrink:0}
-.panel-note{padding:12px 16px;border-radius:10px;font-size:13px;color:var(--text-2);line-height:1.6;border-left:3px solid var(--accent);background:rgba(59,130,246,.05)}
+.panel-note{padding:12px 16px;border-radius:10px;font-size:13px;color:var(--text-2);line-height:1.6;border-left:3px solid var(--accent);background:rgba(7,91,236,.05)}
 
 /* Mock shell */
 .panel-mock{background:var(--elevated);border:1px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:0 20px 50px var(--shadow)}
-[data-theme="light"] .panel-mock{box-shadow:0 8px 32px rgba(15,23,42,.10)}
+[data-theme="light"] .panel-mock{box-shadow:0 8px 32px rgba(17,17,39,.10)}
 .mock-bar{display:flex;align-items:center;gap:8px;padding:10px 14px;border-bottom:1px solid var(--border)}
 .mock-dots{display:flex;gap:4px}
 .md{width:8px;height:8px;border-radius:50%}
@@ -946,20 +946,20 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);padding:60px
 .mini-cal{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin-bottom:10px}
 .ch{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text-3);text-align:center;padding:2px}
 .cc{aspect-ratio:1;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:500;color:var(--text-2);border:1px solid transparent}
-.cc.hd{border-color:rgba(59,130,246,.2);color:var(--accent)}
+.cc.hd{border-color:rgba(7,91,236,.2);color:var(--accent)}
 .cc.td{background:var(--accent);color:#fff;font-weight:700}
-.cc.fi{background:rgba(34,197,94,.12);border-color:rgba(34,197,94,.25);color:var(--green)}
+.cc.fi{background:rgba(0,239,211,.12);border-color:rgba(0,239,211,.25);color:var(--green)}
 
 /* Approval */
 .af{display:flex;align-items:center;gap:6px;margin-bottom:12px;flex-wrap:wrap}
 .af-step{display:flex;align-items:center;gap:5px;padding:6px 10px;border-radius:8px;border:1px solid var(--border);font-size:11px;font-weight:600}
-.af-step.done{background:rgba(34,197,94,.08);border-color:rgba(34,197,94,.25);color:var(--green)}
-.af-step.now {background:rgba(59,130,246,.08);border-color:rgba(59,130,246,.25);color:var(--accent)}
+.af-step.done{background:rgba(0,239,211,.08);border-color:rgba(0,239,211,.25);color:var(--green)}
+.af-step.now {background:rgba(7,91,236,.08);border-color:rgba(7,91,236,.25);color:var(--accent)}
 .af-step.pend{color:var(--text-3)}
 .ar{display:flex;align-items:center;justify-content:space-between;padding:7px 10px;border-radius:8px;border:1px solid var(--border);font-size:11px;margin-bottom:5px}
 .ar-name{font-weight:600;color:var(--text)}
 .abtn{padding:3px 10px;border-radius:6px;font-size:10px;font-weight:700;cursor:pointer;border:none}
-.abtn-ok{background:rgba(34,197,94,.12);color:var(--green);border:1px solid rgba(34,197,94,.25)!important}
+.abtn-ok{background:rgba(0,239,211,.12);color:var(--green);border:1px solid rgba(0,239,211,.25)!important}
 .abtn-no{background:rgba(239,68,68,.08);color:#ef4444;border:1px solid rgba(239,68,68,.2)!important}
 
 /* Audit */
@@ -983,7 +983,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);padding:60px
 /* Validation */
 .vrule{display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:8px;border:1px solid var(--border);font-size:11px;font-weight:600;margin-bottom:5px}
 .vrule:last-child{margin-bottom:0}
-.vrule.pass{background:rgba(34,197,94,.06);border-color:rgba(34,197,94,.2);color:var(--green)}
+.vrule.pass{background:rgba(0,239,211,.06);border-color:rgba(0,239,211,.2);color:var(--green)}
 .vrule.warn{background:rgba(245,158,11,.06);border-color:rgba(245,158,11,.2);color:var(--amber)}
 .vrule.fail{background:rgba(239,68,68,.06);border-color:rgba(239,68,68,.2);color:#ef4444}
 
@@ -993,12 +993,12 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);padding:60px
 .rlabel{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--text-3);margin-bottom:4px}
 .rval{font-size:18px;font-weight:800;letter-spacing:-.02em;font-family:var(--mono)}
 .rbar-w{height:3px;background:rgba(255,255,255,.06);border-radius:2px;overflow:hidden;margin-top:6px}
-[data-theme="light"] .rbar-w{background:rgba(15,23,42,.08)}
+[data-theme="light"] .rbar-w{background:rgba(17,17,39,.08)}
 .rbar{height:100%;border-radius:2px}
 
 /* Calculator */
 .calc-disp{background:rgba(0,0,0,.25);border-radius:10px;padding:14px 16px;margin-bottom:10px;font-family:var(--mono)}
-[data-theme="light"] .calc-disp{background:rgba(15,23,42,.05)}
+[data-theme="light"] .calc-disp{background:rgba(17,17,39,.05)}
 .calc-disp-lbl{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--text-3);margin-bottom:4px}
 .calc-disp-val{font-size:28px;font-weight:800;letter-spacing:-.03em;color:var(--text)}
 .calc-disp-sub{font-size:10px;color:var(--text-3);margin-top:2px}
@@ -1009,7 +1009,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);padding:60px
 .cbar-row{display:flex;align-items:center;gap:8px;margin-bottom:5px}
 .cbar-lbl{font-size:10px;color:var(--text-2);width:58px;flex-shrink:0}
 .cbar-out{flex:1;height:6px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden}
-[data-theme="light"] .cbar-out{background:rgba(15,23,42,.08)}
+[data-theme="light"] .cbar-out{background:rgba(17,17,39,.08)}
 .cbar-in{height:100%;border-radius:3px}
 .cbar-num{font-size:10px;font-family:var(--mono);font-weight:600;color:var(--text-2);width:52px;text-align:right;flex-shrink:0}
 
@@ -1129,7 +1129,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);padding:60px
 }
 .exp-note strong { color: var(--color-text-primary); }
 
-[data-theme="light"] .exp-card.active { box-shadow: 0 8px 32px rgba(15,23,42,.10); }
+[data-theme="light"] .exp-card.active { box-shadow: 0 8px 32px rgba(17,17,39,.10); }
 
 @media (max-width: 860px) {
   .exp-card { flex: 0 0 calc(50% - 10px); }
@@ -1198,13 +1198,13 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);padding:60px
 }
 .why-footer-icon {
   width: 36px; height: 36px; border-radius: 9px;
-  background: rgba(59,130,246,.1); border: 1px solid rgba(59,130,246,.2);
+  background: rgba(7,91,236,.1); border: 1px solid rgba(7,91,236,.2);
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0; color: var(--color-accent);
 }
 .why-footer-icon svg { width: 16px; height: 16px; }
 
-[data-theme="light"] .why-tile:hover { border-color: rgba(15,23,42,.15); }
+[data-theme="light"] .why-tile:hover { border-color: rgba(17,17,39,.15); }
 
 @media (max-width: 960px) {
   .why-grid { grid-template-columns: 1fr 1fr; }
@@ -1234,7 +1234,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);padding:60px
 .cta-inner::before {
   content: '';
   position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(59,130,246,.08), transparent 70%);
+  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(7,91,236,.08), transparent 70%);
   pointer-events: none;
 }
 .cta-badge {
@@ -1242,7 +1242,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);padding:60px
   font-size: 11px; font-weight: 700; text-transform: uppercase;
   letter-spacing: .12em; color: var(--color-green);
   padding: 4px 14px; border-radius: 100px;
-  background: rgba(34,197,94,.08); border: 1px solid rgba(34,197,94,.25);
+  background: rgba(0,239,211,.08); border: 1px solid rgba(0,239,211,.25);
   margin-bottom: 24px;
 }
 .cta-badge-dot {
@@ -1269,7 +1269,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);padding:60px
 }
 .cta-bullet-icon {
   width: 18px; height: 18px; border-radius: 5px;
-  background: rgba(34,197,94,.1); border: 1px solid rgba(34,197,94,.2);
+  background: rgba(0,239,211,.1); border: 1px solid rgba(0,239,211,.2);
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0; margin-top: 1px; color: var(--color-green);
 }
@@ -1282,9 +1282,9 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);padding:60px
   padding: 14px 32px; border-radius: 12px; font: 700 15px var(--font-display);
   background: var(--color-accent); color: #fff; cursor: pointer;
   border: none; transition: all .2s var(--ease);
-  box-shadow: 0 8px 24px rgba(59,130,246,.35);
+  box-shadow: 0 8px 24px rgba(7,91,236,.35);
 }
-.btn-cta-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(59,130,246,.45); }
+.btn-cta-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(7,91,236,.45); }
 .btn-cta-ghost {
   display: inline-flex; align-items: center; gap: 8px;
   padding: 14px 28px; border-radius: 12px; font: 600 15px var(--font-display);
@@ -1314,15 +1314,8 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);padding:60px
 <nav class="nav">
 <div class="nav-inner">
 <a class="nav-logo" href="/">
-<svg fill="none" viewBox="0 0 664 664">
-<path d="M283.91 238L99.92 437.73C64.39 476.3 0 451.16 0 398.72V238H283.91Z" fill="#22C55E"/>
-<path d="M283.91 0V238H0V206.41C0 92.41 92.41 0 206.41 0H283.92H283.91Z" fill="#027F56"/>
-<path d="M595.82 11.85V79.56C595.82 167.07 524.88 238 437.38 238H283.92V0H583.98C590.52 0 595.83 5.3 595.83 11.85H595.82Z" fill="#0EA5E9"/>
-<path d="M380.09 426L564.08 226.27C599.61 187.7 664 212.84 664 265.28V426H380.09Z" fill="#7C3AED"/>
-<path d="M380.09 664V426H664V457.59C664 571.59 571.59 664 457.59 664H380.08H380.09Z" fill="#0726D9"/>
-<path d="M68.18 652.15V584.44C68.18 496.93 139.12 426 226.62 426H380.08V664H80.02C73.48 664 68.17 658.7 68.17 652.15H68.18Z" fill="#0EA5E9"/>
-</svg>
-<span class="nav-logo-text">StaffCo</span>
+<img src="https://sbia1.github.io/512x512.png" alt="talyvn" width="32" height="32" style="border-radius:6px">
+<span class="nav-logo-text">talyvn</span>
 </a>
 
 <div class="nav-links">
@@ -1406,6 +1399,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);padding:60px
 </div>
 
 <a class="nav-link" href="/apps/">Download</a>
+<a class="btn-about" href="/about">About Us</a>
 </div>
 
 <div class="nav-actions">
@@ -1439,7 +1433,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);padding:60px
 <div class="mobile-menu-backdrop" id="mobileMenuBackdrop"></div>
 <div class="mobile-menu-panel">
 <div class="mobile-menu-header">
-<a class="nav-logo" href="/"><svg fill="none" viewBox="0 0 664 664" width="28" height="28"><path d="M283.91 238L99.92 437.73C64.39 476.3 0 451.16 0 398.72V238H283.91Z" fill="#22C55E"/><path d="M283.91 0V238H0V206.41C0 92.41 92.41 0 206.41 0H283.92Z" fill="#027F56"/><path d="M595.82 11.85V79.56C595.82 167.07 524.88 238 437.38 238H283.92V0H583.98C590.52 0 595.83 5.3 595.83 11.85Z" fill="#0EA5E9"/><path d="M380.09 426L564.08 226.27C599.61 187.7 664 212.84 664 265.28V426H380.09Z" fill="#7C3AED"/><path d="M380.09 664V426H664V457.59C664 571.59 571.59 664 457.59 664H380.08Z" fill="#0726D9"/><path d="M68.18 652.15V584.44C68.18 496.93 139.12 426 226.62 426H380.08V664H80.02C73.48 664 68.17 658.7 68.17 652.15Z" fill="#0EA5E9"/></svg><span class="nav-logo-text">StaffCo</span></a>
+<a class="nav-logo" href="/"><img src="https://sbia1.github.io/512x512.png" alt="talyvn" width="28" height="28" style="border-radius:5px"><span class="nav-logo-text">talyvn</span></a>
 <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Close menu"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="18" height="18"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
 </div>
 <div class="mobile-menu-links">
@@ -1448,6 +1442,8 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);padding:60px
 <a class="mobile-menu-link" href="/pricing/">Pricing</a>
 <a class="mobile-menu-link" href="/resources/">Resources</a>
 <a class="mobile-menu-link" href="/apps/">Download</a>
+<a class="mobile-menu-link" href="/about">About Us</a>
+                <a class="mobile-menu-link" href="/about">About Us</a>
 </div>
 <div class="mobile-menu-actions">
 <a class="btn btn-primary" href="/signup/" style="justify-content:center">Start Free Trial</a>
@@ -1460,6 +1456,16 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);padding:60px
 <main>
 
 <!-- ===================== HERO ===================== -->
+<style>
+.btn-about{display:inline-flex;align-items:center;gap:6px;padding:8px 18px;font-size:13px;font-weight:600;letter-spacing:0.02em;border-radius:100px;color:var(--color-text-primary);background:transparent;border:1px solid var(--glass-border);position:relative;transition:all 0.3s var(--ease-out-expo);z-index:2}
+.btn-about::before{content:'';position:absolute;inset:-1px;border-radius:inherit;padding:1px;background:linear-gradient(135deg,var(--color-accent),var(--color-sky),var(--color-purple));-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity 0.3s}
+.btn-about:hover{color:var(--color-text-primary);border-color:transparent;transform:translateY(-1px);box-shadow:0 4px 18px rgba(7,91,236,0.15)}
+.btn-about:hover::before{opacity:1}
+[data-theme="light"] .btn-about{border-color:rgba(17,17,39,0.15)}
+[data-theme="light"] .nav-inner{background:rgba(255,255,255,0.75);border-color:rgba(17,17,39,0.1);box-shadow:0 4px 24px rgba(17,17,39,0.08),inset 0 1px 0 rgba(255,255,255,0.5)}
+[data-theme="light"] .nav-inner::before{filter:none}
+[data-theme="light"] .nav-inner::after{background:linear-gradient(135deg,rgba(255,255,255,0.5) 0%,rgba(255,255,255,0.2) 50%,rgba(255,255,255,0.3) 100%);box-shadow:inset 1px 1px 0 rgba(255,255,255,0.6)}
+</style>
 <section class="hero">
   <div class="container">
     <div class="hero-inner">
@@ -1471,7 +1477,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);padding:60px
           Timesheet Software
         </div>
         <h1 class="hero-title">Automated Timesheet Software for <span class="hero-title-accent">Accurate Approvals</span> and Reporting</h1>
-        <p class="hero-desc">Managing the timesheets should not feel like an administrative burden. StaffCo replaces outdated spreadsheets and static timesheets template files with structured, scalable electronic timesheets built for modern teams. This timesheet management software eliminates manual work, reduces approval delays, and improves accountability across your organization.</p>
+        <p class="hero-desc">Managing the timesheets should not feel like an administrative burden. Talyvn replaces outdated spreadsheets and static timesheets template files with structured, scalable electronic timesheets built for modern teams. This timesheet management software eliminates manual work, reduces approval delays, and improves accountability across your organization.</p>
         <div class="hero-actions">
           <a class="btn-hero-primary" href="/demo/">Book a Demo →</a>
           <a class="btn-hero-ghost" href="/signup/">Start Free Trial</a>
@@ -1509,13 +1515,13 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);padding:60px
               <span style="text-align:center">Status</span>
             </div>
             <div class="hm-row">
-              <div class="hm-name"><div class="hm-avatar" style="background:linear-gradient(135deg,#3b82f6,#8b5cf6)">AK</div>Alex Kim</div>
+              <div class="hm-name"><div class="hm-avatar" style="background:linear-gradient(135deg,#075BEC,#8A3AFB)">AK</div>Alex Kim</div>
               <div class="hm-cell">8:12</div><div class="hm-cell">7:45</div><div class="hm-cell">8:30</div><div class="hm-cell">8:00</div><div class="hm-cell">7:20</div>
               <div class="hm-total">39:47</div>
               <div class="hm-status hm-status--approved">Approved</div>
             </div>
             <div class="hm-row">
-              <div class="hm-name"><div class="hm-avatar" style="background:linear-gradient(135deg,#22c55e,#0ea5e9)">SR</div>Sara R.</div>
+              <div class="hm-name"><div class="hm-avatar" style="background:linear-gradient(135deg,#00EFD3,#00BBD2)">SR</div>Sara R.</div>
               <div class="hm-cell">7:55</div><div class="hm-cell">8:10</div><div class="hm-cell">8:05</div><div class="hm-cell">7:50</div><div class="hm-cell">8:00</div>
               <div class="hm-total">40:00</div>
               <div class="hm-status hm-status--approved">Approved</div>
@@ -1527,13 +1533,13 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);padding:60px
               <div class="hm-status hm-status--pending">Pending</div>
             </div>
             <div class="hm-row">
-              <div class="hm-name"><div class="hm-avatar" style="background:linear-gradient(135deg,#8b5cf6,#0726d9)">JL</div>Jane L.</div>
+              <div class="hm-name"><div class="hm-avatar" style="background:linear-gradient(135deg,#8A3AFB,#0726d9)">JL</div>Jane L.</div>
               <div class="hm-cell">7:40</div><div class="hm-cell">8:20</div><div class="hm-cell">7:55</div><div class="hm-cell">8:10</div><div class="hm-cell">7:30</div>
               <div class="hm-total">39:35</div>
               <div class="hm-status hm-status--review">Review</div>
             </div>
             <div class="hm-row">
-              <div class="hm-name"><div class="hm-avatar" style="background:linear-gradient(135deg,#0ea5e9,#22c55e)">DW</div>Dan W.</div>
+              <div class="hm-name"><div class="hm-avatar" style="background:linear-gradient(135deg,#00BBD2,#00EFD3)">DW</div>Dan W.</div>
               <div class="hm-cell">8:00</div><div class="hm-cell">8:00</div><div class="hm-cell">8:00</div><div class="hm-cell">8:00</div><div class="hm-cell">8:00</div>
               <div class="hm-total">40:00</div>
               <div class="hm-status hm-status--approved">Approved</div>
@@ -1561,7 +1567,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);padding:60px
 <section class="auto-section reveal">
   <div class="container">
     <div style="text-align:center;margin-bottom:32px">
-      <span class="section-label" style="background:rgba(34,197,94,0.08);border-color:rgba(34,197,94,0.25);color:var(--color-green)">Automation</span>
+      <span class="section-label" style="background:rgba(0,239,211,0.08);border-color:rgba(0,239,211,0.25);color:var(--color-green)">Automation</span>
     </div>
     <div class="auto-grid">
 
@@ -1569,8 +1575,8 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);padding:60px
       <div class="auto-text">
         <h2 class="section-title">Automated Timesheets that <span class="text-accent">Build Themselves</span></h2>
         <div class="auto-paras">
-          <p>StaffCo transforms live time tracking data into structured, automated timesheets effortlessly. This ensures accuracy and transparency from the get-go. Whether your employees use desktop device to track time, all necessary data automatically flows into organized online timesheets for later analysis.</p>
-          <p>Instead of manually working with inefficient timesheets template, employees can see their work hours, tasks, and other important details filled in real time inside the StaffCo timesheets app.</p>
+          <p>Talyvn transforms live time tracking data into structured, automated timesheets effortlessly. This ensures accuracy and transparency from the get-go. Whether your employees use desktop device to track time, all necessary data automatically flows into organized online timesheets for later analysis.</p>
+          <p>Instead of manually working with inefficient timesheets template, employees can see their work hours, tasks, and other important details filled in real time inside the Talyvn timesheets app.</p>
         </div>
         <div class="auto-workflow-label">With automated workflows, teams can:</div>
         <div class="auto-bullets">
@@ -1627,11 +1633,11 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);padding:60px
           <div class="am-date-row">TODAY · MAR 08, 2025</div>
           <div class="am-entries">
             <div class="am-entry">
-              <div class="am-entry-icon" style="background:rgba(59,130,246,0.1);color:var(--color-accent)">
+              <div class="am-entry-icon" style="background:rgba(7,91,236,0.1);color:var(--color-accent)">
                 <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="15" height="15"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
               </div>
               <div class="am-entry-body">
-                <div class="am-entry-name">Alex Kim · StaffCo Dashboard (UI)</div>
+                <div class="am-entry-name">Alex Kim · Talyvn Dashboard (UI)</div>
                 <div class="am-entry-sub">Project: Client Portal · Task: Design Review</div>
               </div>
               <div class="am-entry-right">
@@ -1640,7 +1646,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);padding:60px
               </div>
             </div>
             <div class="am-entry">
-              <div class="am-entry-icon" style="background:rgba(34,197,94,0.1);color:var(--color-green)">
+              <div class="am-entry-icon" style="background:rgba(0,239,211,0.1);color:var(--color-green)">
                 <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="15" height="15"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
               </div>
               <div class="am-entry-body">
@@ -1653,7 +1659,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);padding:60px
               </div>
             </div>
             <div class="am-entry">
-              <div class="am-entry-icon" style="background:rgba(139,92,246,0.1);color:var(--color-purple)">
+              <div class="am-entry-icon" style="background:rgba(138,58,251,0.1);color:var(--color-purple)">
                 <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="15" height="15"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
               </div>
               <div class="am-entry-body">
@@ -1666,7 +1672,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);padding:60px
               </div>
             </div>
             <div class="am-entry">
-              <div class="am-entry-icon" style="background:rgba(14,165,233,0.1);color:var(--color-sky)">
+              <div class="am-entry-icon" style="background:rgba(0,187,210,0.1);color:var(--color-sky)">
                 <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="15" height="15"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>
               </div>
               <div class="am-entry-body">
@@ -1692,7 +1698,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);padding:60px
               </div>
             </div>
             <div class="am-entry am-entry--filling">
-              <div class="am-entry-icon" style="background:rgba(59,130,246,0.06);color:var(--color-accent)">
+              <div class="am-entry-icon" style="background:rgba(7,91,236,0.06);color:var(--color-accent)">
                 <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="15" height="15"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
               </div>
               <div class="am-entry-body" style="display:flex;align-items:center;gap:10px;overflow:hidden">
@@ -1799,12 +1805,12 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);padding:60px
       </div>
       <div class="panel-visual">
         <div class="panel-mock">
-          <div class="mock-bar"><div class="mock-dots"><div class="md" style="background:#ff5f57"></div><div class="md" style="background:#febc2e"></div><div class="md" style="background:#28c840"></div></div><span class="mock-title">Time Entry &#8212; Detailed View</span><span class="mock-badge" style="background:rgba(59,130,246,.1);color:var(--accent);border:1px solid rgba(59,130,246,.2)">4 entries</span></div>
+          <div class="mock-bar"><div class="mock-dots"><div class="md" style="background:#ff5f57"></div><div class="md" style="background:#febc2e"></div><div class="md" style="background:#28c840"></div></div><span class="mock-title">Time Entry &#8212; Detailed View</span><span class="mock-badge" style="background:rgba(7,91,236,.1);color:var(--accent);border:1px solid rgba(7,91,236,.2)">4 entries</span></div>
           <div class="mock-body">
-            <div class="er"><div class="er-ico" style="background:rgba(59,130,246,.1);color:var(--accent)">&#x1F3A8;</div><div class="er-body"><div class="er-name">StaffCo Dashboard &#xB7; Design Review</div><div class="er-sub">Project: Client Portal &#xB7; Billable &#xB7; Design dept</div></div><div class="er-right"><div class="er-hrs">2h 30m</div><span class="er-tag" style="background:rgba(34,197,94,.1);color:var(--green)">Approved</span></div></div>
-            <div class="er"><div class="er-ico" style="background:rgba(34,197,94,.1);color:var(--green)">&#x2699;&#xFE0F;</div><div class="er-body"><div class="er-name">API Integration &#xB7; Endpoints</div><div class="er-sub">Project: Backend &#xB7; Non-billable &#xB7; Dev dept</div></div><div class="er-right"><div class="er-hrs">1h 45m</div><span class="er-tag" style="background:rgba(245,158,11,.1);color:var(--amber)">Pending</span></div></div>
-            <div class="er"><div class="er-ico" style="background:rgba(139,92,246,.1);color:var(--purple)">&#x1F4CA;</div><div class="er-body"><div class="er-name">Analytics Report &#xB7; Q1 Summary</div><div class="er-sub">Project: Q1 Report &#xB7; Client: Acme Corp &#xB7; Billable</div></div><div class="er-right"><div class="er-hrs">3h 10m</div><span class="er-tag" style="background:rgba(59,130,246,.1);color:var(--accent)">Review</span></div></div>
-            <div class="er" style="border:1.5px dashed rgba(59,130,246,.3)"><div class="er-ico" style="background:rgba(59,130,246,.06);color:var(--accent);font-size:16px">+</div><div class="er-body"><div class="er-name" style="color:var(--text-3)">Add new entry with custom fields...</div></div></div>
+            <div class="er"><div class="er-ico" style="background:rgba(7,91,236,.1);color:var(--accent)">&#x1F3A8;</div><div class="er-body"><div class="er-name">Talyvn Dashboard &#xB7; Design Review</div><div class="er-sub">Project: Client Portal &#xB7; Billable &#xB7; Design dept</div></div><div class="er-right"><div class="er-hrs">2h 30m</div><span class="er-tag" style="background:rgba(0,239,211,.1);color:var(--green)">Approved</span></div></div>
+            <div class="er"><div class="er-ico" style="background:rgba(0,239,211,.1);color:var(--green)">&#x2699;&#xFE0F;</div><div class="er-body"><div class="er-name">API Integration &#xB7; Endpoints</div><div class="er-sub">Project: Backend &#xB7; Non-billable &#xB7; Dev dept</div></div><div class="er-right"><div class="er-hrs">1h 45m</div><span class="er-tag" style="background:rgba(245,158,11,.1);color:var(--amber)">Pending</span></div></div>
+            <div class="er"><div class="er-ico" style="background:rgba(138,58,251,.1);color:var(--purple)">&#x1F4CA;</div><div class="er-body"><div class="er-name">Analytics Report &#xB7; Q1 Summary</div><div class="er-sub">Project: Q1 Report &#xB7; Client: Acme Corp &#xB7; Billable</div></div><div class="er-right"><div class="er-hrs">3h 10m</div><span class="er-tag" style="background:rgba(7,91,236,.1);color:var(--accent)">Review</span></div></div>
+            <div class="er" style="border:1.5px dashed rgba(7,91,236,.3)"><div class="er-ico" style="background:rgba(7,91,236,.06);color:var(--accent);font-size:16px">+</div><div class="er-body"><div class="er-name" style="color:var(--text-3)">Add new entry with custom fields...</div></div></div>
           </div>
         </div>
       </div>
@@ -1815,7 +1821,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);padding:60px
       <div class="panel-text">
         <div class="panel-eyebrow">Flexible Views</div>
         <h3 class="panel-title">Daily, Weekly &amp; Biweekly <span style="color:var(--green)">Timesheets</span></h3>
-        <p class="panel-desc">Depending on your reporting cycles, you can use StaffCo timesheets to access accurate data in multiple viewing formats, including:</p>
+        <p class="panel-desc">Depending on your reporting cycles, you can use Talyvn timesheets to access accurate data in multiple viewing formats, including:</p>
         <div class="panel-bullets">
           <div class="panel-bullet"><div class="bdot" style="background:var(--green)"></div>Daily view for real-time visibility</div>
           <div class="panel-bullet"><div class="bdot" style="background:var(--green)"></div>Weekly timesheets for standard payroll cycles</div>
@@ -1823,8 +1829,8 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);padding:60px
           <div class="panel-bullet"><div class="bdot" style="background:var(--green)"></div>Monthly overview for performance analysis</div>
           <div class="panel-bullet"><div class="bdot" style="background:var(--green)"></div>Task-based view for freelancers and independent contractors</div>
         </div>
-        <p class="panel-desc" style="margin-top:12px;margin-bottom:10px">With StaffCo, users can drag and drop entries, apply bulk edits, and manage structured timesheets for employees with minimal friction.</p>
-        <div class="panel-note" style="border-left-color:var(--green);background:rgba(34,197,94,.04)">When updates are required, controlled timesheet corrections and timesheet adjustments maintain accuracy without losing accountability.</div>
+        <p class="panel-desc" style="margin-top:12px;margin-bottom:10px">With Talyvn, users can drag and drop entries, apply bulk edits, and manage structured timesheets for employees with minimal friction.</p>
+        <div class="panel-note" style="border-left-color:var(--green);background:rgba(0,239,211,.04)">When updates are required, controlled timesheet corrections and timesheet adjustments maintain accuracy without losing accountability.</div>
       </div>
       <div class="panel-visual">
         <div class="panel-mock">
@@ -1848,7 +1854,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);padding:60px
       <div class="panel-text">
         <div class="panel-eyebrow">Submit &amp; Approve</div>
         <h3 class="panel-title">Submit &amp; Approve Timesheets Online with a <span style="color:var(--purple)">Structured Workflow</span></h3>
-        <p class="panel-desc">Manual approvals create delays. StaffCo simplifies your timesheet approval workflow. Employees can securely submit timesheets online in seconds. Managers receive organized notifications and can review, approve, or reject entries from one centralized dashboard.</p>
+        <p class="panel-desc">Manual approvals create delays. Talyvn simplifies your timesheet approval workflow. Employees can securely submit timesheets online in seconds. Managers receive organized notifications and can review, approve, or reject entries from one centralized dashboard.</p>
         <div class="panel-h3">Built-in Timesheet Approval Workflow</div>
         <div class="panel-bullets">
           <div class="panel-bullet"><div class="bdot" style="background:var(--purple)"></div>Assign approvers by team or project</div>
@@ -1856,11 +1862,11 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);padding:60px
           <div class="panel-bullet"><div class="bdot" style="background:var(--purple)"></div>Approve timesheets individually or in bulk</div>
           <div class="panel-bullet"><div class="bdot" style="background:var(--purple)"></div>Reject specific logs instead of entire submissions</div>
         </div>
-        <div class="panel-note" style="border-left-color:var(--purple);background:rgba(139,92,246,.04)">This structured workflow helps organizations approve timesheets faster while maintaining compliance.</div>
+        <div class="panel-note" style="border-left-color:var(--purple);background:rgba(138,58,251,.04)">This structured workflow helps organizations approve timesheets faster while maintaining compliance.</div>
       </div>
       <div class="panel-visual">
         <div class="panel-mock">
-          <div class="mock-bar"><div class="mock-dots"><div class="md" style="background:#ff5f57"></div><div class="md" style="background:#febc2e"></div><div class="md" style="background:#28c840"></div></div><span class="mock-title">Approval Queue</span><span class="mock-badge" style="background:rgba(139,92,246,.1);color:var(--purple);border:1px solid rgba(139,92,246,.2)">3 pending</span></div>
+          <div class="mock-bar"><div class="mock-dots"><div class="md" style="background:#ff5f57"></div><div class="md" style="background:#febc2e"></div><div class="md" style="background:#28c840"></div></div><span class="mock-title">Approval Queue</span><span class="mock-badge" style="background:rgba(138,58,251,.1);color:var(--purple);border:1px solid rgba(138,58,251,.2)">3 pending</span></div>
           <div class="mock-body">
             <div class="af">
               <div class="af-step done">&#x2713; Submitted</div>
@@ -1872,7 +1878,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);padding:60px
             <div class="ar"><span class="ar-name">Alex Kim &#xB7; Week 10</span><div style="display:flex;gap:5px"><button class="abtn abtn-ok">&#x2713; Approve</button><button class="abtn abtn-no">&#x2715; Reject</button></div></div>
             <div class="ar"><span class="ar-name">Sara R. &#xB7; Week 10</span><div style="display:flex;gap:5px"><button class="abtn abtn-ok">&#x2713; Approve</button><button class="abtn abtn-no">&#x2715; Reject</button></div></div>
             <div class="ar"><span class="ar-name">Mike P. &#xB7; Week 10</span><div style="display:flex;gap:5px"><button class="abtn abtn-ok">&#x2713; Approve</button><button class="abtn abtn-no">&#x2715; Reject</button></div></div>
-            <div style="margin-top:8px;padding:7px 10px;border-radius:7px;background:rgba(139,92,246,.06);border:1px solid rgba(139,92,246,.15);font-size:10px;color:var(--purple);font-weight:600;text-align:center">Bulk approve all &#8594;</div>
+            <div style="margin-top:8px;padding:7px 10px;border-radius:7px;background:rgba(138,58,251,.06);border:1px solid rgba(138,58,251,.15);font-size:10px;color:var(--purple);font-weight:600;text-align:center">Bulk approve all &#8594;</div>
           </div>
         </div>
       </div>
@@ -1883,7 +1889,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);padding:60px
       <div class="panel-text">
         <div class="panel-eyebrow">Audit Trail</div>
         <h3 class="panel-title">Complete Timesheet Audit Trail <span style="color:var(--sky)">for Accountability</span></h3>
-        <p class="panel-desc">Strong timesheet management software must provide traceability. StaffCo maintains a detailed timesheet audit trail that records:</p>
+        <p class="panel-desc">Strong timesheet management software must provide traceability. Talyvn maintains a detailed timesheet audit trail that records:</p>
         <div class="panel-bullets">
           <div class="panel-bullet"><div class="bdot" style="background:var(--sky)"></div>Submission timestamps</div>
           <div class="panel-bullet"><div class="bdot" style="background:var(--sky)"></div>Edits &amp; timesheet adjustments</div>
@@ -1893,7 +1899,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);padding:60px
       </div>
       <div class="panel-visual">
         <div class="panel-mock">
-          <div class="mock-bar"><div class="mock-dots"><div class="md" style="background:#ff5f57"></div><div class="md" style="background:#febc2e"></div><div class="md" style="background:#28c840"></div></div><span class="mock-title">Audit Log</span><span class="mock-badge" style="background:rgba(14,165,233,.1);color:var(--sky);border:1px solid rgba(14,165,233,.2)">Live</span></div>
+          <div class="mock-bar"><div class="mock-dots"><div class="md" style="background:#ff5f57"></div><div class="md" style="background:#febc2e"></div><div class="md" style="background:#28c840"></div></div><span class="mock-title">Audit Log</span><span class="mock-badge" style="background:rgba(0,187,210,.1);color:var(--sky);border:1px solid rgba(0,187,210,.2)">Live</span></div>
           <div class="mock-body">
             <div class="arow"><div class="adot-w"><div class="adot" style="background:var(--green)"></div><div class="aline"></div></div><div><div class="aact">Timesheet approved</div><div class="amet">Alex Kim &#xB7; Week 10 &#xB7; by Manager Sarah &#xB7; 14:32</div></div></div>
             <div class="arow"><div class="adot-w"><div class="adot" style="background:var(--accent)"></div><div class="aline"></div></div><div><div class="aact">Entry edited</div><div class="amet">Sara R. &#xB7; Tuesday 4h &#8594; 4.5h &#xB7; 13:10</div></div></div>
@@ -1910,7 +1916,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);padding:60px
       <div class="panel-text">
         <div class="panel-eyebrow">Security &amp; Permissions</div>
         <h3 class="panel-title">Security &amp; Permissions <span style="color:var(--amber)">for Secure Timesheets</span></h3>
-        <p class="panel-desc">Before approving payroll, organizations need clarity around access and control. StaffCo is built to support secure timesheets with structured permissions:</p>
+        <p class="panel-desc">Before approving payroll, organizations need clarity around access and control. Talyvn is built to support secure timesheets with structured permissions:</p>
         <div class="panel-bullets">
           <div class="panel-bullet"><div class="bdot" style="background:var(--amber)"></div>Role-based access control for viewing &amp; editing</div>
           <div class="panel-bullet"><div class="bdot" style="background:var(--amber)"></div>Manager-only approval rights</div>
@@ -1948,7 +1954,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);padding:60px
       <div class="panel-text">
         <div class="panel-eyebrow">Validation Rules</div>
         <h3 class="panel-title">Validation Rules <span style="color:#ef4444">for Accurate Timesheets</span></h3>
-        <p class="panel-desc">StaffCo helps prevent payroll errors before they happen. With StaffCo digital timesheets, you can:</p>
+        <p class="panel-desc">Talyvn helps prevent payroll errors before they happen. With Talyvn digital timesheets, you can:</p>
         <div class="panel-bullets">
           <div class="panel-bullet"><div class="bdot" style="background:#ef4444"></div>Enforce required fields before submission</div>
           <div class="panel-bullet"><div class="bdot" style="background:#ef4444"></div>Validate project allocations</div>
@@ -1977,7 +1983,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);padding:60px
       <div class="panel-text">
         <div class="panel-eyebrow">Advanced Reporting</div>
         <h3 class="panel-title">Advanced Timesheet <span style="color:#6366f1">Reporting &amp; Analytics</span></h3>
-        <p class="panel-desc">StaffCo seamlessly transforms tracked hours into powerful timesheet reporting tools that deliver operational clarity.</p>
+        <p class="panel-desc">Talyvn seamlessly transforms tracked hours into powerful timesheet reporting tools that deliver operational clarity.</p>
         <div class="panel-h3">Custom Reporting &amp; Built-in Analytics</div>
         <div class="panel-bullets">
           <div class="panel-bullet"><div class="bdot" style="background:#6366f1"></div>Use pre-built timesheet reporting templates</div>
@@ -2000,8 +2006,8 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);padding:60px
             </div>
             <div style="display:flex;gap:6px">
               <div style="flex:1;padding:6px 10px;border-radius:7px;border:1px solid rgba(99,102,241,.2);background:rgba(99,102,241,.06);font-size:10px;font-weight:600;color:#6366f1;text-align:center">&#x1F4C4; Export PDF</div>
-              <div style="flex:1;padding:6px 10px;border-radius:7px;border:1px solid rgba(34,197,94,.2);background:rgba(34,197,94,.06);font-size:10px;font-weight:600;color:var(--green);text-align:center">&#x1F4CA; Export Excel</div>
-              <div style="flex:1;padding:6px 10px;border-radius:7px;border:1px solid rgba(14,165,233,.2);background:rgba(14,165,233,.06);font-size:10px;font-weight:600;color:var(--sky);text-align:center">&#x1F4C1; Export CSV</div>
+              <div style="flex:1;padding:6px 10px;border-radius:7px;border:1px solid rgba(0,239,211,.2);background:rgba(0,239,211,.06);font-size:10px;font-weight:600;color:var(--green);text-align:center">&#x1F4CA; Export Excel</div>
+              <div style="flex:1;padding:6px 10px;border-radius:7px;border:1px solid rgba(0,187,210,.2);background:rgba(0,187,210,.06);font-size:10px;font-weight:600;color:var(--sky);text-align:center">&#x1F4C1; Export CSV</div>
             </div>
           </div>
         </div>
@@ -2013,7 +2019,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);padding:60px
       <div class="panel-text">
         <div class="panel-eyebrow">Built-in Calculator</div>
         <h3 class="panel-title">Built-in Timesheets Calculator <span style="color:var(--teal)">for Accurate Reports</span></h3>
-        <p class="panel-desc">Eliminate hours of manual calculations with StaffCo&#39;s built-in timesheet calculator. The built-in timesheets calculator automatically computes:</p>
+        <p class="panel-desc">Eliminate hours of manual calculations with Talyvn&#39;s built-in timesheet calculator. The built-in timesheets calculator automatically computes:</p>
         <div class="panel-bullets">
           <div class="panel-bullet"><div class="bdot" style="background:var(--teal)"></div>Total worked hours by employees</div>
           <div class="panel-bullet"><div class="bdot" style="background:var(--teal)"></div>Billable and non-billable hours</div>
@@ -2060,14 +2066,14 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);padding:60px
     <div class="exp-header">
       <span class="section-label">Employee Experience</span>
       <h2 class="section-title">Employee Experience: <span class="text-accent">Clear, Simple &amp; Guided</span></h2>
-      <p class="section-sub">StaffCo is designed to simplify the experience for the whole team, regardless of their role.</p>
+      <p class="section-sub">Talyvn is designed to simplify the experience for the whole team, regardless of their role.</p>
     </div>
 
     <div class="exp-cycle">
       <div class="exp-cards-track" id="expTrack">
 
         <div class="exp-card c-blue active">
-          <div class="exp-card-icon" style="background:rgba(59,130,246,.1);color:var(--color-accent)">
+          <div class="exp-card-icon" style="background:rgba(7,91,236,.1);color:var(--color-accent)">
             <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 15v2m-6 4h12a2 2 0 0 0 2-2v-6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2zm10-10V7a4 4 0 0 0-8 0v4h8z"/></svg>
           </div>
           <div class="exp-card-title">Secure login with structured permissions</div>
@@ -2083,7 +2089,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);padding:60px
         </div>
 
         <div class="exp-card c-green">
-          <div class="exp-card-icon" style="background:rgba(34,197,94,.1);color:var(--color-green)">
+          <div class="exp-card-icon" style="background:rgba(0,239,211,.1);color:var(--color-green)">
             <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 19v-6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2zm0 0V9a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v10m-6 0a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2m0 0V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2z"/></svg>
           </div>
           <div class="exp-card-title">Real-time status tracking</div>
@@ -2091,7 +2097,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);padding:60px
         </div>
 
         <div class="exp-card c-purple">
-          <div class="exp-card-icon" style="background:rgba(139,92,246,.1);color:var(--color-purple)">
+          <div class="exp-card-icon" style="background:rgba(138,58,251,.1);color:var(--color-purple)">
             <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M11 5H6a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2v-5m-1.414-9.414a2 2 0 1 1 2.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
           </div>
           <div class="exp-card-title">Effortless corrections workflows</div>
@@ -2124,34 +2130,34 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);padding:60px
 <section class="why-section reveal">
   <div class="container">
     <div class="why-header">
-      <span class="section-label" style="margin-bottom:20px;display:inline-block">Why StaffCo</span>
-      <h2 class="section-title">Why Companies Choose <span class="text-accent">StaffCo for Timesheets</span></h2>
-      <p class="section-sub">Utilizing StaffCo for timesheets helps you to take advantage of:</p>
+      <span class="section-label" style="margin-bottom:20px;display:inline-block">Why Talyvn</span>
+      <h2 class="section-title">Why Companies Choose <span class="text-accent">Talyvn for Timesheets</span></h2>
+      <p class="section-sub">Utilizing Talyvn for timesheets helps you to take advantage of:</p>
     </div>
     <div class="why-grid">
       <div class="why-tile c-blue">
-        <div class="why-tile-icon" style="background:rgba(59,130,246,.1);color:var(--color-accent)">
+        <div class="why-tile-icon" style="background:rgba(7,91,236,.1);color:var(--color-accent)">
           <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/></svg>
         </div>
         <div class="why-tile-title">Fully Automated Timesheets</div>
         <div class="why-tile-desc">Live tracking data flows directly into structured timesheets — no manual entry required.</div>
       </div>
       <div class="why-tile c-sky">
-        <div class="why-tile-icon" style="background:rgba(14,165,233,.1);color:var(--color-sky)">
+        <div class="why-tile-icon" style="background:rgba(0,187,210,.1);color:var(--color-sky)">
           <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M9 5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2"/></svg>
         </div>
         <div class="why-tile-title">Complete Timesheet Audit Trail</div>
         <div class="why-tile-desc">Every edit, submission, and approval is recorded with full timestamps and accountability.</div>
       </div>
       <div class="why-tile c-purple">
-        <div class="why-tile-icon" style="background:rgba(139,92,246,.1);color:var(--color-purple)">
+        <div class="why-tile-icon" style="background:rgba(138,58,251,.1);color:var(--color-purple)">
           <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
         </div>
         <div class="why-tile-title">Structured Approval Workflow</div>
         <div class="why-tile-desc">Assign approvers, set validation rules, and approve individually or in bulk from one dashboard.</div>
       </div>
       <div class="why-tile c-green">
-        <div class="why-tile-icon" style="background:rgba(34,197,94,.1);color:var(--color-green)">
+        <div class="why-tile-icon" style="background:rgba(0,239,211,.1);color:var(--color-green)">
           <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h4M8 15h6"/></svg>
         </div>
         <div class="why-tile-title">Built-in Timesheets Calculator</div>
@@ -2189,7 +2195,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);padding:60px
     <div class="cta-inner">
       <div class="cta-badge"><div class="cta-badge-dot"></div>Get Started</div>
       <h2 class="cta-title">Ready to Simplify Your Timesheets?</h2>
-      <p class="cta-desc">StaffCo keeps your timesheets secure and structured:</p>
+      <p class="cta-desc">Talyvn keeps your timesheets secure and structured:</p>
       <div class="cta-bullets">
         <div class="cta-bullet">
           <div class="cta-bullet-icon"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
@@ -2225,15 +2231,8 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);padding:60px
 <div class="footer-grid">
 <div>
 <div class="footer-logo">
-<svg fill="none" height="32" viewBox="0 0 664 664" width="32">
-<path d="M283.91 238L99.92 437.73C64.39 476.3 0 451.16 0 398.72V238H283.91Z" fill="#22C55E"/>
-<path d="M283.91 0V238H0V206.41C0 92.41 92.41 0 206.41 0H283.92Z" fill="#027F56"/>
-<path d="M595.82 11.85V79.56C595.82 167.07 524.88 238 437.38 238H283.92V0H583.98C590.52 0 595.83 5.3 595.83 11.85Z" fill="#0EA5E9"/>
-<path d="M380.09 426L564.08 226.27C599.61 187.7 664 212.84 664 265.28V426H380.09Z" fill="#7C3AED"/>
-<path d="M380.09 664V426H664V457.59C664 571.59 571.59 664 457.59 664H380.08Z" fill="#0726D9"/>
-<path d="M68.18 652.15V584.44C68.18 496.93 139.12 426 226.62 426H380.08V664H80.02C73.48 664 68.17 658.7 68.17 652.15Z" fill="#0EA5E9"/>
-</svg>
-<span class="footer-logo-text">StaffCo</span>
+<img src="https://sbia1.github.io/512x512.png" alt="talyvn" width="32" height="32" style="border-radius:6px">
+<span class="footer-logo-text">talyvn</span>
 </div>
 <p class="footer-brand-text">Workforce management built for modern teams.</p>
 <div class="footer-social">
@@ -2247,13 +2246,13 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);padding:60px
 <div class="footer-col"><div class="footer-col-title">Solutions</div><a href="/solutions">Solutions Overview</a><a href="/solutions/remote-work">Remote Work</a><a href="/solutions/hybrid-work">Hybrid Work</a><a href="/solutions/small-business">Small Business</a><a href="/solutions/employee-productivity">Employee Productivity</a><a href="/solutions/workforce-compliance">Workforce Compliance</a><a href="/solutions/client-billing-reporting">Client Billing & Reporting</a><a href="/solutions/project-management">Project Management</a><a href="/solutions/budget-cost-control">Budget & Cost Control</a></div>
 <div class="footer-col"><div class="footer-col-title">Industries</div><a href="/industries">Industries Overview</a><a href="/industries/startups">Startups</a><a href="/industries/it-services">IT Services</a><a href="/industries/finance-teams">Finance Teams</a><a href="/industries/agencies">Agencies</a></div>
 <div class="footer-col"><div class="footer-col-title">Resources</div><a href="/resources">Resources Overview</a><a href="/resources/guides">Guides</a><a href="/resources/templates">Templates</a><a href="/resources/glossary">Glossary</a><a href="/resources/calculators">Calculators</a><a href="/resources/case-studies">Case Studies</a><a href="/blog">Blog</a></div>
-<div class="footer-col"><div class="footer-col-title">Compare</div><a href="/compare">Compare Overview</a><a href="/compare/staffco-vs-clockify">StaffCo vs Clockify</a><a href="/compare/staffco-vs-hubstaff">StaffCo vs Hubstaff</a><a href="/compare/staffco-vs-toggl">StaffCo vs Toggl</a><a href="/compare/staffco-vs-time-doctor">StaffCo vs Time Doctor</a></div>
+<div class="footer-col"><div class="footer-col-title">Compare</div><a href="/compare">Compare Overview</a><a href="/compare/staffco-vs-clockify">Talyvn vs Clockify</a><a href="/compare/staffco-vs-hubstaff">Talyvn vs Hubstaff</a><a href="/compare/staffco-vs-toggl">Talyvn vs Toggl</a><a href="/compare/staffco-vs-time-doctor">Talyvn vs Time Doctor</a></div>
 <div class="footer-col"><div class="footer-col-title">Support</div><a href="/help">Help Center</a><a href="/faq">FAQ</a><a href="/contact">Contact</a></div>
 <div class="footer-col"><div class="footer-col-title">Company</div><a href="/about">About</a><a href="/customers">Customers</a></div>
 <div class="footer-col"><div class="footer-col-title">Legal</div><a href="/terms">Terms</a><a href="/privacy-policy">Privacy Policy</a><a href="/legal/compliance-security">Compliance & Security</a><a href="/legal/ethical-employee-monitoring">Ethical Employee Monitoring</a></div>
 </div>
 <div class="footer-bottom">
-<p class="footer-copyright">© 2025 StaffCo. All rights reserved.</p>
+<p class="footer-copyright">© 2025 Talyvn. All rights reserved.</p>
 <div class="footer-legal">
 <a href="/privacy-policy">Privacy</a>
 <a href="/terms">Terms</a>
