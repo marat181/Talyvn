@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Team Management Software | Talyvn</title>
+<meta name="description" content="Manage teams, tasks, attendance, and more in one place with Talyvn's team management software that is built for remote, field and growing teams. Book a Demo.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400;1,9..40,500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="https://sbia1.github.io/512x512.png">
+<svg height="0" style="position:absolute;overflow:hidden" width="0" xmlns="http://www.w3.org/2000/svg"><defs><filter filterUnits="objectBoundingBox" height="110%" id="lg-nav" width="110%" x="-5%" y="-5%"><feTurbulence baseFrequency="0.015" numOctaves="1" result="n" seed="8" type="fractalNoise"><animate attributeName="seed" dur="16s" from="1" repeatCount="indefinite" to="80"/></feTurbulence><feGaussianBlur in="n" result="bn" stdDeviation="4"/><feDisplacementMap in="SourceGraphic" in2="bn" scale="8" xChannelSelector="R" yChannelSelector="G"/></filter></defs></svg>
+<style>
+/* ── BASE CSS ── */
+:root{--bg:#F5F6FA;--bg-el:#fff;--surf:#fff;--surf-h:#EDEEF5;--bdr:rgba(17,17,39,.08);--txt:#111127;--txt2:#44445E;--txt3:#6B6D84;--acc:#075BEC;--acc-g:rgba(7,91,236,.18);--grn:#00EFD3;--grn-g:rgba(0,239,211,.16);--pur:#8A3AFB;--pur-g:rgba(138,58,251,.16);--sky:#00BBD2;--sky-g:rgba(0,187,210,.16);--org:#f97316;--org-g:rgba(249,115,22,.16);--gb:rgba(255,255,255,.55);--gb-h:rgba(255,255,255,.7);--gbdr:rgba(255,255,255,.72);--gh:rgba(255,255,255,.9);--gsh:rgba(17,17,39,.1);--orb:.18;--gl:rgba(17,17,39,.035);--gm:radial-gradient(ellipse 70% 60% at 50% 40%,black 20%,transparent 70%);--fr:rgba(7,91,236,.35);--rsm:8px;--rmd:14px;--rlg:20px;--rxl:28px;--ff:'Aktiv Grotesk','DM Sans',sans-serif;--ease:cubic-bezier(.16,1,.3,1);color-scheme:light}
+[data-theme="dark"]{--bg:#0A0A0F;--bg-el:#111120;--surf:#1A1A2A;--surf-h:#222234;--bdr:rgba(255,255,255,.06);--txt:#EAEEF6;--txt2:#8B8DA0;--txt3:#5a5c6e;--acc-g:rgba(7,91,236,.25);--grn-g:rgba(0,239,211,.2);--pur-g:rgba(138,58,251,.2);--sky-g:rgba(0,187,210,.2);--org-g:rgba(249,115,22,.2);--gb:rgba(255,255,255,.03);--gb-h:rgba(255,255,255,.06);--gbdr:rgba(255,255,255,.08);--gh:rgba(255,255,255,.15);--gsh:rgba(0,0,0,.4);--orb:.32;--gl:rgba(255,255,255,.015);color-scheme:dark}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{font-family:var(--ff);background:var(--bg);color:var(--txt);line-height:1.6;overflow-x:hidden}
+a{color:inherit;text-decoration:none}ul{list-style:none}button{font-family:inherit;cursor:pointer;border:none;background:none}
+:focus{outline:none}:focus-visible{outline:3px solid var(--fr);outline-offset:3px;border-radius:10px}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+.page-bg{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.orb{position:absolute;border-radius:50%;filter:blur(160px);opacity:var(--orb)}
+.orb1{width:600px;height:600px;background:radial-gradient(circle,var(--acc) 0%,transparent 70%);top:-200px;left:-100px;animation:of1 20s ease-in-out infinite}
+.orb2{width:500px;height:500px;background:radial-gradient(circle,var(--pur) 0%,transparent 70%);top:40%;right:-150px;animation:of2 25s ease-in-out infinite}
+.orb3{width:400px;height:400px;background:radial-gradient(circle,var(--grn) 0%,transparent 70%);bottom:-100px;left:30%;animation:of3 22s ease-in-out infinite}
+@keyframes of1{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(80px,60px) scale(1.1)}66%{transform:translate(-40px,30px) scale(.95)}}
+@keyframes of2{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(-60px,-80px) scale(1.05)}66%{transform:translate(40px,40px) scale(.9)}}
+@keyframes of3{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(50px,-40px) scale(1.08)}66%{transform:translate(-70px,20px) scale(.92)}}
+.page-bg::after{content:'';position:absolute;inset:0;background-image:linear-gradient(var(--gl) 1px,transparent 1px),linear-gradient(90deg,var(--gl) 1px,transparent 1px);background-size:80px 80px;opacity:.5;mask-image:var(--gm)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 7px var(--grn-g)}50%{opacity:.6;box-shadow:0 0 14px var(--grn-g)}}
+
+/* ── NAV ── */
+.nav{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:1000;width:calc(100% - 32px);max-width:1100px}
+.nav-inner{position:relative;display:flex;align-items:center;justify-content:space-between;padding:12px 20px;border-radius:var(--rxl);border:1px solid var(--gbdr);background:var(--gb);isolation:isolate;overflow:visible;box-shadow:0 4px 24px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.1)}
+.nav-inner::before{content:'';position:absolute;inset:-80%;pointer-events:none;backdrop-filter:blur(24px) saturate(1.5) brightness(1.02);-webkit-backdrop-filter:blur(24px) saturate(1.5) brightness(1.02);filter:url(#lg-nav);z-index:-2}
+.nav-inner::after{content:'';position:absolute;inset:0;pointer-events:none;border-radius:inherit;background:linear-gradient(135deg,rgba(255,255,255,.07) 0%,rgba(255,255,255,.01) 50%,rgba(255,255,255,.04) 100%);box-shadow:inset 1px 1px 0 rgba(255,255,255,.12),inset -1px -1px 0 rgba(255,255,255,.03);z-index:-1}
+.nav-logo{display:flex;align-items:center;gap:10px;z-index:2}.nav-logo img{width:32px;height:32px}.nav-logo-text{font-weight:700;font-size:18px;letter-spacing:-.02em}
+.nav-links{display:flex;align-items:center;gap:4px;z-index:2}
+.nav-link{display:flex;align-items:center;gap:4px;padding:8px 14px;font-size:14px;font-weight:500;color:var(--txt2);border-radius:var(--rsm);transition:all .2s}.nav-link:hover{color:var(--txt);background:var(--surf-h)}.nav-link svg{width:14px;height:14px;opacity:.5;transition:transform .2s}.nav-link:hover svg{transform:rotate(180deg)}
+.nav-item{position:relative;display:inline-block}
+.nav-dd{position:absolute;top:calc(100% + 16px);left:50%;transform:translateX(-50%) translateY(-8px);min-width:700px;background:rgba(26,27,36,.98);backdrop-filter:blur(32px);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:28px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .3s,visibility .3s,transform .3s;z-index:9999;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+:root .nav-dd{background:rgba(255,255,255,.96);border-color:rgba(17,17,39,.12);box-shadow:0 20px 60px rgba(17,17,39,.15)}
+.nav-item:hover .nav-dd{opacity:1;visibility:visible;pointer-events:auto;transform:translateX(-50%) translateY(0)}
+.dd-grid{display:grid;gap:0 24px}.dd-3{grid-template-columns:repeat(3,1fr)}.dd-2{grid-template-columns:repeat(2,1fr)}.dd-1{grid-template-columns:1fr}
+.dd-sec{display:flex;flex-direction:column;gap:3px}.dd-lbl{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--txt3);padding:8px 0 6px;border-bottom:1px solid var(--bdr);margin-bottom:5px}
+.dd-a{display:block;padding:6px 10px;font-size:14px;color:var(--txt2);border-radius:8px;transition:all .15s}.dd-a:hover{color:var(--txt);background:var(--surf-h)}
+.nav-actions{display:flex;align-items:center;gap:8px;z-index:2}
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--ff);font-weight:600;font-size:14px;padding:10px 20px;border-radius:var(--rmd);transition:all .25s var(--ease);cursor:pointer;white-space:nowrap}
+.btn-ghost{color:var(--txt2);background:transparent}.btn-ghost:hover{color:var(--txt);background:var(--surf-h)}
+.btn-pri{color:#fff;background:var(--acc);box-shadow:0 2px 12px var(--acc-g),inset 0 1px 0 rgba(255,255,255,.15)}.btn-pri:hover{background:#2E75F0;transform:translateY(-1px)}
+.btn-sec{color:var(--txt);background:rgba(255,255,255,.06);border:1px solid var(--gbdr)}.btn-sec:hover{background:rgba(255,255,255,.1);transform:translateY(-1px)}
+.btn-ncta{font-size:13px;font-weight:600;padding:8px 14px;border-radius:var(--rmd);color:#fff;background:var(--acc);display:inline-flex;align-items:center}
+.theme-toggle{padding:8px;border-radius:var(--rsm);width:36px;height:36px;display:flex;align-items:center;justify-content:center}.theme-toggle svg{width:20px;height:20px}.theme-toggle .icon-moon{display:none}[data-theme="dark"] .theme-toggle .icon-sun{display:none}[data-theme="dark"] .theme-toggle .icon-moon{display:inline}
+.mob-nav-a{display:none;align-items:center;gap:4px;z-index:2}.mob-tog{display:flex;z-index:2;width:36px;height:36px;align-items:center;justify-content:center;color:var(--txt)}.mob-tog svg{width:22px;height:22px}
+.mob-menu{position:fixed;inset:0;z-index:1200;display:none}.mob-menu.open{display:block}.mob-bd{position:absolute;inset:0;background:rgba(2,6,23,.28)}
+.mob-panel{position:absolute;top:14px;left:14px;right:14px;border-radius:var(--rxl);border:1px solid var(--gbdr);background:rgba(255,255,255,.62);box-shadow:0 20px 60px rgba(17,17,39,.18);overflow:hidden;transform:translateY(-8px);opacity:0;transition:all .28s var(--ease)}
+[data-theme="dark"] .mob-panel{background:rgba(10,11,15,.62);box-shadow:0 20px 60px rgba(0,0,0,.35)}.mob-menu.open .mob-panel{transform:translateY(0);opacity:1}
+.mob-hd{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid var(--bdr)}
+.mob-cls{width:40px;height:40px;display:inline-flex;align-items:center;justify-content:center;border-radius:12px;color:var(--txt);background:rgba(255,255,255,.35);border:1px solid rgba(255,255,255,.55)}[data-theme="dark"] .mob-cls{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12)}
+.mob-links{display:grid;padding:10px 10px 4px;gap:6px}.mob-link{padding:12px;border-radius:14px;font-weight:600;color:var(--txt);background:rgba(255,255,255,.35);border:1px solid rgba(255,255,255,.55)}[data-theme="dark"] .mob-link{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12)}
+.mob-acts{display:grid;gap:10px;padding:14px 12px 16px;border-top:1px solid var(--bdr)}
+
+/* ── BADGES ── */
+.badge-wrap{text-align:center;margin-bottom:18px}.badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px 6px 10px;border-radius:100px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}.badge-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.b-grn{color:var(--grn);border:1px solid rgba(0,239,211,.25);background:rgba(0,239,211,.08)}.b-grn .badge-dot{background:var(--grn);box-shadow:0 0 7px var(--grn-g);animation:pulse 2s ease-in-out infinite}
+.b-blu{color:var(--acc);border:1px solid rgba(7,91,236,.25);background:rgba(7,91,236,.08)}.b-blu .badge-dot{background:var(--acc);box-shadow:0 0 7px var(--acc-g)}
+.b-org{color:var(--org);border:1px solid rgba(249,115,22,.25);background:rgba(249,115,22,.08)}.b-org .badge-dot{background:var(--org);box-shadow:0 0 7px var(--org-g)}
+.b-sky{color:var(--sky);border:1px solid rgba(0,187,210,.25);background:rgba(0,187,210,.08)}.b-sky .badge-dot{background:var(--sky);box-shadow:0 0 7px var(--sky-g)}
+.b-pur{color:var(--pur);border:1px solid rgba(138,58,251,.25);background:rgba(138,58,251,.08)}.b-pur .badge-dot{background:var(--pur);box-shadow:0 0 7px var(--pur-g)}
+
+/* ── SECTIONS & TEXT ── */
+.sec-title{font-size:clamp(28px,3.5vw,44px);font-weight:800;letter-spacing:-.03em;line-height:1.15;margin-bottom:16px}.tc{text-align:center}
+.sec-sub{font-size:16px;color:var(--txt2);max-width:600px;margin:0 auto;line-height:1.7}
+.t-acc{background:linear-gradient(135deg,var(--acc) 0%,var(--sky) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.t-grn{background:linear-gradient(135deg,var(--grn) 0%,#66FFE8 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.t-org{background:linear-gradient(135deg,var(--org) 0%,#fbbf24 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.t-sky{background:linear-gradient(135deg,var(--sky) 0%,#66DDE8 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.t-pur{background:linear-gradient(135deg,var(--pur) 0%,#B880FD 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.section{position:relative;z-index:1;padding:100px 0;border-top:1px solid var(--gbdr);scroll-margin-top:80px}[data-theme="light"] .section{border-top-color:rgba(17,17,39,.08)}
+.inline-link{color:var(--acc);text-decoration:underline;text-decoration-color:rgba(7,91,236,.3);text-underline-offset:3px;transition:color .2s,text-decoration-color .2s}.inline-link:hover{color:#3B7FF0;text-decoration-color:rgba(96,165,250,.6)}
+
+/* ── HERO ── */
+.hero{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:140px 0 60px}
+.hero-in{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.hero-left{display:flex;flex-direction:column;align-items:flex-start;text-align:left}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px 6px 10px;border-radius:100px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--grn);border:1px solid rgba(0,239,211,.25);background:rgba(0,239,211,.08);margin-bottom:22px;animation:fadeUp .8s var(--ease) both}
+.hero-badge-dot{width:7px;height:7px;border-radius:50%;background:var(--grn);box-shadow:0 0 7px var(--grn-g);animation:pulse 2s ease-in-out infinite;flex-shrink:0}
+.hero-title{font-size:clamp(34px,3.8vw,58px);font-weight:800;line-height:1.06;letter-spacing:-.04em;margin:0 0 20px;animation:fadeUp .8s var(--ease) .1s both}
+.hero-ta{background:linear-gradient(135deg,var(--grn) 0%,var(--sky) 60%,var(--acc) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-p{font-size:clamp(15px,1.3vw,17px);color:var(--txt2);margin:0 0 12px;line-height:1.7;animation:fadeUp .8s var(--ease) .15s both}
+.hero-p2{font-size:clamp(14px,1.2vw,16px);color:var(--txt2);margin:0;line-height:1.7;animation:fadeUp .8s var(--ease) .2s both}
+.hero-cta{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:32px;animation:fadeUp .8s var(--ease) .3s both}
+.hero-right{animation:fadeUp .8s var(--ease) .25s both}
+.btn-hp{color:#fff;background:var(--acc);padding:14px 28px;font-size:15px;border-radius:var(--rmd);box-shadow:0 4px 20px var(--acc-g),inset 0 1px 0 rgba(255,255,255,.15);font-weight:600;transition:all .25s var(--ease);display:inline-flex;align-items:center}.btn-hp:hover{background:#2E75F0;transform:translateY(-2px);box-shadow:0 8px 28px var(--acc-g)}
+.btn-hg{color:var(--txt);background:rgba(255,255,255,.06);border:1px solid var(--gbdr);padding:14px 28px;font-size:15px;border-radius:var(--rmd);font-weight:600;transition:all .25s var(--ease);display:inline-flex;align-items:center}.btn-hg:hover{background:rgba(255,255,255,.1);transform:translateY(-2px)}
+
+/* ── PLACEHOLDER ── */
+.ph{width:100%;border-radius:var(--rlg);background:var(--gb);border:1.5px dashed var(--gbdr);display:flex;align-items:center;justify-content:center;color:var(--txt3);position:relative;overflow:hidden}
+.ph::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 40% 50%,rgba(7,91,236,.06) 0%,transparent 60%)}
+[data-theme="light"] .ph{background:rgba(17,17,39,.03);border-color:rgba(17,17,39,.12)}
+.ph-in{display:flex;flex-direction:column;align-items:center;gap:10px;position:relative;z-index:1}.ph-in span{font-size:13px;font-weight:500}
+.ph img{width:100%;height:100%;object-fit:cover;border-radius:inherit;position:absolute;inset:0}
+
+/* ── S2: WHAT IS ── */
+.what-g{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.what-t p{font-size:16px;color:var(--txt2);line-height:1.75;margin-bottom:16px}
+.what-dl{font-size:15px;color:var(--txt2);line-height:1.7;margin-top:16px}
+.sv{background:var(--surf);border:1px solid var(--gbdr);border-radius:var(--rxl);padding:32px;box-shadow:0 8px 40px var(--gsh),inset 0 1px 0 var(--gh)}
+[data-theme="light"] .sv{background:#fff;border-color:rgba(17,17,39,.18);box-shadow:0 4px 16px rgba(17,17,39,.09),0 12px 36px rgba(17,17,39,.06)}
+.sv-lbl{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--txt3);margin-bottom:14px}
+.s-rows{display:flex;flex-direction:column;gap:8px}
+.s-row{display:flex;align-items:center;justify-content:space-between;padding:13px 16px;border-radius:var(--rmd);background:var(--gb);border:1px solid var(--gbdr)}[data-theme="light"] .s-row{background:var(--surf-h);border-color:rgba(17,17,39,.06)}
+.s-row-l{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:500}.sdot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.schip{font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:.04em}
+.cg{background:rgba(0,239,211,.12);color:#00EFD3}.ca{background:rgba(251,191,36,.12);color:#fbbf24}.cr{background:rgba(248,113,113,.12);color:#f87171}.cp{background:rgba(167,139,250,.12);color:#a78bfa}.cb{background:rgba(7,91,236,.12);color:var(--acc)}.co{background:rgba(249,115,22,.12);color:var(--org)}
+
+/* ── S3: WHY YOU NEED ── */
+.why-g{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.why-t p{font-size:16px;color:var(--txt2);line-height:1.75;margin-bottom:16px}
+.why-list{display:flex;flex-direction:column;gap:10px;margin-top:8px}
+.why-list-item{display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:var(--rmd);background:var(--gb);border:1px solid var(--gbdr);font-size:14px;font-weight:500;color:var(--txt);transition:all .25s var(--ease)}
+.why-list-item:hover{border-color:rgba(0,239,211,.3);transform:translateX(4px)}
+[data-theme="light"] .why-list-item{background:#fff;border-color:rgba(17,17,39,.14);box-shadow:0 1px 4px rgba(17,17,39,.06)}
+.why-ico{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
+
+/* ── S4: BENEFITS 2×2 ── */
+.ben-g{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.ben-c{position:relative;isolation:isolate;overflow:hidden;border-radius:var(--rlg);border:1px solid rgba(255,255,255,.13);padding:30px 26px;background:var(--gb);display:flex;flex-direction:column;gap:14px;transition:all .35s var(--ease);box-shadow:0 4px 20px rgba(0,0,0,.1),inset 0 1px 0 var(--gh)}
+.ben-c::after{content:'';position:absolute;inset:0;pointer-events:none;border-radius:inherit;background:linear-gradient(145deg,rgba(255,255,255,.06) 0%,rgba(255,255,255,.01) 35%,transparent 60%,rgba(255,255,255,.03) 100%);box-shadow:inset 1px 1px 0 rgba(255,255,255,.1);z-index:1}
+.ben-c:hover{transform:translateY(-6px)}
+.ben-c:nth-child(1):hover{border-color:rgba(7,91,236,.25);box-shadow:0 8px 40px rgba(7,91,236,.12)}
+.ben-c:nth-child(2):hover{border-color:rgba(0,239,211,.25);box-shadow:0 8px 40px rgba(0,239,211,.12)}
+.ben-c:nth-child(3):hover{border-color:rgba(249,115,22,.25);box-shadow:0 8px 40px rgba(249,115,22,.12)}
+.ben-c:nth-child(4):hover{border-color:rgba(138,58,251,.25);box-shadow:0 8px 40px rgba(138,58,251,.12)}
+[data-theme="light"] .ben-c{background:#fff;border-color:rgba(17,17,39,.18);box-shadow:0 2px 12px rgba(17,17,39,.08),0 6px 24px rgba(17,17,39,.06)}
+[data-theme="light"] .ben-c:nth-child(1){border-top:2px solid var(--acc)}
+[data-theme="light"] .ben-c:nth-child(2){border-top:2px solid var(--grn)}
+[data-theme="light"] .ben-c:nth-child(3){border-top:2px solid var(--org)}
+[data-theme="light"] .ben-c:nth-child(4){border-top:2px solid var(--pur)}
+.ben-ico{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;position:relative;z-index:2}
+.ben-ttl{font-size:18px;font-weight:700;letter-spacing:-.02em;position:relative;z-index:2}
+.ben-desc{font-size:14px;color:var(--txt2);line-height:1.65;position:relative;z-index:2}
+
+/* ── S5: FEATURES — SIDEBAR TABS ── */
+.sb-wrap{display:grid;grid-template-columns:280px 1fr;gap:32px;align-items:start}
+.sb-nav{position:sticky;top:100px;display:flex;flex-direction:column;gap:8px}
+.sb-lbl{font-size:11px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--txt3);padding:4px 12px 10px}
+.sb-btn{display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:var(--rmd);font-size:14px;font-weight:500;color:var(--txt2);cursor:pointer;transition:all .2s;text-align:left;background:var(--gb);border:1px solid var(--gbdr);font-family:var(--ff);width:100%}
+.sb-btn:hover{color:var(--txt);background:var(--gb-h);border-color:rgba(7,91,236,.3);transform:translateX(2px)}
+[data-theme="light"] .sb-btn{background:#fff;border-color:rgba(17,17,39,.14);box-shadow:0 1px 4px rgba(17,17,39,.06)}[data-theme="light"] .sb-btn:hover{background:#fafafa;border-color:rgba(7,91,236,.45)}
+.sb-btn.active{color:var(--txt);background:rgba(7,91,236,.1);border-color:rgba(7,91,236,.4);border-left:3px solid var(--acc);box-shadow:0 2px 12px rgba(7,91,236,.15)}
+[data-theme="light"] .sb-btn.active{background:rgba(7,91,236,.07);border-color:rgba(7,91,236,.4);border-left:3px solid var(--acc)}
+.sb-icon{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px;background:var(--surf-h);transition:background .18s}
+.sb-btn.active .sb-icon{background:rgba(7,91,236,.2)}
+.fp-wrap{min-height:400px}.fp{display:none;animation:fpFade .28s ease}.fp.active{display:block}
+@keyframes fpFade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.panel{background:var(--bg-el);border:1px solid var(--gbdr);border-radius:20px;padding:36px}[data-theme="light"] .panel{background:#fff;border-color:rgba(17,17,39,.18);box-shadow:0 4px 16px rgba(17,17,39,.09),0 12px 36px rgba(17,17,39,.06)}
+.p-hd{display:flex;align-items:center;gap:16px;margin-bottom:20px}
+.p-ico{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.pib{background:rgba(7,91,236,.15)}.pig{background:rgba(0,239,211,.12)}.pip{background:rgba(138,58,251,.12)}.pis{background:rgba(0,187,210,.12)}.pio{background:rgba(249,115,22,.12)}
+.p-eye{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--txt3);margin-bottom:4px}
+.p-ttl{font-size:20px;font-weight:700;line-height:1.2}
+.p-desc{font-size:15px;line-height:1.75;color:var(--txt2);margin-bottom:20px}
+.p-ph{width:100%;aspect-ratio:16/9;border-radius:14px;background:var(--gb);border:1.5px dashed var(--gbdr);display:flex;align-items:center;justify-content:center;color:var(--txt3);overflow:hidden;position:relative}
+.p-ph::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 40%,rgba(7,91,236,.06) 0%,transparent 60%)}
+[data-theme="light"] .p-ph{background:rgba(17,17,39,.03);border-color:rgba(17,17,39,.15)}
+.p-ph img{width:100%;height:100%;object-fit:cover;border-radius:inherit;position:absolute;inset:0}
+
+/* ── Sub-features inside panel ── */
+.sub-feats{display:flex;flex-direction:column;gap:16px;margin-bottom:24px}
+.sub-feat{display:flex;align-items:flex-start;gap:14px;padding:16px;border-radius:var(--rmd);border:1px solid var(--gbdr);background:var(--gb);transition:all .25s var(--ease)}
+.sub-feat:hover{border-color:rgba(7,91,236,.2);transform:translateX(3px)}
+[data-theme="light"] .sub-feat{background:var(--surf-h);border-color:rgba(17,17,39,.08)}
+.sf-num{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;background:rgba(7,91,236,.12);color:var(--acc)}
+.sf-ct{flex:1}.sf-ct strong{display:block;font-size:15px;font-weight:600;color:var(--txt);margin-bottom:3px}.sf-ct p{font-size:13px;color:var(--txt2);line-height:1.6;margin:0}
+
+/* ── S6: REMOTE — ACCORDION ── */
+.acc-wrap{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.acc-items{display:flex;flex-direction:column;gap:10px}
+.acc-item{border-radius:var(--rlg);border:1px solid var(--gbdr);background:var(--gb);overflow:hidden;transition:all .3s var(--ease)}
+.acc-item.active{border-color:rgba(0,187,210,.35);box-shadow:0 4px 24px rgba(0,187,210,.1)}
+[data-theme="light"] .acc-item{background:#fff;border-color:rgba(17,17,39,.14);box-shadow:0 1px 4px rgba(17,17,39,.06)}[data-theme="light"] .acc-item.active{border-color:rgba(0,187,210,.4);box-shadow:0 4px 20px rgba(0,187,210,.1)}
+.acc-hd{display:flex;align-items:center;gap:14px;padding:18px 22px;cursor:pointer;transition:background .2s}.acc-hd:hover{background:var(--gb-h)}
+.acc-num{width:32px;height:32px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0;background:rgba(0,187,210,.1);color:var(--sky);transition:all .2s}
+.acc-item.active .acc-num{background:var(--sky);color:#fff}
+.acc-hd-t{flex:1}.acc-hd-title{font-size:16px;font-weight:700;letter-spacing:-.01em}.acc-hd-sub{font-size:13px;color:var(--txt3);margin-top:2px}
+.acc-arrow{width:20px;height:20px;color:var(--txt3);transition:transform .3s var(--ease);flex-shrink:0}.acc-item.active .acc-arrow{transform:rotate(180deg)}
+.acc-body{max-height:0;overflow:hidden;transition:max-height .35s var(--ease)}.acc-item.active .acc-body{max-height:200px}
+.acc-body-in{padding:0 22px 20px 68px}.acc-body-in p{font-size:14px;color:var(--txt2);line-height:1.7}
+.acc-ph-wrap{position:sticky;top:100px}
+.acc-ph{aspect-ratio:4/3;border-radius:var(--rlg);background:var(--gb);border:1.5px dashed var(--gbdr);display:flex;align-items:center;justify-content:center;color:var(--txt3);position:relative;overflow:hidden}
+.acc-ph::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 40%,rgba(0,187,210,.06) 0%,transparent 60%)}
+[data-theme="light"] .acc-ph{background:rgba(17,17,39,.03);border-color:rgba(17,17,39,.12)}
+.acc-ph img{width:100%;height:100%;object-fit:cover;border-radius:inherit;position:absolute;inset:0}
+
+/* ── CTA ── */
+.cta-s{padding:80px 0 120px;position:relative;z-index:1}
+.cta-in{position:relative;background:var(--bg-el);border:1px solid var(--gbdr);border-radius:28px;padding:80px 60px;overflow:hidden;text-align:center}[data-theme="light"] .cta-in{background:#fff;border-color:rgba(17,17,39,.08);box-shadow:0 8px 40px rgba(17,17,39,.08)}
+.cta-glow{position:absolute;border-radius:50%;pointer-events:none;filter:blur(80px)}.cta-g1{width:400px;height:400px;background:rgba(7,91,236,.12);top:-100px;left:-80px}.cta-g2{width:300px;height:300px;background:rgba(0,239,211,.1);bottom:-80px;right:-60px}
+.cta-cnt{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:20px}
+.cta-ttl{font-size:clamp(28px,4vw,48px);font-weight:700;line-height:1.2;max-width:700px}
+.cta-dsc{font-size:17px;line-height:1.75;color:var(--txt2);max-width:560px}
+.cta-acts{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:8px}
+
+/* ── FOOTER ── */
+.footer{position:relative;z-index:1;border-top:1px solid var(--gbdr);padding:64px 0 32px}
+.ft-g{display:grid;grid-template-columns:200px repeat(8,1fr);gap:20px;margin-bottom:48px}
+.ft-logo{display:flex;align-items:center;gap:10px;margin-bottom:14px}.ft-logo-t{font-weight:700;font-size:17px;letter-spacing:-.02em}
+.ft-brand{font-size:13px;color:var(--txt3);line-height:1.6;max-width:160px;margin-bottom:16px}
+.ft-soc{display:flex;gap:10px}.ft-soc a{display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:8px;color:var(--txt3);background:var(--gb);border:1px solid var(--gbdr);transition:all .2s}.ft-soc a:hover{color:var(--txt);background:var(--gb-h)}.ft-soc svg{width:15px;height:15px}
+.ft-col{display:flex;flex-direction:column;gap:8px}.ft-col-t{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--txt3);margin-bottom:4px}.ft-col a{font-size:13px;color:var(--txt2);transition:color .2s}.ft-col a:hover{color:var(--txt)}
+.ft-bot{display:flex;align-items:center;justify-content:space-between;padding-top:24px;border-top:1px solid var(--gbdr)}.ft-copy{font-size:13px;color:var(--txt3)}.ft-leg{display:flex;gap:20px}.ft-leg a{font-size:13px;color:var(--txt3);transition:color .2s}.ft-leg a:hover{color:var(--txt)}
+.btn-about{display:inline-flex;align-items:center;gap:6px;padding:8px 18px;font-size:13px;font-weight:600;letter-spacing:.02em;border-radius:100px;color:var(--txt);background:transparent;border:1px solid var(--gbdr);position:relative;transition:all .3s var(--ease);z-index:2}
+.btn-about::before{content:'';position:absolute;inset:-1px;border-radius:inherit;padding:1px;background:linear-gradient(135deg,var(--acc),var(--sky),var(--pur));-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .3s}
+.btn-about:hover{border-color:transparent;transform:translateY(-1px);box-shadow:0 4px 18px rgba(7,91,236,.15)}.btn-about:hover::before{opacity:1}[data-theme="light"] .btn-about{border-color:rgba(17,17,39,.15)}
+
+/* ── LIGHT MODE OVERRIDES ── */
+[data-theme="light"] .nav-inner{background:rgba(255,255,255,.75);border-color:rgba(17,17,39,.1);box-shadow:0 4px 24px rgba(17,17,39,.08),inset 0 1px 0 rgba(255,255,255,.5)}
+[data-theme="light"] .nav-inner::before{filter:none}
+[data-theme="light"] .nav-inner::after{background:linear-gradient(135deg,rgba(255,255,255,.5) 0%,rgba(255,255,255,.2) 50%,rgba(255,255,255,.3) 100%);box-shadow:inset 1px 1px 0 rgba(255,255,255,.6)}
+[data-theme="light"] .btn-hg{background:rgba(17,17,39,.04);border-color:rgba(17,17,39,.15)}[data-theme="light"] .btn-hg:hover{background:rgba(17,17,39,.08)}
+[data-theme="light"] .btn-sec{background:rgba(17,17,39,.04);border-color:rgba(17,17,39,.15)}[data-theme="light"] .btn-sec:hover{background:rgba(17,17,39,.08)}
+[data-theme="light"] .mob-panel{background:rgba(255,255,255,.85);border-color:rgba(17,17,39,.1);box-shadow:0 20px 60px rgba(17,17,39,.12)}
+[data-theme="light"] .mob-cls{background:rgba(17,17,39,.05);border-color:rgba(17,17,39,.12)}
+[data-theme="light"] .mob-link{background:rgba(17,17,39,.04);border-color:rgba(17,17,39,.1)}
+[data-theme="light"] .why-list-item:hover{border-color:rgba(0,239,211,.4)}
+[data-theme="light"] .sub-feat{background:#fff;border-color:rgba(17,17,39,.1)}[data-theme="light"] .sub-feat:hover{border-color:rgba(7,91,236,.25)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1000px){.ft-g{grid-template-columns:repeat(4,1fr)}.what-g,.why-g{grid-template-columns:1fr;gap:40px}.ben-g{grid-template-columns:1fr}.sb-wrap{grid-template-columns:1fr}.sb-nav{position:static;flex-direction:row;flex-wrap:wrap}.sb-lbl{display:none}.acc-wrap{grid-template-columns:1fr}.acc-ph-wrap{position:static;margin-top:24px}}
+@media(max-width:900px){.hero-in{grid-template-columns:1fr}.hero-left{align-items:center;text-align:center}.hero-right{display:none}}
+@media(max-width:640px){.nav-links,.nav-actions{display:none}.mob-nav-a{display:flex}.ft-g{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.cta-in{padding:48px 28px}.cta-ttl{font-size:26px}}
+</style>
+</head>
+<body>
+
+<div class="page-bg"><div class="orb orb1"></div><div class="orb orb2"></div><div class="orb orb3"></div></div>
+
+<!-- NAV -->
+<nav class="nav"><div class="nav-inner">
+<a class="nav-logo" href="/"><img src="https://sbia1.github.io/512x512.png" alt="talyvn" width="32" height="32" style="border-radius:6px"><span class="nav-logo-text">talyvn</span></a>
+<div class="nav-links">
+<div class="nav-item"><a class="nav-link" href="/product/">Product <svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></a><div class="nav-dd"><div class="dd-grid dd-3"><div class="dd-sec"><div class="dd-lbl">Overview</div><a href="/product/time-tracking-software" class="dd-a">Time-tracking Software</a><a href="/product/hr-software" class="dd-a">HR Software</a><a href="/product/employee-management-software" class="dd-a">Employee Management Software</a><a href="/product/payroll" class="dd-a">Payroll</a><a href="/product/employee-monitoring-software" class="dd-a">Employee Monitoring Software</a><a href="/product/workforce-intelligence-platform" class="dd-a">Workforce Intelligence Platform</a></div><div class="dd-sec"><div class="dd-lbl">Features</div><a href="/features/timesheets" class="dd-a">Timesheets</a><a href="/features/productivity-insights" class="dd-a">Productivity Insights</a><a href="/features/leave-management" class="dd-a">Leave Management</a><a href="/features/reporting-analytics" class="dd-a">Reporting &amp; Analytics</a><a href="/features/performance-management" class="dd-a">Performance Management</a><a href="/features/activity-monitoring" class="dd-a">Activity Monitoring</a><a href="/features/team-management" class="dd-a">Team Management</a><a href="/features/ai-engines" class="dd-a">AI Engines</a><a href="/features/behavioral-risk-detection" class="dd-a">Behavioral Risk Detection</a><a href="/features/hr-ticketing" class="dd-a">HR Ticketing</a><a href="/features/e-signatures" class="dd-a">E-signatures</a><a href="/features/employee-profile" class="dd-a">Employee Profile</a></div><div class="dd-sec"><div class="dd-lbl">Integrations</div><a href="/integrations/jira" class="dd-a">Jira</a><a href="/integrations/slack" class="dd-a">Slack</a></div></div></div></div>
+<div class="nav-item"><a class="nav-link" href="/solutions/">Solutions <svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></a><div class="nav-dd"><div class="dd-grid dd-2"><div class="dd-sec"><div class="dd-lbl">By use case</div><a href="/solutions/remote-work" class="dd-a">Remote Work</a><a href="/solutions/hybrid-work" class="dd-a">Hybrid Work</a><a href="/solutions/small-business" class="dd-a">Small Business</a><a href="/solutions/employee-productivity" class="dd-a">Employee Productivity</a><a href="/solutions/workforce-compliance" class="dd-a">Workforce Compliance</a><a href="/solutions/client-billing-reporting" class="dd-a">Client Billing &amp; Reporting</a><a href="/solutions/invoicing-billing" class="dd-a">Invoicing &amp; Billing</a><a href="/solutions/project-management" class="dd-a">Project Management</a><a href="/solutions/budget-cost-control" class="dd-a">Budget &amp; Cost Control</a></div><div class="dd-sec"><div class="dd-lbl">By industry</div><a href="/industries/startups" class="dd-a">Startups</a><a href="/industries/it-services" class="dd-a">IT Services</a><a href="/industries/finance-teams" class="dd-a">Finance Teams</a><a href="/industries/agencies" class="dd-a">Agencies</a></div></div></div></div>
+<a class="nav-link" href="/pricing/">Pricing</a>
+<div class="nav-item"><a class="nav-link" href="/resources/">Resources <svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></a><div class="nav-dd"><div class="dd-grid dd-1"><div class="dd-sec"><div class="dd-lbl">Resources</div><a href="/resources/templates" class="dd-a">Templates</a><a href="/resources/glossary" class="dd-a">Glossary</a><a href="/resources/guides" class="dd-a">Guides</a><a href="/blog" class="dd-a">Blog</a><a href="/resources/calculators" class="dd-a">Calculators</a><a href="/resources/case-studies" class="dd-a">Case Studies</a><a href="/resources/software-reviews" class="dd-a">Software Reviews</a></div></div></div></div>
+<a class="nav-link" href="/apps/">Download</a>
+<a class="btn-about" href="/about">About Us</a>
+</div>
+<div class="nav-actions">
+<button class="btn btn-ghost theme-toggle" id="thT"><span class="theme-toggle-icon"><svg class="icon-sun" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12Z"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg><svg class="icon-moon" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M21 12.8A8.5 8.5 0 0 1 11.2 3a6.5 6.5 0 1 0 9.8 9.8Z"/></svg></span></button>
+<a class="btn btn-ghost" href="/login/">Log in</a>
+<a class="btn btn-pri" href="/signup/">Start Free Trial</a>
+</div>
+<div class="mob-nav-a" id="mNA">
+<a class="btn-ncta" href="/demo/">Get a Demo</a>
+<button class="btn btn-ghost theme-toggle" id="thTM"><span class="theme-toggle-icon"><svg class="icon-sun" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12Z"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg><svg class="icon-moon" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M21 12.8A8.5 8.5 0 0 1 11.2 3a6.5 6.5 0 1 0 9.8 9.8Z"/></svg></span></button>
+<button class="mob-tog" id="mTog"><svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+</div>
+</div></nav>
+
+<!-- MOBILE MENU -->
+<div class="mob-menu" id="mMenu"><div class="mob-bd" id="mBd"></div><div class="mob-panel"><div class="mob-hd"><a class="nav-logo" href="/"><img src="https://sbia1.github.io/512x512.png" alt="talyvn" width="28" height="28" style="border-radius:5px"><span class="nav-logo-text">talyvn</span></a><button class="mob-cls" id="mCls"><svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="20" height="20"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div><div class="mob-links"><a class="mob-link" href="/product/">Product</a><a class="mob-link" href="/solutions/">Solutions</a><a class="mob-link" href="/pricing/">Pricing</a><a class="mob-link" href="/resources/">Resources</a><a class="mob-link" href="/apps/">Download</a><a class="mob-link" href="/about">About Us</a></div><div class="mob-acts"><a class="btn btn-pri" href="/signup/">Start Free Trial</a><a class="btn btn-sec" href="/demo/">Book a Demo</a></div></div></div>
+
+<main>
+
+<!-- S1: HERO -->
+<section class="hero"><div class="container">
+  <div class="badge-wrap" style="margin-bottom:28px"><span class="hero-badge"><span class="hero-badge-dot"></span>Team Management</span></div>
+  <div class="hero-in">
+  <div class="hero-left">
+    <h1 class="hero-title">Team Management Software that Keeps Everyone <span class="hero-ta">Moving Forward</span></h1>
+    <p class="hero-p">Managing a team is hard. But you know what's harder? Doing that while not incorporating sufficient team management software.</p>
+    <p class="hero-p2">Fortunately, we have Talyvn that can help you keep your teams aligned. Talyvn team management software brings everything together, from tasks, schedules, attendance management, and communication to reporting in a single platform.</p>
+    <p class="hero-p2">Whether you are managing in-office teams, remote employees, or field teams, Talyvn's advanced features will help you to organize work, track progress, and keep everyone connected.</p>
+    <p class="hero-p2" style="font-weight:600;color:var(--txt)">Utilize the team management tools that actually work in practice!</p>
+    <div class="hero-cta"><a class="btn-hp" href="/signup">Start a Trial &rarr;</a><a class="btn-hg" href="/request-demo">Book A Demo</a></div>
+  </div>
+  <div class="hero-right">
+    <div class="ph" style="aspect-ratio:4/3;box-shadow:0 20px 60px rgba(0,0,0,.2)"><div class="ph-in"><svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24" opacity="0.25"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg><span>Team Management Dashboard</span></div></div>
+  </div>
+</div></div></section>
+
+<!-- S2: WHAT IS TEAM MANAGEMENT SOFTWARE -->
+<section class="section"><div class="container">
+  <div style="text-align:center;margin-bottom:48px">
+    <div class="badge-wrap"><span class="badge b-blu"><span class="badge-dot"></span>Overview</span></div>
+    <h2 class="sec-title tc">What is Team Management <span class="t-acc">Software?</span></h2>
+  </div>
+  <div class="what-g">
+    <div class="what-t">
+      <p>Team management software is a tool that helps companies organize their teams, track work progress, and manage communication. With an effective team management platform, companies can work efficiently while improving productivity, accountability, collaboration, and visibility across departments.</p>
+      <p>Talyvn's team management feature centralizes everything into a single workspace. While using our team management app, you won't need to switch between tools and different spreadsheets in order to manage your team effectively.</p>
+      <p class="what-dl">Get a complete team management solution now!</p>
+      <div style="margin-top:16px"><a class="btn-hp" href="/apps" style="font-size:14px;padding:12px 22px">Download &rarr;</a></div>
+    </div>
+    <div class="sv">
+      <div class="sv-lbl">Platform Capabilities</div>
+      <div class="s-rows">
+        <div class="s-row"><div class="s-row-l"><span class="sdot" style="background:#00EFD3"></span>Task Management</div><span class="schip cg">Included</span></div>
+        <div class="s-row"><div class="s-row-l"><span class="sdot" style="background:#075BEC"></span>Team Scheduling</div><span class="schip cb">Included</span></div>
+        <div class="s-row"><div class="s-row-l"><span class="sdot" style="background:#f97316"></span>Attendance Tracking</div><span class="schip co">Included</span></div>
+        <div class="s-row"><div class="s-row-l"><span class="sdot" style="background:#8A3AFB"></span>Communication Tools</div><span class="schip cp">Included</span></div>
+        <div class="s-row"><div class="s-row-l"><span class="sdot" style="background:#fbbf24"></span>Reporting &amp; Analytics</div><span class="schip ca">Included</span></div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<!-- S3: WHY YOU NEED TEAM MANAGEMENT TOOLS -->
+<section class="section"><div class="container">
+  <div style="text-align:center;margin-bottom:48px">
+    <div class="badge-wrap"><span class="badge b-org"><span class="badge-dot"></span>Why It Matters</span></div>
+    <h2 class="sec-title tc">Why You Need to Use <span class="t-org">Team Management Tools</span></h2>
+    <p class="sec-sub">In today's job market, the workforce is more distributed than ever as companies manage field staff, <a class="inline-link" href="/solutions/remote-work">remote teams</a>, freelance employees, hybrid teams, and contractors.</p>
+  </div>
+  <div class="why-g">
+    <div class="why-t">
+      <p>Without a proper team management platform, this can create confusion around key aspects such as employee responsibilities, schedules, and progress. Talyvn team management platform eliminates these issues by providing</p>
+      <p style="font-weight:600;color:var(--txt);margin-top:8px">The result? Effective team management and increased productivity across teams.</p>
+    </div>
+    <div class="why-list">
+      <div class="why-list-item"><span class="why-ico" style="background:rgba(0,239,211,.12)">&#x1F4CB;</span>Attendance tracking</div>
+      <div class="why-list-item"><span class="why-ico" style="background:rgba(7,91,236,.12)">&#x23F1;&#xFE0F;</span>Time tracking</div>
+      <div class="why-list-item"><span class="why-ico" style="background:rgba(249,115,22,.12)">&#x1F504;</span>Real-time updates</div>
+      <div class="why-list-item"><span class="why-ico" style="background:rgba(138,58,251,.12)">&#x1F4CA;</span>Performance visibility</div>
+      <div class="why-list-item"><span class="why-ico" style="background:rgba(0,187,210,.12)">&#x2705;</span>Clear task assignments</div>
+      <div class="why-list-item"><span class="why-ico" style="background:rgba(251,191,36,.12)">&#x1F4AC;</span>Internal communication</div>
+    </div>
+  </div>
+</div></section>
+
+<!-- S4: KEY BENEFITS -->
+<section class="section"><div class="container">
+  <div style="text-align:center;margin-bottom:56px">
+    <div class="badge-wrap"><span class="badge b-sky"><span class="badge-dot"></span>Key Benefits</span></div>
+    <h2 class="sec-title tc">Key Benefits of Using <span class="t-sky">Talyvn Team Management Software</span></h2>
+  </div>
+  <div class="ben-g">
+    <div class="ben-c">
+      <div class="ben-ico" style="background:rgba(7,91,236,.12)">&#x1F91D;</div>
+      <div class="ben-ttl">Improve Team Coordination</div>
+      <div class="ben-desc">Talyvn's team productivity management software keeps the workforce aligned with shared tasks, schedules, and updates.</div>
+    </div>
+    <div class="ben-c">
+      <div class="ben-ico" style="background:rgba(0,239,211,.12)">&#x1F680;</div>
+      <div class="ben-ttl">Increase Team Productivity</div>
+      <div class="ben-desc">With built-in features like attendance &amp; time tracking, employees stay focused on the work that matters most, which boosts productivity.</div>
+    </div>
+    <div class="ben-c">
+      <div class="ben-ico" style="background:rgba(249,115,22,.12)">&#x26A1;</div>
+      <div class="ben-ttl">Simplify Workflows</div>
+      <div class="ben-desc">Talyvn helps companies to eliminate almost all the manual tasks and replace them with fully automated workflows.</div>
+    </div>
+    <div class="ben-c">
+      <div class="ben-ico" style="background:rgba(138,58,251,.12)">&#x1F441;</div>
+      <div class="ben-ttl">Get Real Visibility</div>
+      <div class="ben-desc">To improve decision-making, managers can monitor employee tasks, progress, and daily attendance rates with Talyvn.</div>
+    </div>
+  </div>
+</div></section>
+
+<!-- S5: FEATURES — SIDEBAR TABS -->
+<section class="section"><div class="container">
+  <div style="text-align:center;margin-bottom:48px">
+    <div class="badge-wrap"><span class="badge b-pur"><span class="badge-dot"></span>Core Features</span></div>
+    <h2 class="sec-title tc">The Best Features That Are <span class="t-pur">Driving These Benefits</span></h2>
+  </div>
+  <div class="sb-wrap">
+    <div class="sb-nav">
+      <div class="sb-lbl">Features</div>
+      <button class="sb-btn active" data-sb="0"><span class="sb-icon">&#x1F4CB;</span>Task Management &amp; Scheduling</button>
+      <button class="sb-btn" data-sb="1"><span class="sb-icon">&#x1F4C2;</span>File Sharing &amp; Documents</button>
+      <button class="sb-btn" data-sb="2"><span class="sb-icon">&#x23F0;</span>Time &amp; Attendance Tracking</button>
+      <button class="sb-btn" data-sb="3"><span class="sb-icon">&#x1F514;</span>Communication Tools</button>
+    </div>
+    <div class="fp-wrap">
+
+      <!-- Tab 0: Task Management -->
+      <div class="fp active" id="fp-0"><div class="panel">
+        <div class="p-hd"><div class="p-ico pib">&#x1F4CB;</div><div><div class="p-eye">Task Management &amp; Scheduling</div><div class="p-ttl">Organize, Assign, and Schedule Work</div></div></div>
+        <div class="sub-feats">
+          <div class="sub-feat"><div class="sf-num">01</div><div class="sf-ct"><strong>Organize Work Seamlessly</strong><p>Talyvn offers complete team task management capabilities that help companies assign, distribute, and review tasks to track progress across teams. With our solution, managers can easily assign tasks while ensuring that everyone knows what needs to be done and when.</p></div></div>
+          <div class="sub-feat"><div class="sf-num">02</div><div class="sf-ct"><strong>Get Centralized Visibility</strong><p>There is no need for scattered updates when you utilize Talyvn. Within the system, all task information is stored in one place. Managers can view assigned tasks, status, deadlines, and responsible team members, which helps to improve team workload management.</p></div></div>
+          <div class="sub-feat"><div class="sf-num">03</div><div class="sf-ct"><strong>Schedule Work Without Conflicts</strong><p>Talyvn scheduling tools help managers coordinate tasks effectively. Records of employee availability, attendance, and leave schedules help them manage team resources and allocate tasks accordingly to achieve a balanced workload.</p></div></div>
+        </div>
+        <div class="p-ph"><div class="ph-in"><svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24" opacity="0.25"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg><span>Screenshot: Task Management &amp; Scheduling</span></div></div>
+      </div></div>
+
+      <!-- Tab 1: File Sharing -->
+      <div class="fp" id="fp-1"><div class="panel">
+        <div class="p-hd"><div class="p-ico pig">&#x1F4C2;</div><div><div class="p-eye">File Sharing &amp; Document Management</div><div class="p-ttl">Store, Share, and Manage Documents</div></div></div>
+        <div class="sub-feats">
+          <div class="sub-feat"><div class="sf-num">01</div><div class="sf-ct"><strong>Share Files with the Right Teams</strong><p>Talyvn team management system allows companies to upload, store, and share documents securely. For easy access &amp; efficient workflow, important documents remain connected to relevant tasks, employee profiles, and reports.</p></div></div>
+          <div class="sub-feat"><div class="sf-num">02</div><div class="sf-ct"><strong>Get Centralized Document Templates</strong><p>With Talyvn, companies can create standardized document templates for offer letters, warning letters, promotions, agreements, and overall contracts. The seamless document management software ensures consistency and saves time for teams that have hectic schedules.</p></div></div>
+          <div class="sub-feat"><div class="sf-num">03</div><div class="sf-ct"><strong>Maintain Complete Document History</strong><p>All the relevant documents are linked to employee profiles &amp; stored securely for compliance tracking. Inside Talyvn team management software, all the updates and changes are recorded in history logs to ensure accountability and transparency.</p></div></div>
+        </div>
+        <div class="p-ph"><div class="ph-in"><svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24" opacity="0.25"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg><span>Screenshot: File Sharing &amp; Document Management</span></div></div>
+      </div></div>
+
+      <!-- Tab 2: Time & Attendance -->
+      <div class="fp" id="fp-2"><div class="panel">
+        <div class="p-hd"><div class="p-ico pio">&#x23F0;</div><div><div class="p-eye">Time &amp; Attendance Tracking</div><div class="p-ttl">Monitor Hours, Attendance, and Overtime</div></div></div>
+        <div class="sub-feats">
+          <div class="sub-feat"><div class="sf-num">01</div><div class="sf-ct"><strong>Monitor Employee Work Hours</strong><p>Talyvn has built-in team time management software that allows companies to accurately track employee working hours. This helps managers gain insight into how employees spend their time across teams and projects.</p></div></div>
+          <div class="sub-feat"><div class="sf-num">02</div><div class="sf-ct"><strong>Track Attendance Accurately</strong><p>With Talyvn, companies can <a class="inline-link" href="/features/attendance-tracking">monitor employee attendance</a> to manage clock-ins, clock-outs, late arrivals, absences, approved leave, shift schedules, and more. This is an essential feature for ensuring accountability and transparency in the workspace.</p></div></div>
+          <div class="sub-feat"><div class="sf-num">03</div><div class="sf-ct"><strong>Use Overtime Reporting &amp; Analytics</strong><p>To optimize staffing and control labor costs, companies can utilize Talyvn and its overtime reporting feature. This solution helps managers to analyze overtime trends <a class="inline-link" href="/features/overtime-tracking">by tracking overtime</a> requests, approval rates, workload trends, and overtime distribution by team.</p></div></div>
+        </div>
+        <div class="p-ph"><div class="ph-in"><svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24" opacity="0.25"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><span>Screenshot: Time &amp; Attendance Tracking</span></div></div>
+      </div></div>
+
+      <!-- Tab 3: Communication -->
+      <div class="fp" id="fp-3"><div class="panel">
+        <div class="p-hd"><div class="p-ico pip">&#x1F514;</div><div><div class="p-eye">Communication Tools</div><div class="p-ttl">Keep Teams Informed and Connected</div></div></div>
+        <div class="sub-feats">
+          <div class="sub-feat"><div class="sf-num">01</div><div class="sf-ct"><strong>Smart Notification Center</strong><p>With Talyvn, teams can use a powerful notification system to keep all employees informed of necessary updates in real time. Notifications can include overtime status updates, approvals, shift reminders, and general updates.</p></div></div>
+          <div class="sub-feat"><div class="sf-num">02</div><div class="sf-ct"><strong>Manual &amp; Automated Notifications</strong><p>By using this feature, managers can send manual or automated notifications. While manual messages inform users about reminders, policy updates, and company news, automated notifications emphasize upcoming shifts and task updates.</p></div></div>
+          <div class="sub-feat"><div class="sf-num">03</div><div class="sf-ct"><strong>Multi-channel Delivery</strong><p>With Talyvn, employees can receive notifications in both the web app and desktop apps. This configurable solution allows leadership to customize the notification type as well as color and use role-based targeting when sending them.</p></div></div>
+        </div>
+        <div class="p-ph"><div class="ph-in"><svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24" opacity="0.25"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg><span>Screenshot: Communication &amp; Notifications</span></div></div>
+      </div></div>
+
+    </div>
+  </div>
+</div></section>
+
+<!-- S6: REMOTE TEAM MANAGEMENT — ACCORDION + IMAGE -->
+<section class="section"><div class="container">
+  <div style="text-align:center;margin-bottom:48px">
+    <div class="badge-wrap"><span class="badge b-grn"><span class="badge-dot"></span>Remote Teams</span></div>
+    <h2 class="sec-title tc">Remote Team Management <span class="t-grn">Made Simple</span></h2>
+    <p class="sec-sub">Managing distributed teams is easier than ever by using Talyvn's remote team management tools. These tools offer clear communication and full visibility across teams. Talyvn supports remote team management efforts by providing</p>
+  </div>
+  <div class="acc-wrap">
+    <div class="acc-items">
+      <div class="acc-item active" data-acc="0"><div class="acc-hd"><div class="acc-num">01</div><div class="acc-hd-t"><div class="acc-hd-title">Task Tracking &amp; Scheduling</div><div class="acc-hd-sub">Organize remote work</div></div><svg class="acc-arrow" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></div><div class="acc-body"><div class="acc-body-in"><p>Track task progress and schedule assignments across distributed teams, keeping remote employees aligned with company goals.</p></div></div></div>
+      <div class="acc-item" data-acc="1"><div class="acc-hd"><div class="acc-num">02</div><div class="acc-hd-t"><div class="acc-hd-title">Centralized Communication &amp; Notifications</div><div class="acc-hd-sub">Stay connected</div></div><svg class="acc-arrow" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></div><div class="acc-body"><div class="acc-body-in"><p>Use a centralized notification system to ensure remote team members receive critical updates and stay informed in real time.</p></div></div></div>
+      <div class="acc-item" data-acc="2"><div class="acc-hd"><div class="acc-num">03</div><div class="acc-hd-t"><div class="acc-hd-title"><a class="inline-link" href="/product/time-tracking-software">Time Tracking</a> &amp; Attendance Monitoring</div><div class="acc-hd-sub">Full accountability</div></div><svg class="acc-arrow" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></div><div class="acc-body"><div class="acc-body-in"><p>Monitor working hours and attendance for remote employees, ensuring accurate timekeeping regardless of location.</p></div></div></div>
+      <div class="acc-item" data-acc="3"><div class="acc-hd"><div class="acc-num">04</div><div class="acc-hd-t"><div class="acc-hd-title"><a class="inline-link" href="/features/reporting-and-analytics">Digital Reporting Tools</a> &amp; Performance Visibility</div><div class="acc-hd-sub">Data-driven insights</div></div><svg class="acc-arrow" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></div><div class="acc-body"><div class="acc-body-in"><p>Access digital reports and performance dashboards to gain full visibility into how remote teams are performing.</p></div></div></div>
+    </div>
+    <div class="acc-ph-wrap">
+      <div class="acc-ph" id="acc-ph-0"><div class="ph-in"><svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24" opacity="0.25"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg><span>Screenshot: Task Tracking</span></div></div>
+      <div class="acc-ph" id="acc-ph-1" style="display:none"><div class="ph-in"><svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24" opacity="0.25"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg><span>Screenshot: Communication</span></div></div>
+      <div class="acc-ph" id="acc-ph-2" style="display:none"><div class="ph-in"><svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24" opacity="0.25"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><span>Screenshot: Time Tracking</span></div></div>
+      <div class="acc-ph" id="acc-ph-3" style="display:none"><div class="ph-in"><svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24" opacity="0.25"><path d="M18 20V10M12 20V4M6 20v-6"/></svg><span>Screenshot: Reports &amp; Performance</span></div></div>
+    </div>
+  </div>
+  <p style="text-align:center;max-width:640px;margin:48px auto 0;font-size:16px;color:var(--txt2);line-height:1.75">A collection of the best remote team management tools in a single platform makes Talyvn an ideal choice for companies that use both in-office and distributed teams.</p>
+</div></section>
+
+<!-- CTA -->
+<section class="cta-s"><div class="container"><div class="cta-in">
+  <div class="cta-glow cta-g1"></div><div class="cta-glow cta-g2"></div>
+  <div class="cta-cnt">
+    <div class="badge-wrap"><span class="badge b-grn"><span class="badge-dot"></span>Get Started</span></div>
+    <h2 class="cta-ttl">Start Managing Your Team Effectively</h2>
+    <p class="cta-dsc">Managing employees, daily tasks, and operations shouldn't require multiple tools. Start using Talyvn team management software to organize teams, streamline workflows, and improve collaboration inside a single unified platform.</p>
+    <div class="cta-acts"><a class="btn-hp" href="/request-demo">Book a Demo &rarr;</a><a class="btn-hg" href="/signup">Start Now</a></div>
+  </div>
+</div></div></section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer"><div class="container">
+<div class="ft-g">
+<div><div class="ft-logo"><img src="https://sbia1.github.io/512x512.png" alt="talyvn" width="32" height="32" style="border-radius:6px"><span class="ft-logo-t">talyvn</span></div><p class="ft-brand">Workforce management built for modern teams.</p><div class="ft-soc"><a aria-label="Twitter" href="https://twitter.com/talyvn"><svg fill="currentColor" viewbox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a><a aria-label="LinkedIn" href="https://linkedin.com/company/talyvn"><svg fill="currentColor" viewbox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a><a aria-label="GitHub" href="https://github.com/talyvn"><svg fill="currentColor" viewbox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a></div></div>
+<div class="ft-col"><div class="ft-col-t">Product</div><a href="/product">Product Overview</a><a href="/product/time-tracking-software">Time Tracking Software</a><a href="/product/employee-monitoring-software">Employee Monitoring Software</a><a href="/product/workforce-intelligence-platform">Workforce Intelligence Platform</a><a href="/product/hr-software">HR Software</a><a href="/product/payroll">Payroll</a><a href="/product/employee-management-software">Employee Management Software</a></div>
+<div class="ft-col"><div class="ft-col-t">Features</div><a href="/features">Features Hub</a><a href="/features/timesheets">Timesheets</a><a href="/features/productivity-insights">Productivity Insights</a><a href="/features/leave-management">Leave Management</a><a href="/features/performance-management">Performance Management</a><a href="/features/activity-monitoring">Activity Monitoring</a><a href="/features/team-management">Team Management</a><a href="/features/hr-ticketing">HR Ticketing</a><a href="/features/reporting-analytics">Reporting &amp; Analytics</a><a href="/features/ai-engines">AI Engines</a><a href="/features/e-signatures">E-signatures</a><a href="/features/employee-profile">Employee Profile</a></div>
+<div class="ft-col"><div class="ft-col-t">Solutions</div><a href="/solutions">Solutions Overview</a><a href="/solutions/remote-work">Remote Work</a><a href="/solutions/hybrid-work">Hybrid Work</a><a href="/solutions/small-business">Small Business</a><a href="/solutions/employee-productivity">Employee Productivity</a><a href="/solutions/workforce-compliance">Workforce Compliance</a><a href="/solutions/client-billing-reporting">Client Billing &amp; Reporting</a><a href="/solutions/invoicing-billing">Invoicing &amp; Billing</a><a href="/solutions/project-management">Project Management</a><a href="/solutions/budget-cost-control">Budget &amp; Cost Control</a></div>
+<div class="ft-col"><div class="ft-col-t">Industries</div><a href="/industries">Industries Overview</a><a href="/industries/startups">Startups</a><a href="/industries/it-services">IT Services</a><a href="/industries/finance-teams">Finance Teams</a><a href="/industries/agencies">Agencies</a></div>
+<div class="ft-col"><div class="ft-col-t">Resources</div><a href="/resources">Resources Overview</a><a href="/resources/guides">Guides</a><a href="/resources/templates">Templates</a><a href="/resources/glossary">Glossary</a><a href="/resources/calculators">Calculators</a><a href="/resources/case-studies">Case Studies</a><a href="/resources/software-reviews">Software Reviews</a><a href="/blog">Blog</a></div>
+<div class="ft-col"><div class="ft-col-t">Compare</div><a href="/compare">Compare Overview</a><a href="/compare/talyvn-vs-clockify">Talyvn vs Clockify</a><a href="/compare/talyvn-vs-hubstaff">Talyvn vs Hubstaff</a><a href="/compare/talyvn-vs-toggl">Talyvn vs Toggl</a><a href="/compare/talyvn-vs-time-doctor">Talyvn vs Time Doctor</a></div>
+<div class="ft-col"><div class="ft-col-t">Support</div><a href="/help">Help Center</a><a href="/faq">FAQ</a><a href="/contact">Contact</a></div>
+<div class="ft-col"><div class="ft-col-t">Legal</div><a href="/about">About</a><a href="/customers">Customers</a><a href="/terms">Terms</a><a href="/privacy-policy">Privacy Policy</a><a href="/legal/compliance-security">Compliance &amp; Security</a><a href="/legal/ethical-employee-monitoring">Ethical Employee Monitoring</a></div>
+</div>
+<div class="ft-bot"><p class="ft-copy">&copy; 2025 Talyvn. All rights reserved.</p><div class="ft-leg"><a href="/privacy-policy">Privacy</a><a href="/terms">Terms</a><a href="/legal/compliance-security">Security</a></div></div>
+</div></footer>
+
+<script>
+/* Theme toggle */
+const allT=document.querySelectorAll('.theme-toggle');const sv=localStorage.getItem('theme')||'dark';document.documentElement.setAttribute('data-theme',sv);
+function upIco(t){allT.forEach(tg=>{const s=tg.querySelector('.icon-sun'),m=tg.querySelector('.icon-moon');if(s&&m){s.style.display=t==='dark'?'none':'block';m.style.display=t==='dark'?'block':'none'}})}
+upIco(sv);allT.forEach(tg=>tg.addEventListener('click',()=>{const c=document.documentElement.getAttribute('data-theme');const n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('theme',n);upIco(n)}));
+
+/* Mobile menu */
+const mTog=document.getElementById('mTog'),mMenu=document.getElementById('mMenu'),mCls=document.getElementById('mCls'),mBd=document.getElementById('mBd');
+if(mTog)mTog.addEventListener('click',()=>{mMenu.classList.add('open');document.body.style.overflow='hidden'});
+[mCls,mBd].forEach(el=>{if(el)el.addEventListener('click',()=>{mMenu.classList.remove('open');document.body.style.overflow=''})});
+
+/* S5: Sidebar tabs */
+(function(){const btns=document.querySelectorAll('.sb-btn');const panels=[...document.querySelectorAll('.fp-wrap .fp')];let idx=0,userPicked=false,timer=null;
+function show(i,byUser){btns.forEach(b=>b.classList.remove('active'));panels.forEach(p=>p.classList.remove('active'));btns[i].classList.add('active');panels[i].classList.add('active');idx=i;if(byUser){userPicked=true;if(timer)clearInterval(timer)}}
+btns.forEach((btn,i)=>btn.addEventListener('click',()=>show(i,true)));timer=setInterval(()=>{if(!userPicked)show((idx+1)%btns.length,false)},2500)})();
+
+/* S6: Accordion */
+(function(){const items=document.querySelectorAll('.acc-item');const phs=document.querySelectorAll('[id^="acc-ph-"]');
+items.forEach(item=>{item.querySelector('.acc-hd').addEventListener('click',()=>{const i=item.dataset.acc;items.forEach(it=>it.classList.remove('active'));item.classList.add('active');phs.forEach(ph=>ph.style.display='none');document.getElementById('acc-ph-'+i).style.display='flex'})})})();
+</script>
+</body>
+</html>
