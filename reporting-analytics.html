@@ -1,1295 +1,603 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Reporting and Analytics for Workforce Insights | Talyvn</title>
 <meta name="description" content="Turn raw workforce data into insights with Talyvn's reporting and analytics tools. Track employees' productivity with real-time reports.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400;1,9..40,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400;1,9..40,500&display=swap" rel="stylesheet">
 <link rel="icon" type="image/png" href="https://sbia1.github.io/512x512.png">
-
-<!-- SVG Filters for Liquid Glass -->
-<svg height="0" style="position:absolute;overflow:hidden" width="0" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-        <filter filterUnits="objectBoundingBox" height="120%" id="liquid-glass-distortion" width="120%" x="-10%" y="-10%">
-            <feTurbulence baseFrequency="0.012 0.012" numOctaves="2" result="noise" seed="42" type="fractalNoise">
-                <animate attributeName="seed" dur="12s" from="1" repeatCount="indefinite" to="100"></animate>
-            </feTurbulence>
-            <feGaussianBlur in="noise" result="blurredNoise" stdDeviation="3"></feGaussianBlur>
-            <feDisplacementMap in="SourceGraphic" in2="blurredNoise" scale="18" xChannelSelector="R" yChannelSelector="G"></feDisplacementMap>
-        </filter>
-        <filter filterUnits="objectBoundingBox" height="110%" id="liquid-glass-nav" width="110%" x="-5%" y="-5%">
-            <feTurbulence baseFrequency="0.015 0.015" numOctaves="1" result="noise" seed="8" type="fractalNoise">
-                <animate attributeName="seed" dur="16s" from="1" repeatCount="indefinite" to="80"></animate>
-            </feTurbulence>
-            <feGaussianBlur in="noise" result="blurredNoise" stdDeviation="4"></feGaussianBlur>
-            <feDisplacementMap in="SourceGraphic" in2="blurredNoise" scale="8" xChannelSelector="R" yChannelSelector="G"></feDisplacementMap>
-        </filter>
-    </defs>
-</svg>
-
+<svg height="0" style="position:absolute;overflow:hidden" width="0" xmlns="http://www.w3.org/2000/svg"><defs><filter filterUnits="objectBoundingBox" height="110%" id="lg-nav" width="110%" x="-5%" y="-5%"><feTurbulence baseFrequency="0.015" numOctaves="1" result="n" seed="8" type="fractalNoise"><animate attributeName="seed" dur="16s" from="1" repeatCount="indefinite" to="80"/></feTurbulence><feGaussianBlur in="n" result="bn" stdDeviation="4"/><feDisplacementMap in="SourceGraphic" in2="bn" scale="8" xChannelSelector="R" yChannelSelector="G"/></filter></defs></svg>
 <style>
-/* ========== ROOT & VARIABLES ========== */
-:root {
-    --color-bg: #F5F6FA;
-    --color-bg-elevated: #ffffff;
-    --color-surface: #ffffff;
-    --color-surface-hover: #EDEEF5;
-    --color-border: rgba(17,17,39,0.08);
-    --color-border-glass: rgba(255,255,255,0.7);
-    --color-text: #111127;
-    --color-text-secondary: #44445E;
-    --color-text-tertiary: #6B6D84;
-    --color-accent: #075BEC;
-    --color-accent-glow: rgba(7,91,236,0.18);
-    --color-green: #00EFD3;
-    --color-green-glow: rgba(0,239,211,0.16);
-    --color-purple: #8A3AFB;
-    --color-purple-glow: rgba(138,58,251,0.16);
-    --color-sky: #00BBD2;
-    --color-sky-glow: rgba(0,187,210,0.16);
-    --glass-bg: rgba(255,255,255,0.55);
-    --glass-bg-hover: rgba(255,255,255,0.7);
-    --glass-border: rgba(255,255,255,0.72);
-    --glass-highlight: rgba(255,255,255,0.9);
-    --glass-shadow: rgba(17,17,39,0.10);
-    --orb-opacity: 0.18;
-    --grid-line: rgba(17,17,39,0.035);
-    --grid-mask: radial-gradient(ellipse 70% 60% at 50% 40%, black 20%, transparent 70%);
-    --focus-ring: rgba(7,91,236,0.35);
-    --radius-sm: 8px;
-    --radius-md: 14px;
-    --radius-lg: 20px;
-    --radius-xl: 28px;
-    --font-display: 'Aktiv Grotesk','DM Sans',sans-serif;
-    --font-mono: 'JetBrains Mono', monospace;
-    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-    --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
-    color-scheme: light;
-}
-[data-theme="dark"] {
-    --color-bg: #0A0A0F;
-    --color-bg-elevated: #111120;
-    --color-surface: #1A1A2A;
-    --color-surface-hover: #222234;
-    --color-border: rgba(255,255,255,0.06);
-    --color-border-glass: rgba(255,255,255,0.12);
-    --color-text: #EAEEF6;
-    --color-text-secondary: #8B8DA0;
-    --color-text-tertiary: #5a5c6e;
-    --color-accent: #075BEC;
-    --color-accent-glow: rgba(7,91,236,0.25);
-    --color-green: #00EFD3;
-    --color-green-glow: rgba(0,239,211,0.2);
-    --color-purple: #8A3AFB;
-    --color-purple-glow: rgba(138,58,251,0.2);
-    --color-sky: #00BBD2;
-    --color-sky-glow: rgba(0,187,210,0.2);
-    --glass-bg: rgba(255,255,255,0.03);
-    --glass-bg-hover: rgba(255,255,255,0.06);
-    --glass-border: rgba(255,255,255,0.08);
-    --glass-highlight: rgba(255,255,255,0.15);
-    --glass-shadow: rgba(0,0,0,0.4);
-    --orb-opacity: 0.32;
-    --grid-line: rgba(255,255,255,0.015);
-    --grid-mask: radial-gradient(ellipse 70% 60% at 50% 40%, black 20%, transparent 70%);
-    --focus-ring: rgba(7,91,236,0.45);
-    color-scheme: dark;
-}
-
-/* ========== RESET ========== */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
-body { font-family: var(--font-display); background: var(--color-bg); color: var(--color-text); line-height: 1.6; overflow-x: hidden; }
-a { color: inherit; text-decoration: none; }
-ul { list-style: none; }
-img { max-width: 100%; display: block; }
-button { font-family: inherit; cursor: pointer; border: none; background: none; }
-:focus { outline: none; }
-:focus-visible { outline: 3px solid var(--focus-ring); outline-offset: 3px; border-radius: 10px; }
-.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-
-/* ========== ANIMATED BACKGROUND ========== */
-.page-bg { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
-.page-bg-orb { position: absolute; border-radius: 50%; filter: blur(160px); opacity: var(--orb-opacity); }
-.page-bg-orb--1 { width: 600px; height: 600px; background: radial-gradient(circle, var(--color-accent) 0%, transparent 70%); top: -200px; left: -100px; animation: orbFloat1 20s ease-in-out infinite; }
-.page-bg-orb--2 { width: 500px; height: 500px; background: radial-gradient(circle, var(--color-purple) 0%, transparent 70%); top: 40%; right: -150px; animation: orbFloat2 25s ease-in-out infinite; }
-.page-bg-orb--3 { width: 400px; height: 400px; background: radial-gradient(circle, var(--color-green) 0%, transparent 70%); bottom: -100px; left: 30%; animation: orbFloat3 22s ease-in-out infinite; }
-@keyframes orbFloat1 { 0%,100%{transform:translate(0,0) scale(1)} 33%{transform:translate(80px,60px) scale(1.1)} 66%{transform:translate(-40px,30px) scale(0.95)} }
-@keyframes orbFloat2 { 0%,100%{transform:translate(0,0) scale(1)} 33%{transform:translate(-60px,-80px) scale(1.05)} 66%{transform:translate(40px,40px) scale(0.9)} }
-@keyframes orbFloat3 { 0%,100%{transform:translate(0,0) scale(1)} 33%{transform:translate(50px,-40px) scale(1.08)} 66%{transform:translate(-70px,20px) scale(0.92)} }
-.page-bg::after { content:''; position:absolute; inset:0; background-image: linear-gradient(var(--grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--grid-line) 1px, transparent 1px); background-size: 80px 80px; opacity: 0.5; mask-image: var(--grid-mask); }
-
-/* ========== NAV ========== */
-.nav { position: fixed; top: 16px; left: 50%; transform: translateX(-50%); z-index: 1000; width: calc(100% - 32px); max-width: 1100px; }
-.nav-inner { position: relative; display: flex; align-items: center; justify-content: space-between; padding: 12px 20px; border-radius: var(--radius-xl); border: 1px solid var(--glass-border); background: var(--glass-bg); isolation: isolate; overflow: visible; box-shadow: 0 4px 24px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.1); }
-.nav-inner::before { content:''; position:absolute; inset:-80%; pointer-events:none; -webkit-backdrop-filter: blur(24px) saturate(1.5) brightness(1.02); backdrop-filter: blur(24px) saturate(1.5) brightness(1.02); filter: url(#liquid-glass-nav); z-index:-2; }
-.nav-inner::after { content:''; position:absolute; inset:0; pointer-events:none; border-radius:inherit; background: linear-gradient(135deg,rgba(255,255,255,0.07) 0%,rgba(255,255,255,0.01) 50%,rgba(255,255,255,0.04) 100%); box-shadow: inset 1px 1px 0 rgba(255,255,255,0.12), inset -1px -1px 0 rgba(255,255,255,0.03); z-index:-1; }
-.nav-logo { display:flex; align-items:center; gap:10px; z-index:2; }
-.nav-logo img { width:32px; height:32px; }
-.nav-logo-text { font-weight:700; font-size:18px; letter-spacing:-0.02em; }
-.nav-links { display:flex; align-items:center; gap:4px; z-index:2; }
-.nav-link { display:flex; align-items:center; gap:4px; padding:8px 14px; font-size:14px; font-weight:500; color:var(--color-text-secondary); border-radius:var(--radius-sm); transition:all 0.2s ease; }
-.nav-link:hover { color:var(--color-text); background:var(--color-surface-hover); }
-.nav-link svg { width:14px; height:14px; opacity:0.5; transition:transform 0.2s ease; }
-.nav-link:hover svg { transform:rotate(180deg); }
-.nav-item { position:relative; display:inline-block; }
-.nav-dropdown { position:absolute; top:calc(100% + 16px); left:50%; transform:translateX(-50%) translateY(-8px); min-width:850px; max-width:1000px; background:rgba(26,27,36,0.98); backdrop-filter:blur(32px) saturate(1.5) brightness(1.05); -webkit-backdrop-filter:blur(32px) saturate(1.5) brightness(1.05); border:1px solid rgba(255,255,255,0.12); border-radius:20px; padding:32px; opacity:0; visibility:hidden; pointer-events:none; transition:opacity 0.3s ease,visibility 0.3s ease,transform 0.3s ease; z-index:9999; box-shadow:0 20px 60px rgba(0,0,0,0.6),inset 0 1px 0 rgba(255,255,255,0.1); }
-:root .nav-dropdown { background:rgba(255,255,255,0.95); border:1px solid rgba(17,17,39,0.12); box-shadow:0 20px 60px rgba(17,17,39,0.15),inset 0 1px 0 rgba(255,255,255,0.8); }
-:root .dropdown-label { color:#6B6D84; border-bottom:1px solid rgba(17,17,39,0.08); }
-:root .dropdown-link { color:#6B6D84; }
-:root .dropdown-link:hover { color:#111127; }
-[data-theme="dark"] .nav-dropdown { background:rgba(26,27,36,0.98); border:1px solid rgba(255,255,255,0.12); box-shadow:0 20px 60px rgba(0,0,0,0.6),inset 0 1px 0 rgba(255,255,255,0.1); }
-[data-theme="dark"] .dropdown-label { color:#5a5c6e; border-bottom:1px solid rgba(255,255,255,0.06); }
-[data-theme="dark"] .dropdown-link { color:#8b8d9e; }
-[data-theme="dark"] .dropdown-link:hover { color:#EAEEF6; }
-.nav-item:hover .nav-dropdown, .nav-dropdown:hover { opacity:1; visibility:visible; pointer-events:auto; transform:translateX(-50%) translateY(0); }
-.nav-dropdown::before { content:''; position:absolute; top:-9px; left:50%; transform:translateX(-50%) rotate(45deg); width:16px; height:16px; backdrop-filter:blur(32px); }
-:root .nav-dropdown::before { background:rgba(255,255,255,0.95); border-left:1px solid rgba(17,17,39,0.12); border-top:1px solid rgba(17,17,39,0.12); }
-[data-theme="dark"] .nav-dropdown::before { background:rgba(26,27,36,0.98); border-left:1px solid rgba(255,255,255,0.12); border-top:1px solid rgba(255,255,255,0.12); }
-.dropdown-grid { display:grid; gap:40px; }
-.dropdown-grid-2 { grid-template-columns: 1fr 1.4fr 0.6fr; }
-.dropdown-grid-1 { grid-template-columns: 1fr; min-width:200px; }
-.dropdown-section { display:flex; flex-direction:column; gap:6px; }
-.dropdown-label { font-size:11px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; padding-bottom:10px; margin-bottom:4px; }
-.dropdown-link { font-size:14px; padding:5px 0; transition:color 0.15s; }
-.nav-actions { display:flex; align-items:center; gap:10px; z-index:2; }
-.btn { display:inline-flex; align-items:center; gap:8px; padding:9px 18px; border-radius:var(--radius-sm); font-size:14px; font-weight:600; transition:all 0.2s var(--ease-out-expo); }
-.btn-ghost { background:transparent; color:var(--color-text-secondary); border:1px solid transparent; }
-.btn-ghost:hover { background:var(--color-surface-hover); color:var(--color-text); }
-.btn-primary { background:var(--color-accent); color:#fff; box-shadow:0 2px 12px var(--color-accent-glow); }
-.btn-primary:hover { transform:translateY(-1px); box-shadow:0 4px 20px var(--color-accent-glow); }
-.btn-about { display:inline-flex; align-items:center; gap:6px; padding:8px 18px; font-size:13px; font-weight:600; letter-spacing:0.02em; border-radius:100px; color:var(--color-text); background:transparent; border:1px solid var(--glass-border); position:relative; transition:all 0.3s var(--ease-out-expo); z-index:2; }
-.btn-about::before { content:''; position:absolute; inset:-1px; border-radius:inherit; padding:1px; background:linear-gradient(135deg,var(--color-accent),var(--color-sky),var(--color-purple)); -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0); -webkit-mask-composite:xor; mask-composite:exclude; opacity:0; transition:opacity 0.3s; }
-.btn-about:hover { color:var(--color-text); border-color:transparent; transform:translateY(-1px); box-shadow:0 4px 18px rgba(7,91,236,0.15); }
-.btn-about:hover::before { opacity:1; }
-[data-theme="light"] .btn-about { border-color:rgba(17,17,39,0.15); }
-.theme-toggle { padding:8px; border-radius:8px; }
-.theme-toggle svg { width:18px; height:18px; display:none; }
-[data-theme="dark"] .icon-moon { display:block !important; }
-[data-theme="light"] .icon-sun { display:block !important; }
-.mobile-nav-actions { display:none; }
-.mobile-toggle { display:none; padding:8px; border-radius:8px; color:var(--color-text-secondary); }
-.mobile-toggle:hover { background:var(--color-surface-hover); }
-.mobile-toggle svg { width:20px; height:20px; }
-@media(max-width:900px) {
-    .nav-links { display:none; }
-    .nav-actions { display:none; }
-    .mobile-nav-actions { display:flex; align-items:center; gap:8px; }
-    .mobile-toggle { display:flex; }
-    .btn-nav-cta { background:var(--color-accent); color:#fff; padding:7px 14px; font-size:13px; border-radius:8px; }
-}
-
-
-/* ── LIGHT MODE CRITICAL FIXES ── */
-[data-theme="light"] .nav-inner { background:rgba(255,255,255,0.75); border-color:rgba(17,17,39,0.1); box-shadow:0 4px 24px rgba(17,17,39,0.08),inset 0 1px 0 rgba(255,255,255,0.5); }
-[data-theme="light"] .nav-inner::before { filter:none; }
-[data-theme="light"] .nav-inner::after { background:linear-gradient(135deg,rgba(255,255,255,0.5) 0%,rgba(255,255,255,0.2) 50%,rgba(255,255,255,0.3) 100%); box-shadow:inset 1px 1px 0 rgba(255,255,255,0.6); }
-[data-theme="light"] .btn-hero-ghost { background:rgba(17,17,39,0.04); border-color:rgba(17,17,39,0.15); }
-[data-theme="light"] .btn-hero-ghost:hover { background:rgba(17,17,39,0.08); }
-[data-theme="light"] .operational-item { background:rgba(17,17,39,0.03); border-color:rgba(17,17,39,0.1); }
-[data-theme="light"] .operational-item:hover { background:rgba(17,17,39,0.06); border-color:rgba(7,91,236,0.25); }
-[data-theme="light"] .guesswork-card { background:#fff; border-color:rgba(17,17,39,0.1); box-shadow:0 4px 24px rgba(17,17,39,0.06); }
-[data-theme="light"] .benefit-orbit-card { background:rgba(255,255,255,0.9); border-color:rgba(17,17,39,0.1); box-shadow:0 4px 24px rgba(17,17,39,0.08); }
-[data-theme="light"] .benefits-center-inner { background:rgba(255,255,255,0.9); border-color:rgba(17,17,39,0.1); }
-
-/* ========== HERO ========== */
-.hero-section { position:relative; min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:160px 0 80px; overflow:hidden; z-index:1; }
-.hero-top { text-align:center; margin-bottom:40px; display:flex; flex-direction:column; align-items:center; gap:24px; }
-.hero-badge { display:inline-flex; align-items:center; gap:8px; padding:6px 14px; background:rgba(7,91,236,0.12); border:1px solid rgba(7,91,236,0.3); border-radius:20px; font-size:13px; font-weight:600; color:var(--color-accent); animation:fadeInUp 0.6s var(--ease-out-expo) both; }
-.hero-badge-dot { width:7px; height:7px; border-radius:50%; background:var(--color-accent); animation:pulse 2s ease-in-out infinite; }
-@keyframes pulse { 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(1.3);opacity:.7} }
-.hero-title { font-size:clamp(38px,5vw,62px); font-weight:800; line-height:1.1; letter-spacing:-1.5px; max-width:900px; animation:fadeInUp 0.7s var(--ease-out-expo) 0.1s both; }
-.hero-title-accent { background:linear-gradient(135deg,var(--color-accent) 0%,var(--color-purple) 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
-.hero-desc-centered { font-size:clamp(16px,1.5vw,19px); color:var(--color-text-secondary); line-height:1.75; max-width:640px; margin:0 auto 0; text-align:center; animation:fadeInUp 0.7s var(--ease-out-expo) 0.2s both; }
-.hero-actions-centered { display:flex; justify-content:center; gap:14px; margin-top:40px; animation:fadeInUp 0.7s var(--ease-out-expo) 0.3s both; flex-wrap:wrap; }
-.btn-hero-primary { padding:14px 28px; font-size:16px; border-radius:12px; background:var(--color-accent); color:#fff; box-shadow:0 4px 24px var(--color-accent-glow); transition:all 0.25s var(--ease-out-expo); display:inline-flex; align-items:center; gap:8px; }
-.btn-hero-primary:hover { transform:translateY(-2px); box-shadow:0 8px 32px var(--color-accent-glow); }
-.btn-hero-ghost { padding:14px 28px; font-size:16px; border-radius:12px; background:transparent; color:var(--color-text); border:1px solid var(--glass-border); transition:all 0.25s var(--ease-out-expo); display:inline-flex; align-items:center; gap:8px; }
-.btn-hero-ghost:hover { background:var(--glass-bg-hover); border-color:var(--color-text-tertiary); }
-[data-theme="light"] .btn-hero-ghost { border-color:rgba(17,17,39,0.18); }
-.hero-screen-mockup { position:relative; max-width:900px; margin:0 auto; animation:fadeInUp 0.9s var(--ease-out-expo) 0.4s both; width:100%; }
-.hero-screen-frame { border-radius:14px; overflow:hidden; border:1.5px solid rgba(255,255,255,0.10); box-shadow:0 0 0 6px rgba(255,255,255,0.04), 0 40px 80px rgba(0,0,0,0.55), 0 10px 30px rgba(7,91,236,0.10); position:relative; z-index:1; background:var(--color-surface); }
-[data-theme="light"] .hero-screen-frame { border-color:rgba(17,17,39,0.12); box-shadow:0 0 0 6px rgba(17,17,39,0.04), 0 40px 80px rgba(17,17,39,0.18); }
-.hero-screen-glow { position:absolute; bottom:-50px; left:50%; transform:translateX(-50%); width:70%; height:100px; background:radial-gradient(ellipse,rgba(7,91,236,0.22) 0%,transparent 70%); pointer-events:none; z-index:0; }
-.hero-screen-bar { background:var(--color-bg-elevated); padding:8px 14px; display:flex; align-items:center; gap:6px; border-bottom:1px solid var(--glass-border); }
-.hero-screen-dot { width:9px; height:9px; border-radius:50%; display:inline-block; opacity:0.9; }
-.hero-screen-url { margin-left:10px; font-size:11px; color:var(--color-text-tertiary); font-family:var(--font-mono); background:var(--color-bg); border:1px solid var(--glass-border); border-radius:6px; padding:2px 10px; }
-.hero-screen-body { display:flex; height:320px; background:var(--color-bg); }
-/* Dashboard analytics mockup */
-.dash-sidebar { width:120px; flex-shrink:0; background:var(--color-bg-elevated); border-right:1px solid var(--glass-border); padding:14px 10px; display:flex; flex-direction:column; gap:4px; }
-.dash-logo-sm { padding:4px 6px 12px; }
-.dash-nav-item { display:flex; align-items:center; gap:7px; font-size:11px; color:var(--color-text-secondary); padding:7px 8px; border-radius:7px; cursor:default; }
-.dash-nav-active { background:rgba(7,91,236,0.12); color:var(--color-accent); font-weight:600; }
-.dash-main { flex:1; padding:14px 16px; overflow:hidden; display:flex; flex-direction:column; gap:12px; }
-.dash-header-row { display:flex; align-items:center; justify-content:space-between; }
-.dash-greeting { font-size:12px; font-weight:600; }
-.dash-avatar { width:26px; height:26px; border-radius:50%; background:linear-gradient(135deg,var(--color-accent),var(--color-purple)); display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; color:#fff; }
-.dash-stats-row { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; }
-.dash-stat-card { background:var(--color-bg-elevated); border:1px solid var(--glass-border); border-radius:9px; padding:9px 11px; }
-.dash-stat-label { font-size:10px; color:var(--color-text-tertiary); margin-bottom:2px; }
-.dash-stat-value { font-size:18px; font-weight:700; line-height:1; margin-bottom:5px; }
-.dash-stat-badge { display:inline-block; font-size:9px; font-weight:600; padding:2px 6px; border-radius:4px; }
-.dash-badge-green { background:rgba(0,239,211,0.12); color:#00EFD3; }
-.dash-badge-blue { background:rgba(7,91,236,0.12); color:#075BEC; }
-.dash-badge-red { background:rgba(239,68,68,0.12); color:#ef4444; }
-.dash-badge-orange { background:rgba(249,115,22,0.12); color:#f97316; }
-.dash-chart-row { display:grid; grid-template-columns:1.4fr 0.8fr; gap:8px; flex:1; }
-.dash-chart-block, .dash-mini-block { background:var(--color-bg-elevated); border:1px solid var(--glass-border); border-radius:9px; padding:10px 12px; overflow:hidden; }
-.dash-chart-title { font-size:10px; font-weight:600; color:var(--color-text-secondary); margin-bottom:8px; }
-.dash-chart-bars { display:flex; align-items:flex-end; gap:4px; height:60px; }
-.dash-bar-wrap { flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; }
-.dash-bar { width:100%; border-radius:3px 3px 0 0; }
-.dash-bar-wrap span { font-size:8px; color:var(--color-text-tertiary); }
-.dash-donut { display:flex; align-items:center; gap:8px; margin-top:4px; }
-.dash-donut-ring { width:44px; height:44px; flex-shrink:0; }
-.dash-donut-legend { display:flex; flex-direction:column; gap:3px; }
-.dash-legend-item { display:flex; align-items:center; gap:5px; font-size:9px; color:var(--color-text-secondary); }
-.dash-legend-dot { width:6px; height:6px; border-radius:50%; flex-shrink:0; }
-
-@keyframes fadeInUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
-.reveal { opacity:0; transform:translateY(20px); transition:opacity 0.7s var(--ease-out-expo),transform 0.7s var(--ease-out-expo); }
-.reveal.visible { opacity:1; transform:translateY(0); }
-
-/* ========== SECTION SHARED ========== */
-.section-label { display:inline-block; font-size:12px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--color-accent); background:rgba(7,91,236,0.10); border:1px solid rgba(7,91,236,0.20); border-radius:20px; padding:4px 14px; width:fit-content; }
-.section-label--green { color:var(--color-green); background:rgba(0,239,211,0.10); border-color:rgba(0,239,211,0.20); }
-.section-label--purple { color:var(--color-purple); background:rgba(138,58,251,0.10); border-color:rgba(138,58,251,0.20); }
-.section-title { font-family:var(--font-display); font-size:clamp(28px,3.5vw,42px); font-weight:700; line-height:1.2; color:var(--color-text); margin:0; }
-.text-accent { color:var(--color-accent); }
-.text-green { color:var(--color-green); }
-.text-purple { color:var(--color-purple); }
-.section-desc { font-size:16px; line-height:1.75; color:var(--color-text-secondary); margin:0; }
-.section-header-centered { text-align:center; margin-bottom:64px; display:flex; flex-direction:column; align-items:center; gap:16px; }
-.section-sub { font-size:16px; color:var(--color-text-secondary); max-width:720px; line-height:1.7; }
-
-/* ========== OPERATIONAL DATA SECTION (split left + right) ========== */
-.operational-section { padding:100px 0; position:relative; z-index:1; }
-.operational-header { text-align:center; margin-bottom:56px; display:flex; flex-direction:column; align-items:center; gap:16px; }
-.operational-grid { display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start; }
-.operational-left { display:flex; flex-direction:column; gap:24px; }
-.operational-list { display:flex; flex-direction:column; gap:12px; margin-top:8px; }
-.operational-item { display:flex; align-items:center; gap:14px; padding:14px 18px; background:var(--glass-bg); border:1px solid var(--glass-border); border-radius:12px; backdrop-filter:blur(12px); transition:all 0.2s; }
-.operational-item:hover { background:var(--glass-bg-hover); border-color:rgba(7,91,236,0.25); transform:translateX(4px); }
-.op-item-icon { width:32px; height:32px; border-radius:8px; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:15px; }
-.op-item-text { font-size:15px; color:var(--color-text); font-weight:500; }
-
-/* ========== GUESSWORK SECTION (right side of grid) ========== */
-.guesswork-card { background:var(--glass-bg); border:1px solid var(--glass-border); border-radius:20px; padding:36px; backdrop-filter:blur(16px); box-shadow:0 8px 32px var(--glass-shadow), inset 0 1px 0 var(--glass-highlight); position:relative; overflow:hidden; }
-.guesswork-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--color-green),var(--color-accent),var(--color-purple)); opacity:0.7; }
-.guesswork-title { font-size:clamp(20px,2.5vw,28px); font-weight:800; line-height:1.2; letter-spacing:-0.5px; margin-bottom:16px; }
-.guesswork-desc { font-size:15px; color:var(--color-text-secondary); line-height:1.75; margin-bottom:24px; }
-.guesswork-highlight { display:flex; align-items:flex-start; gap:12px; padding:14px 16px; background:rgba(0,239,211,0.08); border:1px solid rgba(0,239,211,0.2); border-radius:12px; }
-.guesswork-highlight-icon { font-size:18px; flex-shrink:0; margin-top:1px; }
-.guesswork-highlight-text { font-size:14px; color:var(--color-text-secondary); line-height:1.6; }
-.guesswork-highlight-text strong { color:var(--color-green); font-weight:600; }
-
-@media(max-width:860px) { .operational-grid { grid-template-columns:1fr; } }
-
-/* ========== BENEFITS CIRCLE SECTION ========== */
-.benefits-section { padding:100px 0; position:relative; z-index:1; border-top:1px solid var(--glass-border); }
-.benefits-orbit-wrap { position:relative; width:620px; height:620px; margin:0 auto; }
-/* Circular track */
-.benefits-orbit-track { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:400px; height:400px; border:1px dashed rgba(138,58,251,0.35); border-radius:50%; pointer-events:none; }
-.benefits-orbit-track-inner { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:220px; height:220px; border:1px dashed rgba(7,91,236,0.20); border-radius:50%; pointer-events:none; }
-/* Center badge */
-.benefits-center { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); text-align:center; width:220px; z-index:3; }
-.benefits-center-inner { background:var(--glass-bg); border:1px solid var(--glass-border); border-radius:50%; width:180px; height:180px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px; backdrop-filter:blur(20px); box-shadow:0 0 60px rgba(138,58,251,0.15), 0 8px 32px var(--glass-shadow); margin:0 auto; }
-.benefits-center-emoji { font-size:32px; }
-.benefits-center-title { font-size:14px; font-weight:700; color:var(--color-text); line-height:1.2; }
-.benefits-center-sub { font-size:11px; color:var(--color-text-secondary); line-height:1.4; padding:0 12px; }
-/* Orbit cards — round */
-.benefit-orbit-card { position:absolute; width:180px; height:180px; border-radius:50%; background:var(--glass-bg); border:1px solid var(--glass-border); backdrop-filter:blur(16px); box-shadow:0 4px 24px var(--glass-shadow), inset 0 1px 0 var(--glass-highlight); transition:all 0.3s var(--ease-out-expo); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; padding:20px; text-align:center; z-index:2; }
-.benefit-orbit-card:hover { transform:scale(1.1) !important; box-shadow:0 12px 40px var(--glass-shadow), 0 0 30px rgba(138,58,251,0.2); border-color:rgba(138,58,251,0.4); }
-/* Positions on circle (r=200px from center) */
-.boc-top    { top:calc(50% - 200px - 90px); left:calc(50% - 90px); }
-.boc-right  { top:calc(50% - 90px); left:calc(50% + 200px - 90px); }
-.boc-bottom { top:calc(50% + 200px - 90px); left:calc(50% - 90px); }
-.boc-left   { top:calc(50% - 90px); left:calc(50% - 200px - 90px); }
-
-.benefit-orbit-card:hover.boc-top    { transform:scale(1.08) translateY(-4px) !important; }
-.benefit-orbit-card:hover.boc-right  { transform:scale(1.08) translateX(4px) !important; }
-.benefit-orbit-card:hover.boc-bottom { transform:scale(1.08) translateY(4px) !important; }
-.benefit-orbit-card:hover.boc-left   { transform:scale(1.08) translateX(-4px) !important; }
-
-.benefit-icon { font-size:30px; margin-bottom:4px; }
-.benefit-card-title { font-size:14px; font-weight:700; color:var(--color-text); line-height:1.35; }
-.benefit-card-desc { font-size:11px; color:var(--color-text-secondary); line-height:1.4; display:none; }
-
-/* Cycle arrows — SVG arrowheads on the orbit path between cards */
-.cycle-arrow { position:absolute; z-index:4; pointer-events:none; width:36px; height:36px; }
-/* r=200, diagonal = 200*0.707 = 141 */
-.ca-tr { top:calc(50% - 141px - 18px); left:calc(50% + 141px - 18px); transform:rotate(45deg); }
-.ca-br { top:calc(50% + 141px - 18px); left:calc(50% + 141px - 18px); transform:rotate(135deg); }
-.ca-bl { top:calc(50% + 141px - 18px); left:calc(50% - 141px - 18px); transform:rotate(225deg); }
-.ca-tl { top:calc(50% - 141px - 18px); left:calc(50% - 141px - 18px); transform:rotate(315deg); }
-
-.cycle-arrow svg { width:36px; height:36px; }
-
-@media(max-width:760px) {
-    .benefits-orbit-wrap { width:100%; height:auto; display:flex; flex-direction:column; gap:16px; padding:0; }
-    .benefits-center { position:relative; top:auto; left:auto; transform:none; width:100%; }
-    .benefits-center-inner { border-radius:20px; width:100%; height:auto; padding:24px; }
-    .benefit-orbit-card { position:relative; top:auto !important; left:auto !important; border-radius:20px; width:100%; height:auto; padding:20px; }
-    .benefits-orbit-track, .benefits-orbit-track-inner, .cycle-arrow { display:none; }
-}
-
-/* Slow spinning track */
-@keyframes trackSpin { from{transform:translate(-50%,-50%) rotate(0deg)} to{transform:translate(-50%,-50%) rotate(360deg)} }
-.benefits-orbit-track { animation: trackSpin 40s linear infinite; }
-
-/* Pulse glow on center */
-@keyframes centerPulse { 0%,100%{box-shadow:0 0 60px rgba(138,58,251,0.15),0 8px 32px var(--glass-shadow)} 50%{box-shadow:0 0 90px rgba(138,58,251,0.30),0 8px 40px var(--glass-shadow)} }
-.benefits-center-inner { animation: centerPulse 4s ease-in-out infinite; }
-
-/* Card color accents */
-.boc-top    { border-color:rgba(138,58,251,0.3); }
-.boc-right  { border-color:rgba(7,91,236,0.3); }
-.boc-bottom { border-color:rgba(0,239,211,0.3); }
-.boc-left   { border-color:rgba(0,187,210,0.3); }
-.boc-top .benefit-icon    { font-size:28px; }
-.boc-right .benefit-icon  { font-size:28px; }
-.boc-bottom .benefit-icon { font-size:28px; }
-.boc-left .benefit-icon   { font-size:28px; }
-
-/* ========== SIDEBAR FEATURES SECTION ========== */
-.analytics-section { padding:100px 0; position:relative; z-index:1; border-top:1px solid var(--glass-border); }
-.features-body { display:grid; grid-template-columns:260px 1fr; gap:40px; align-items:start; }
-.features-sidebar { position:sticky; top:100px; display:flex; flex-direction:column; gap:2px; }
-.sidebar-group-label { font-size:10px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--color-text-tertiary); padding:10px 14px 4px; }
-.sidebar-btn { display:flex; align-items:center; gap:10px; padding:10px 14px; border-radius:10px; border:none; background:transparent; color:var(--color-text-secondary); font-size:14px; font-weight:500; cursor:pointer; text-align:left; transition:all 0.18s; font-family:var(--font-display,inherit); position:relative; width:100%; }
-.sidebar-btn:hover { background:var(--glass-bg-hover); color:var(--color-text); }
-.sidebar-btn.active { background:rgba(7,91,236,0.10); color:var(--color-accent); font-weight:600; }
-.sidebar-btn.active::before { content:''; position:absolute; left:0; top:50%; transform:translateY(-50%); width:3px; height:60%; background:var(--color-accent); border-radius:0 2px 2px 0; }
-.sidebar-btn.active.s-green { background:rgba(0,239,211,0.10); color:var(--color-green); }
-.sidebar-btn.active.s-green::before { background:var(--color-green); }
-.sidebar-btn.active.s-purple { background:rgba(138,58,251,0.10); color:var(--color-purple); }
-.sidebar-btn.active.s-purple::before { background:var(--color-purple); }
-.sidebar-btn.active.s-sky { background:rgba(0,187,210,0.10); color:var(--color-sky); }
-.sidebar-btn.active.s-sky::before { background:var(--color-sky); }
-.sidebar-icon { width:28px; height:28px; border-radius:8px; display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:15px; background:var(--glass-bg); }
-.sidebar-divider { height:1px; background:var(--glass-border); margin:8px 14px; }
-[data-theme="light"] .sidebar-btn:hover { background:rgba(17,17,39,0.06); }
-[data-theme="light"] .sidebar-btn.active { background:rgba(7,91,236,0.08); }
-[data-theme="light"] .sidebar-divider { background:rgba(17,17,39,0.10); }
-
-/* Feature panels */
-.features-content { min-height:400px; position:relative; }
-.feature-panel { display:none; }
-.feature-panel.active { display:block; animation:panelIn 0.35s var(--ease-out-expo); }
-@keyframes panelIn { from{opacity:0;transform:translateX(12px)} to{opacity:1;transform:translateX(0)} }
-.panel-inner { background:var(--glass-bg); border:1px solid var(--glass-border); border-radius:20px; padding:40px; backdrop-filter:blur(16px); box-shadow:0 8px 32px var(--glass-shadow), inset 0 1px 0 var(--glass-highlight); }
-[data-theme="light"] .panel-inner { background:#ffffff; border-color:rgba(17,17,39,0.08); box-shadow:0 4px 24px rgba(17,17,39,0.06); }
-.panel-header { display:flex; align-items:center; gap:14px; margin-bottom:20px; }
-.panel-icon { width:44px; height:44px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:20px; flex-shrink:0; }
-.pi-blue  { background:rgba(7,91,236,0.12); }
-.pi-green { background:rgba(0,239,211,0.12); }
-.pi-purple{ background:rgba(138,58,251,0.12); }
-.pi-sky   { background:rgba(0,187,210,0.12); }
-.pi-orange{ background:rgba(249,115,22,0.12); }
-.panel-group-tag { font-size:11px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:var(--color-text-tertiary); margin-bottom:4px; }
-.panel-title { font-size:22px; font-weight:700; color:var(--color-text); letter-spacing:-0.3px; }
-.panel-desc { font-size:15px; line-height:1.75; color:var(--color-text-secondary); margin-bottom:16px; }
-.panel-cards { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:20px; }
-.panel-card { background:var(--color-surface); border:1px solid var(--glass-border); border-radius:12px; padding:16px; transition:border-color 0.2s; }
-.panel-card:hover { border-color:rgba(7,91,236,0.3); }
-[data-theme="light"] .panel-card { background:#f5f7fb; border-color:rgba(17,17,39,0.08); }
-[data-theme="light"] .panel-card:hover { border-color:rgba(7,91,236,0.30); }
-.panel-card-title { font-size:13px; font-weight:700; color:var(--color-text); margin-bottom:6px; }
-.panel-card-desc { font-size:13px; color:var(--color-text-secondary); line-height:1.6; }
-.panel-placeholder { width:100%; aspect-ratio:16/7; border-radius:12px; border:1.5px dashed var(--glass-border); background:rgba(255,255,255,0.02); display:flex; align-items:center; justify-content:center; color:var(--color-text-tertiary); margin-top:24px; }
-[data-theme="light"] .panel-placeholder { background:rgba(17,17,39,0.03); border-color:rgba(17,17,39,0.15); }
-
-@media(max-width:860px) { .features-body { grid-template-columns:1fr; } .features-sidebar { position:relative; top:0; } }
-
-/* ========== FINAL CTA ========== */
-.final-cta-section { padding:100px 0 120px; position:relative; z-index:1; }
-.final-cta-inner { position:relative; overflow:hidden; background:var(--glass-bg); border:1px solid var(--glass-border); border-radius:28px; padding:72px 64px; backdrop-filter:blur(20px); box-shadow:0 20px 60px var(--glass-shadow), inset 0 1px 0 var(--glass-highlight); text-align:center; }
-[data-theme="light"] .final-cta-inner { background:#ffffff; border-color:rgba(17,17,39,0.08); box-shadow:0 8px 40px rgba(17,17,39,0.08); }
-.final-cta-glow { position:absolute; border-radius:50%; filter:blur(80px); pointer-events:none; }
-.final-cta-glow-left { width:400px; height:300px; background:radial-gradient(circle,var(--color-accent),transparent 70%); opacity:0.10; top:-80px; left:-80px; }
-.final-cta-glow-right { width:400px; height:300px; background:radial-gradient(circle,var(--color-purple),transparent 70%); opacity:0.10; bottom:-80px; right:-80px; }
-.final-cta-content { position:relative; display:flex; flex-direction:column; align-items:center; gap:20px; }
-.final-cta-title { font-size:clamp(28px,4vw,44px); font-weight:800; line-height:1.15; letter-spacing:-1px; }
-.final-cta-desc { font-size:clamp(15px,1.5vw,17px); color:var(--color-text-secondary); line-height:1.75; max-width:560px; }
-.final-cta-actions { display:flex; align-items:center; justify-content:center; gap:16px; margin-top:8px; flex-wrap:wrap; }
-@media(max-width:640px) { .final-cta-inner { padding:48px 24px; } }
-
-/* ========== FOOTER ========== */
-.footer { background:var(--glass-bg); border-top:1px solid var(--glass-border); backdrop-filter:blur(20px); padding:60px 0 32px; position:relative; z-index:1; margin-top:0; }
-.footer-grid { display:grid; grid-template-columns:1.6fr repeat(9,1fr); gap:32px; margin-bottom:48px; }
-.footer-logo { display:flex; align-items:center; gap:10px; margin-bottom:12px; }
-.footer-logo img { width:32px; height:32px; }
-.footer-logo-text { font-size:16px; font-weight:700; }
-.footer-brand-text { font-size:13px; color:var(--color-text-secondary); line-height:1.6; margin-bottom:20px; max-width:200px; }
-.footer-social { display:flex; gap:12px; }
-.footer-social a { width:32px; height:32px; display:flex; align-items:center; justify-content:center; border-radius:8px; background:var(--glass-bg); border:1px solid var(--glass-border); color:var(--color-text-secondary); transition:all 0.2s; }
-.footer-social a:hover { color:var(--color-text); border-color:var(--color-accent); }
-.footer-social svg { width:16px; height:16px; }
-.footer-col { display:flex; flex-direction:column; gap:8px; }
-.footer-col-title { font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.6px; color:var(--color-text-tertiary); margin-bottom:4px; }
-.footer-col a { font-size:13px; color:var(--color-text-secondary); transition:color 0.15s; }
-.footer-col a:hover { color:var(--color-text); }
-.footer-bottom { border-top:1px solid var(--glass-border); padding-top:24px; display:flex; justify-content:space-between; align-items:center; }
-.footer-copyright { font-size:13px; color:var(--color-text-tertiary); }
-.footer-legal { display:flex; gap:24px; }
-.footer-legal a { font-size:13px; color:var(--color-text-tertiary); }
-.footer-legal a:hover { color:var(--color-text); }
-@media(max-width:1200px) { .footer-grid { grid-template-columns:1fr 1fr 1fr 1fr; } }
-@media(max-width:768px) { .footer-grid { grid-template-columns:1fr 1fr; } .container { padding:0 20px; } }
+/* ── VARIABLES: LIGHT MODE ── */
+:root{--bg:#F5F6FA;--bg-el:#fff;--surf:#fff;--surf-h:#EDEEF5;--bdr:rgba(17,17,39,.08);--txt:#111127;--txt2:#44445E;--txt3:#6B6D84;--acc:#075BEC;--acc-g:rgba(7,91,236,.18);--grn:#00EFD3;--grn-g:rgba(0,239,211,.16);--pur:#8A3AFB;--pur-g:rgba(138,58,251,.16);--sky:#00BBD2;--sky-g:rgba(0,187,210,.16);--org:#f97316;--org-g:rgba(249,115,22,.16);--gb:rgba(255,255,255,.55);--gb-h:rgba(255,255,255,.7);--gbdr:rgba(255,255,255,.72);--gh:rgba(255,255,255,.9);--gsh:rgba(17,17,39,.1);--orb:.18;--gl:rgba(17,17,39,.035);--gm:radial-gradient(ellipse 70% 60% at 50% 40%,black 20%,transparent 70%);--fr:rgba(7,91,236,.35);--rsm:8px;--rmd:14px;--rlg:20px;--rxl:28px;--ff:'Aktiv Grotesk','DM Sans',sans-serif;--ease:cubic-bezier(.16,1,.3,1);color-scheme:light}
+[data-theme="dark"]{--bg:#0A0A0F;--bg-el:#111120;--surf:#1A1A2A;--surf-h:#222234;--bdr:rgba(255,255,255,.06);--txt:#EAEEF6;--txt2:#8B8DA0;--txt3:#5a5c6e;--acc-g:rgba(7,91,236,.25);--grn-g:rgba(0,239,211,.2);--pur-g:rgba(138,58,251,.2);--sky-g:rgba(0,187,210,.2);--org-g:rgba(249,115,22,.2);--gb:rgba(255,255,255,.03);--gb-h:rgba(255,255,255,.06);--gbdr:rgba(255,255,255,.08);--gh:rgba(255,255,255,.15);--gsh:rgba(0,0,0,.4);--orb:.32;--gl:rgba(255,255,255,.015);color-scheme:dark}
+/* ── RESET ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{font-family:var(--ff);background:var(--bg);color:var(--txt);line-height:1.6;overflow-x:hidden}
+a{color:inherit;text-decoration:none}ul{list-style:none}button{font-family:inherit;cursor:pointer;border:none;background:none}
+:focus{outline:none}:focus-visible{outline:3px solid var(--fr);outline-offset:3px;border-radius:10px}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+/* ── BACKGROUND ORBS + GRID ── */
+.page-bg{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.orb{position:absolute;border-radius:50%;filter:blur(160px);opacity:var(--orb)}
+.orb1{width:600px;height:600px;background:radial-gradient(circle,var(--acc) 0%,transparent 70%);top:-200px;left:-100px;animation:of1 20s ease-in-out infinite}
+.orb2{width:500px;height:500px;background:radial-gradient(circle,var(--pur) 0%,transparent 70%);top:40%;right:-150px;animation:of2 25s ease-in-out infinite}
+.orb3{width:400px;height:400px;background:radial-gradient(circle,var(--grn) 0%,transparent 70%);bottom:-100px;left:30%;animation:of3 22s ease-in-out infinite}
+@keyframes of1{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(80px,60px) scale(1.1)}66%{transform:translate(-40px,30px) scale(.95)}}
+@keyframes of2{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(-60px,-80px) scale(1.05)}66%{transform:translate(40px,40px) scale(.9)}}
+@keyframes of3{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(50px,-40px) scale(1.08)}66%{transform:translate(-70px,20px) scale(.92)}}
+.page-bg::after{content:'';position:absolute;inset:0;background-image:linear-gradient(var(--gl) 1px,transparent 1px),linear-gradient(90deg,var(--gl) 1px,transparent 1px);background-size:80px 80px;opacity:.5;mask-image:var(--gm)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 7px var(--grn-g)}50%{opacity:.6;box-shadow:0 0 14px var(--grn-g)}}
+/* ── NAV ── */
+.nav{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:1000;width:calc(100% - 32px);max-width:1100px}
+.nav-inner{position:relative;display:flex;align-items:center;justify-content:space-between;padding:12px 20px;border-radius:var(--rxl);border:1px solid var(--gbdr);background:var(--gb);isolation:isolate;overflow:visible;box-shadow:0 4px 24px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.1)}
+.nav-inner::before{content:'';position:absolute;inset:-80%;pointer-events:none;backdrop-filter:blur(24px) saturate(1.5) brightness(1.02);-webkit-backdrop-filter:blur(24px) saturate(1.5) brightness(1.02);filter:url(#lg-nav);z-index:-2}
+.nav-inner::after{content:'';position:absolute;inset:0;pointer-events:none;border-radius:inherit;background:linear-gradient(135deg,rgba(255,255,255,.07) 0%,rgba(255,255,255,.01) 50%,rgba(255,255,255,.04) 100%);box-shadow:inset 1px 1px 0 rgba(255,255,255,.12),inset -1px -1px 0 rgba(255,255,255,.03);z-index:-1}
+.nav-logo{display:flex;align-items:center;gap:10px;z-index:2}.nav-logo img{width:32px;height:32px}.nav-logo-text{font-weight:700;font-size:18px;letter-spacing:-.02em}
+.nav-links{display:flex;align-items:center;gap:4px;z-index:2}
+.nav-link{display:flex;align-items:center;gap:4px;padding:8px 14px;font-size:14px;font-weight:500;color:var(--txt2);border-radius:var(--rsm);transition:all .2s}.nav-link:hover{color:var(--txt);background:var(--surf-h)}.nav-link svg{width:14px;height:14px;opacity:.5;transition:transform .2s}.nav-link:hover svg{transform:rotate(180deg)}
+.nav-item{position:relative;display:inline-block}
+.nav-dd{position:absolute;top:calc(100% + 16px);left:50%;transform:translateX(-50%) translateY(-8px);min-width:700px;background:rgba(26,27,36,.98);backdrop-filter:blur(32px);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:28px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .3s,visibility .3s,transform .3s;z-index:9999;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+[data-theme="light"] .nav-dd{background:rgba(255,255,255,.96);border-color:rgba(17,17,39,.12);box-shadow:0 20px 60px rgba(17,17,39,.15)}
+.nav-item:hover .nav-dd{opacity:1;visibility:visible;pointer-events:auto;transform:translateX(-50%) translateY(0)}
+.dd-grid{display:grid;gap:0 24px}.dd-3{grid-template-columns:repeat(3,1fr)}.dd-2{grid-template-columns:repeat(2,1fr)}.dd-1{grid-template-columns:1fr}
+.dd-sec{display:flex;flex-direction:column;gap:3px}.dd-lbl{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--txt3);padding:8px 0 6px;border-bottom:1px solid var(--bdr);margin-bottom:5px}
+.dd-a{display:block;padding:6px 10px;font-size:14px;color:var(--txt2);border-radius:8px;transition:all .15s}.dd-a:hover{color:var(--txt);background:var(--surf-h)}
+.nav-actions{display:flex;align-items:center;gap:8px;z-index:2}
+/* ── BUTTONS ── */
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--ff);font-weight:600;font-size:14px;padding:10px 20px;border-radius:var(--rmd);transition:all .25s var(--ease);cursor:pointer;white-space:nowrap}
+.btn-ghost{color:var(--txt2);background:transparent}.btn-ghost:hover{color:var(--txt);background:var(--surf-h)}
+.btn-pri{color:#fff;background:var(--acc);box-shadow:0 2px 12px var(--acc-g),inset 0 1px 0 rgba(255,255,255,.15)}.btn-pri:hover{background:#2E75F0;transform:translateY(-1px)}
+.btn-sec{color:var(--txt);background:rgba(255,255,255,.06);border:1px solid var(--gbdr)}.btn-sec:hover{background:rgba(255,255,255,.1);transform:translateY(-1px)}
+.btn-ncta{font-size:13px;font-weight:600;padding:8px 14px;border-radius:var(--rmd);color:#fff;background:var(--acc);display:inline-flex;align-items:center}
+.btn-hp{color:#fff;background:var(--acc);padding:14px 28px;font-size:15px;border-radius:var(--rmd);box-shadow:0 4px 20px var(--acc-g),inset 0 1px 0 rgba(255,255,255,.15);font-weight:600;transition:all .25s var(--ease);display:inline-flex;align-items:center}.btn-hp:hover{background:#2E75F0;transform:translateY(-2px);box-shadow:0 8px 28px var(--acc-g)}
+.btn-hg{color:var(--txt);background:rgba(255,255,255,.06);border:1px solid var(--gbdr);padding:14px 28px;font-size:15px;border-radius:var(--rmd);font-weight:600;transition:all .25s var(--ease);display:inline-flex;align-items:center}.btn-hg:hover{background:rgba(255,255,255,.1);transform:translateY(-2px)}
+.btn-about{display:inline-flex;align-items:center;gap:6px;padding:8px 18px;font-size:13px;font-weight:600;letter-spacing:.02em;border-radius:100px;color:var(--txt);background:transparent;border:1px solid var(--gbdr);position:relative;transition:all .3s var(--ease);z-index:2}
+.btn-about::before{content:'';position:absolute;inset:-1px;border-radius:inherit;padding:1px;background:linear-gradient(135deg,var(--acc),var(--sky),var(--pur));-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .3s}
+.btn-about:hover{border-color:transparent;transform:translateY(-1px);box-shadow:0 4px 18px rgba(7,91,236,.15)}.btn-about:hover::before{opacity:1}
+/* ── THEME TOGGLE ── */
+.theme-toggle{padding:8px;border-radius:var(--rsm);width:36px;height:36px;display:flex;align-items:center;justify-content:center}.theme-toggle svg{width:20px;height:20px}.theme-toggle .icon-moon{display:none}[data-theme="dark"] .theme-toggle .icon-sun{display:none}[data-theme="dark"] .theme-toggle .icon-moon{display:inline}
+/* ── MOBILE MENU ── */
+.mob-nav-a{display:none;align-items:center;gap:4px;z-index:2}.mob-tog{display:flex;z-index:2;width:36px;height:36px;align-items:center;justify-content:center;color:var(--txt)}.mob-tog svg{width:22px;height:22px}
+.mob-menu{position:fixed;inset:0;z-index:1200;display:none}.mob-menu.open{display:block}.mob-bd{position:absolute;inset:0;background:rgba(2,6,23,.28)}
+.mob-panel{position:absolute;top:14px;left:14px;right:14px;border-radius:var(--rxl);border:1px solid var(--gbdr);background:rgba(255,255,255,.62);box-shadow:0 20px 60px rgba(17,17,39,.18);overflow:hidden;transform:translateY(-8px);opacity:0;transition:all .28s var(--ease)}
+[data-theme="dark"] .mob-panel{background:rgba(10,11,15,.62);box-shadow:0 20px 60px rgba(0,0,0,.35)}.mob-menu.open .mob-panel{transform:translateY(0);opacity:1}
+.mob-hd{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid var(--bdr)}
+.mob-cls{width:40px;height:40px;display:inline-flex;align-items:center;justify-content:center;border-radius:12px;color:var(--txt);background:rgba(255,255,255,.35);border:1px solid rgba(255,255,255,.55)}[data-theme="dark"] .mob-cls{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12)}
+.mob-links{display:grid;padding:10px 10px 4px;gap:6px}.mob-link{padding:12px;border-radius:14px;font-weight:600;color:var(--txt);background:rgba(255,255,255,.35);border:1px solid rgba(255,255,255,.55)}[data-theme="dark"] .mob-link{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12)}
+.mob-acts{display:grid;gap:10px;padding:14px 12px 16px;border-top:1px solid var(--bdr)}
+/* ── BADGES ── */
+.badge-wrap{text-align:center;margin-bottom:18px}.badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px 6px 10px;border-radius:100px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}.badge-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.b-grn{color:var(--grn);border:1px solid rgba(0,239,211,.25);background:rgba(0,239,211,.08)}.b-grn .badge-dot{background:var(--grn);box-shadow:0 0 7px var(--grn-g);animation:pulse 2s ease-in-out infinite}
+.b-blu{color:var(--acc);border:1px solid rgba(7,91,236,.25);background:rgba(7,91,236,.08)}.b-blu .badge-dot{background:var(--acc);box-shadow:0 0 7px var(--acc-g)}
+.b-org{color:var(--org);border:1px solid rgba(249,115,22,.25);background:rgba(249,115,22,.08)}.b-org .badge-dot{background:var(--org);box-shadow:0 0 7px var(--org-g)}
+.b-sky{color:var(--sky);border:1px solid rgba(0,187,210,.25);background:rgba(0,187,210,.08)}.b-sky .badge-dot{background:var(--sky);box-shadow:0 0 7px var(--sky-g)}
+.b-pur{color:var(--pur);border:1px solid rgba(138,58,251,.25);background:rgba(138,58,251,.08)}.b-pur .badge-dot{background:var(--pur);box-shadow:0 0 7px var(--pur-g)}
+/* ── SECTION & TEXT ── */
+.section{position:relative;z-index:1;padding:100px 0;border-top:1px solid var(--gbdr);scroll-margin-top:80px}
+.sec-title{font-size:clamp(28px,3.5vw,44px);font-weight:800;letter-spacing:-.03em;line-height:1.15;margin-bottom:16px}.tc{text-align:center}
+.sec-sub{font-size:16px;color:var(--txt2);max-width:760px;margin:0 auto;line-height:1.7}
+.t-acc{background:linear-gradient(135deg,var(--acc) 0%,var(--sky) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.t-grn{background:linear-gradient(135deg,var(--grn) 0%,#66FFE8 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.t-org{background:linear-gradient(135deg,var(--org) 0%,#fbbf24 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.t-sky{background:linear-gradient(135deg,var(--sky) 0%,#66DDE8 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.t-pur{background:linear-gradient(135deg,var(--pur) 0%,#B880FD 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.inline-link{color:var(--acc);text-decoration:underline;text-decoration-color:rgba(7,91,236,.3);text-underline-offset:3px;transition:color .2s,text-decoration-color .2s}.inline-link:hover{color:#3B7FF0;text-decoration-color:rgba(96,165,250,.6)}
+/* ── HERO ── */
+.hero{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:140px 0 60px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px 6px 10px;border-radius:100px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--grn);border:1px solid rgba(0,239,211,.25);background:rgba(0,239,211,.08);margin-bottom:22px;animation:fadeUp .8s var(--ease) both}
+.hero-badge-dot{width:7px;height:7px;border-radius:50%;background:var(--grn);box-shadow:0 0 7px var(--grn-g);animation:pulse 2s ease-in-out infinite;flex-shrink:0}
+.hero-title{font-size:clamp(34px,3.8vw,58px);font-weight:800;line-height:1.06;letter-spacing:-.04em;margin:0 0 20px;animation:fadeUp .8s var(--ease) .1s both}
+.hero-ta{background:linear-gradient(135deg,var(--acc) 0%,var(--pur) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-p{font-size:clamp(15px,1.3vw,17px);color:var(--txt2);margin:0 0 12px;line-height:1.7;animation:fadeUp .8s var(--ease) .15s both}
+.hero-cta{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:32px;animation:fadeUp .8s var(--ease) .3s both}
+/* Hero centered variant */
+.hero-c{text-align:center;display:flex;flex-direction:column;align-items:center}
+.hero-c .hero-cta{justify-content:center}
+/* ── PLACEHOLDER ── */
+.ph{width:100%;border-radius:var(--rlg);background:var(--gb);border:1.5px dashed var(--gbdr);display:flex;align-items:center;justify-content:center;color:var(--txt3);position:relative;overflow:hidden}
+.ph::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 40% 50%,rgba(7,91,236,.06) 0%,transparent 60%)}
+[data-theme="light"] .ph{background:rgba(17,17,39,.03);border-color:rgba(17,17,39,.12)}
+.ph-in{display:flex;flex-direction:column;align-items:center;gap:10px;position:relative;z-index:1}.ph-in span{font-size:13px;font-weight:500}
+/* ── S2: WHAT-G ── */
+.what-g{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.what-t p{font-size:16px;color:var(--txt2);line-height:1.75;margin-bottom:16px}
+.what-list{display:flex;flex-direction:column;gap:8px;margin-top:16px}
+.what-list-item{display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:var(--rmd);background:var(--gb);border:1px solid var(--gbdr);font-size:14px;font-weight:500;color:var(--txt);transition:all .25s var(--ease)}
+.what-list-item:hover{border-color:rgba(0,239,211,.3);transform:translateX(4px)}
+[data-theme="light"] .what-list-item{background:#fff;border-color:rgba(17,17,39,.14);box-shadow:0 1px 4px rgba(17,17,39,.06)}
+.sv{background:var(--surf);border:1px solid var(--gbdr);border-radius:var(--rxl);padding:32px;box-shadow:0 8px 40px var(--gsh),inset 0 1px 0 var(--gh)}
+[data-theme="light"] .sv{background:#fff;border-color:rgba(17,17,39,.18);box-shadow:0 4px 16px rgba(17,17,39,.09),0 12px 36px rgba(17,17,39,.06)}
+.sv-lbl{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--txt3);margin-bottom:14px}
+/* Guesswork card content [NEW — reporting-analytics] */
+.gw-title{font-size:clamp(20px,2.5vw,26px);font-weight:800;line-height:1.2;letter-spacing:-.03em;margin-bottom:12px}
+.gw-desc{font-size:15px;color:var(--txt2);line-height:1.75;margin-bottom:14px}
+.gw-highlight{display:flex;align-items:flex-start;gap:12px;padding:14px 16px;background:rgba(0,239,211,.08);border:1px solid rgba(0,239,211,.2);border-radius:12px;margin-top:4px}
+.gw-highlight-icon{font-size:18px;flex-shrink:0;margin-top:1px}
+.gw-highlight-text{font-size:14px;color:var(--txt2);line-height:1.6}
+.gw-highlight-text strong{color:var(--grn);font-weight:600}
+[data-theme="light"] .gw-highlight{border-color:rgba(0,137,123,.25);background:rgba(0,137,123,.07)}
+[data-theme="light"] .gw-highlight-text strong{color:#00897B}
+/* ── S3: BENEFITS ORBIT (page-specific) ── */
+.benefits-orbit-wrap{position:relative;width:620px;height:620px;margin:0 auto}
+.benefits-orbit-track{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:400px;height:400px;border:1px dashed rgba(138,58,251,.35);border-radius:50%;pointer-events:none;animation:trackSpin 40s linear infinite}
+.benefits-orbit-track-inner{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:220px;height:220px;border:1px dashed rgba(7,91,236,.20);border-radius:50%;pointer-events:none}
+@keyframes trackSpin{from{transform:translate(-50%,-50%) rotate(0deg)}to{transform:translate(-50%,-50%) rotate(360deg)}}
+.benefits-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;width:220px;z-index:3}
+.benefits-center-inner{background:var(--gb);border:1px solid var(--gbdr);border-radius:50%;width:180px;height:180px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;backdrop-filter:blur(20px);box-shadow:0 0 60px rgba(138,58,251,.15),0 8px 32px var(--gsh);margin:0 auto;animation:centerPulse 4s ease-in-out infinite}
+@keyframes centerPulse{0%,100%{box-shadow:0 0 60px rgba(138,58,251,.15),0 8px 32px var(--gsh)}50%{box-shadow:0 0 90px rgba(138,58,251,.30),0 8px 40px var(--gsh)}}
+.benefits-center-emoji{font-size:32px}
+.benefits-center-title{font-size:14px;font-weight:700;color:var(--txt);line-height:1.2}
+.benefits-center-sub{font-size:11px;color:var(--txt2);line-height:1.4;padding:0 12px}
+.benefit-orbit-card{position:absolute;width:180px;height:180px;border-radius:50%;background:var(--gb);border:1px solid var(--gbdr);backdrop-filter:blur(16px);box-shadow:0 4px 24px var(--gsh),inset 0 1px 0 var(--gh);transition:all .3s var(--ease);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:20px;text-align:center;z-index:2}
+.benefit-orbit-card:hover{box-shadow:0 12px 40px var(--gsh),0 0 30px rgba(138,58,251,.2);border-color:rgba(138,58,251,.4)}
+.boc-top{top:calc(50% - 290px);left:calc(50% - 90px);border-color:rgba(138,58,251,.3)}
+.boc-right{top:calc(50% - 90px);left:calc(50% + 110px);border-color:rgba(7,91,236,.3)}
+.boc-bottom{top:calc(50% + 110px);left:calc(50% - 90px);border-color:rgba(0,239,211,.3)}
+.boc-left{top:calc(50% - 90px);left:calc(50% - 290px);border-color:rgba(0,187,210,.3)}
+.benefit-orbit-card:hover.boc-top{transform:translateY(-4px)}
+.benefit-orbit-card:hover.boc-right{transform:translateX(4px)}
+.benefit-orbit-card:hover.boc-bottom{transform:translateY(4px)}
+.benefit-orbit-card:hover.boc-left{transform:translateX(-4px)}
+.benefit-icon{font-size:28px;margin-bottom:4px}
+.benefit-card-title{font-size:13px;font-weight:700;color:var(--txt);line-height:1.35}
+.cycle-arrow{position:absolute;z-index:4}
+.ca-tr{top:calc(50% - 200px);left:calc(50% + 86px)}
+.ca-br{top:calc(50% + 86px);left:calc(50% + 86px)}
+.ca-bl{top:calc(50% + 86px);left:calc(50% - 122px)}
+.ca-tl{top:calc(50% - 200px);left:calc(50% - 122px)}
+.cycle-arrow svg{width:36px;height:36px}
+[data-theme="light"] .benefit-orbit-card{background:rgba(255,255,255,.9);border-color:rgba(17,17,39,.12);box-shadow:0 4px 24px rgba(17,17,39,.08)}
+[data-theme="light"] .benefits-center-inner{background:rgba(255,255,255,.9);border-color:rgba(17,17,39,.1)}
+[data-theme="light"] .boc-bottom{border-color:rgba(0,137,123,.35)}
+@media(max-width:760px){.benefits-orbit-wrap{width:100%;height:auto;display:flex;flex-direction:column;gap:16px}.benefits-center{position:relative;top:auto;left:auto;transform:none;width:100%}.benefits-center-inner{border-radius:20px;width:100%;height:auto;padding:24px}.benefit-orbit-card{position:relative;top:auto!important;left:auto!important;border-radius:20px;width:100%;height:auto;padding:20px}.benefits-orbit-track,.benefits-orbit-track-inner,.cycle-arrow{display:none}}
+/* ── S4: SIDEBAR TABS ── */
+.sb-wrap{display:grid;grid-template-columns:280px 1fr;gap:32px;align-items:start}
+.sb-nav{position:sticky;top:100px;display:flex;flex-direction:column;gap:8px}
+.sb-lbl{font-size:11px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--txt3);padding:4px 12px 10px}
+.sb-btn{display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:var(--rmd);font-size:14px;font-weight:500;color:var(--txt2);cursor:pointer;transition:all .2s;text-align:left;background:var(--gb);border:1px solid var(--gbdr);font-family:var(--ff);width:100%}
+.sb-btn:hover{color:var(--txt);background:var(--gb-h);border-color:rgba(0,187,210,.3);transform:translateX(2px)}
+[data-theme="light"] .sb-btn{background:#fff;border-color:rgba(17,17,39,.14);box-shadow:0 1px 4px rgba(17,17,39,.06)}[data-theme="light"] .sb-btn:hover{background:#fafafa;border-color:rgba(0,131,143,.4)}
+.sb-btn.active{color:var(--txt);background:rgba(0,187,210,.1);border-color:rgba(0,187,210,.4);border-left:3px solid var(--sky);box-shadow:0 2px 12px rgba(0,187,210,.15)}
+[data-theme="light"] .sb-btn.active{background:rgba(0,131,143,.07);border-color:rgba(0,131,143,.4);border-left:3px solid #00838F;color:#00838F}
+.sb-icon{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px;background:var(--surf-h);transition:background .18s}
+.sb-btn.active .sb-icon{background:rgba(0,187,210,.2)}
+.sb-divider{height:1px;background:var(--gbdr);margin:4px 12px}
+[data-theme="light"] .sb-divider{background:rgba(17,17,39,.1)}
+.fp-wrap{min-height:400px}.fp{display:none;animation:fpFade .28s ease}.fp.active{display:block}
+@keyframes fpFade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.panel{background:var(--bg-el);border:1px solid var(--gbdr);border-radius:20px;padding:36px}[data-theme="light"] .panel{background:#fff;border-color:rgba(17,17,39,.18);box-shadow:0 4px 16px rgba(17,17,39,.09),0 12px 36px rgba(17,17,39,.06)}
+.p-hd{display:flex;align-items:center;gap:16px;margin-bottom:20px}
+.p-ico{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.pib{background:rgba(7,91,236,.15)}.pig{background:rgba(0,239,211,.12)}.pip{background:rgba(138,58,251,.12)}.pis{background:rgba(0,187,210,.12)}.pio{background:rgba(249,115,22,.12)}
+.p-eye{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--txt3);margin-bottom:4px}
+.p-ttl{font-size:20px;font-weight:700;line-height:1.2}
+.p-desc{font-size:15px;line-height:1.75;color:var(--txt2);margin-bottom:16px}
+/* Panel 2-col cards [NEW — reporting-analytics] */
+.p-cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px}
+.p-card{background:var(--surf);border:1px solid var(--gbdr);border-radius:12px;padding:16px;transition:border-color .2s}
+.p-card:hover{border-color:rgba(0,187,210,.3)}
+[data-theme="light"] .p-card{background:#f5f7fb;border-color:rgba(17,17,39,.08)}
+[data-theme="light"] .p-card:hover{border-color:rgba(0,131,143,.3)}
+.p-card-title{font-size:13px;font-weight:700;color:var(--txt);margin-bottom:6px}
+.p-card-desc{font-size:13px;color:var(--txt2);line-height:1.6}
+.p-ph{width:100%;aspect-ratio:16/7;border-radius:12px;border:1.5px dashed var(--gbdr);background:rgba(255,255,255,.02);display:flex;align-items:center;justify-content:center;color:var(--txt3);margin-top:24px;position:relative;overflow:hidden}
+.p-ph::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 40%,rgba(0,187,210,.06) 0%,transparent 60%)}
+[data-theme="light"] .p-ph{background:rgba(17,17,39,.03);border-color:rgba(17,17,39,.15)}
+/* ── HERO MOCKUP (page-specific) ── */
+.hero-screen-mockup{max-width:900px;margin:48px auto 0;animation:fadeUp .9s var(--ease) .4s both;width:100%;position:relative}
+.hero-screen-frame{border-radius:14px;overflow:hidden;border:1.5px solid rgba(255,255,255,.1);box-shadow:0 0 0 6px rgba(255,255,255,.04),0 40px 80px rgba(0,0,0,.55),0 10px 30px rgba(7,91,236,.1);position:relative;z-index:1;background:var(--surf)}
+[data-theme="light"] .hero-screen-frame{border-color:rgba(17,17,39,.12);box-shadow:0 0 0 6px rgba(17,17,39,.04),0 40px 80px rgba(17,17,39,.18)}
+.hero-screen-bar{background:var(--bg-el);padding:8px 14px;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--gbdr)}
+.hero-screen-dot{width:9px;height:9px;border-radius:50%;display:inline-block;opacity:.9}
+.hero-screen-url{margin-left:10px;font-size:11px;color:var(--txt3);background:var(--bg);border:1px solid var(--gbdr);border-radius:6px;padding:2px 10px}
+.hero-screen-body{display:flex;height:320px;background:var(--bg)}
+.dash-sidebar{width:120px;flex-shrink:0;background:var(--bg-el);border-right:1px solid var(--gbdr);padding:14px 10px;display:flex;flex-direction:column;gap:4px}
+.dash-logo-sm{padding:4px 6px 12px}
+.dash-nav-item{display:flex;align-items:center;gap:7px;font-size:11px;color:var(--txt2);padding:7px 8px;border-radius:7px}
+.dash-nav-active{background:rgba(7,91,236,.12);color:var(--acc);font-weight:600}
+.dash-main{flex:1;padding:14px 16px;overflow:hidden;display:flex;flex-direction:column;gap:12px}
+.dash-header-row{display:flex;align-items:center;justify-content:space-between}
+.dash-greeting{font-size:12px;font-weight:600}
+.dash-avatar{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,var(--acc),var(--pur));display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff}
+.dash-stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.dash-stat-card{background:var(--bg-el);border:1px solid var(--gbdr);border-radius:9px;padding:9px 11px}
+.dash-stat-label{font-size:10px;color:var(--txt3);margin-bottom:2px}
+.dash-stat-value{font-size:18px;font-weight:700;line-height:1;margin-bottom:5px}
+.dash-stat-badge{display:inline-block;font-size:9px;font-weight:600;padding:2px 6px;border-radius:4px}
+.dash-badge-green{background:rgba(0,239,211,.12);color:#00EFD3}
+.dash-badge-blue{background:rgba(7,91,236,.12);color:#075BEC}
+.dash-badge-red{background:rgba(239,68,68,.12);color:#ef4444}
+.dash-badge-orange{background:rgba(249,115,22,.12);color:#f97316}
+[data-theme="light"] .dash-badge-green{background:rgba(0,137,123,.1);color:#00897B}
+.dash-chart-row{display:grid;grid-template-columns:1.4fr 0.8fr;gap:8px;flex:1}
+.dash-chart-block,.dash-mini-block{background:var(--bg-el);border:1px solid var(--gbdr);border-radius:9px;padding:10px 12px;overflow:hidden}
+.dash-chart-title{font-size:10px;font-weight:600;color:var(--txt2);margin-bottom:8px}
+.dash-chart-bars{display:flex;align-items:flex-end;gap:4px;height:60px}
+.dash-bar-wrap{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px}
+.dash-bar{width:100%;border-radius:3px 3px 0 0}
+.dash-bar-wrap span{font-size:8px;color:var(--txt3)}
+.dash-donut{display:flex;align-items:center;gap:8px;margin-top:4px}
+.dash-donut-ring{width:44px;height:44px;flex-shrink:0}
+.dash-donut-legend{display:flex;flex-direction:column;gap:3px}
+.dash-legend-item{display:flex;align-items:center;gap:5px;font-size:9px;color:var(--txt2)}
+.dash-legend-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.hero-screen-glow{position:absolute;bottom:-50px;left:50%;transform:translateX(-50%);width:70%;height:100px;background:radial-gradient(ellipse,rgba(7,91,236,.22) 0%,transparent 70%);pointer-events:none;z-index:0}
+/* ── CTA ── */
+.cta-s{padding:80px 0 120px;position:relative;z-index:1}
+.cta-in{position:relative;background:var(--bg-el);border:1px solid var(--gbdr);border-radius:28px;padding:80px 60px;overflow:hidden;text-align:center}[data-theme="light"] .cta-in{background:#fff;border-color:rgba(17,17,39,.08);box-shadow:0 8px 40px rgba(17,17,39,.08)}
+.cta-glow{position:absolute;border-radius:50%;pointer-events:none;filter:blur(80px)}.cta-g1{width:400px;height:400px;background:rgba(7,91,236,.12);top:-100px;left:-80px}.cta-g2{width:300px;height:300px;background:rgba(0,239,211,.1);bottom:-80px;right:-60px}
+.cta-cnt{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:20px}
+.cta-ttl{font-size:clamp(28px,4vw,48px);font-weight:700;line-height:1.2;max-width:700px}
+.cta-dsc{font-size:17px;line-height:1.75;color:var(--txt2);max-width:560px}
+.cta-acts{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:8px}
+/* ── FOOTER ── */
+.footer{position:relative;z-index:1;border-top:1px solid var(--gbdr);padding:64px 0 32px}
+.ft-g{display:grid;grid-template-columns:200px repeat(8,1fr);gap:20px;margin-bottom:48px}
+.ft-logo{display:flex;align-items:center;gap:10px;margin-bottom:14px}.ft-logo-t{font-weight:700;font-size:17px;letter-spacing:-.02em}
+.ft-brand{font-size:13px;color:var(--txt3);line-height:1.6;max-width:160px;margin-bottom:16px}
+.ft-soc{display:flex;gap:10px}.ft-soc a{display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:8px;color:var(--txt3);background:var(--gb);border:1px solid var(--gbdr);transition:all .2s}.ft-soc a:hover{color:var(--txt);background:var(--gb-h)}.ft-soc svg{width:15px;height:15px}
+.ft-col{display:flex;flex-direction:column;gap:8px}.ft-col-t{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--txt3);margin-bottom:4px}.ft-col a{font-size:13px;color:var(--txt2);transition:color .2s}.ft-col a:hover{color:var(--txt)}
+.ft-bot{display:flex;align-items:center;justify-content:space-between;padding-top:24px;border-top:1px solid var(--gbdr)}.ft-copy{font-size:13px;color:var(--txt3)}.ft-leg{display:flex;gap:20px}.ft-leg a{font-size:13px;color:var(--txt3);transition:color .2s}.ft-leg a:hover{color:var(--txt)}
+/* ── LIGHT MODE OVERRIDES ── */
+[data-theme="light"] .nav-inner{background:rgba(255,255,255,.75);border-color:rgba(17,17,39,.1);box-shadow:0 4px 24px rgba(17,17,39,.08),inset 0 1px 0 rgba(255,255,255,.5)}
+[data-theme="light"] .nav-inner::before{filter:none}
+[data-theme="light"] .nav-inner::after{background:linear-gradient(135deg,rgba(255,255,255,.5) 0%,rgba(255,255,255,.2) 50%,rgba(255,255,255,.3) 100%);box-shadow:inset 1px 1px 0 rgba(255,255,255,.6)}
+[data-theme="light"] .btn-hg{background:rgba(17,17,39,.04);border-color:rgba(17,17,39,.15)}[data-theme="light"] .btn-hg:hover{background:rgba(17,17,39,.08)}
+[data-theme="light"] .btn-sec{background:rgba(17,17,39,.04);border-color:rgba(17,17,39,.15)}[data-theme="light"] .btn-sec:hover{background:rgba(17,17,39,.08)}
+[data-theme="light"] .btn-about{border-color:rgba(17,17,39,.15)}
+[data-theme="light"] .section{border-top-color:rgba(17,17,39,.08)}
+[data-theme="light"] .mob-panel{background:rgba(255,255,255,.85);border-color:rgba(17,17,39,.1);box-shadow:0 20px 60px rgba(17,17,39,.12)}
+[data-theme="light"] .mob-cls{background:rgba(17,17,39,.05);border-color:rgba(17,17,39,.12)}
+[data-theme="light"] .mob-link{background:rgba(17,17,39,.04);border-color:rgba(17,17,39,.1)}
+/* Teal/Cyan light mode */
+[data-theme="light"] .b-grn{color:#00897B;border-color:rgba(0,137,123,.3);background:rgba(0,137,123,.08)}
+[data-theme="light"] .b-grn .badge-dot{background:#00897B;box-shadow:0 0 7px rgba(0,137,123,.3)}
+[data-theme="light"] .b-sky{color:#00838F;border-color:rgba(0,131,143,.3);background:rgba(0,131,143,.08)}
+[data-theme="light"] .b-sky .badge-dot{background:#00838F;box-shadow:0 0 7px rgba(0,131,143,.3)}
+[data-theme="light"] .hero-badge{color:#00897B;border-color:rgba(0,137,123,.3);background:rgba(0,137,123,.08)}
+[data-theme="light"] .hero-badge-dot{background:#00897B;box-shadow:0 0 7px rgba(0,137,123,.3)}
+[data-theme="light"] .t-grn{background:linear-gradient(135deg,#00897B 0%,#26A69A 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+[data-theme="light"] .t-sky{background:linear-gradient(135deg,#00838F 0%,#0097A7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+[data-theme="light"] .what-list-item:hover{border-color:rgba(0,137,123,.3)}
+/* ── RESPONSIVE ── */
+@media(max-width:1000px){.ft-g{grid-template-columns:repeat(4,1fr)}.what-g{grid-template-columns:1fr;gap:40px}.sb-wrap{grid-template-columns:1fr}.sb-nav{position:static;flex-direction:row;flex-wrap:wrap}.sb-lbl{display:none}}
+@media(max-width:900px){.hero-c .hero-title{font-size:clamp(30px,5vw,48px)}}
+@media(max-width:640px){.nav-links,.nav-actions{display:none}.mob-nav-a{display:flex}.ft-g{grid-template-columns:repeat(2,1fr)}.p-cards{grid-template-columns:1fr}}
+@media(max-width:600px){.cta-in{padding:48px 28px}.cta-ttl{font-size:26px}.hero-screen-mockup{display:none}}
 </style>
 </head>
 <body>
 
-<!-- Background -->
-<div class="page-bg">
-    <div class="page-bg-orb page-bg-orb--1"></div>
-    <div class="page-bg-orb page-bg-orb--2"></div>
-    <div class="page-bg-orb page-bg-orb--3"></div>
-</div>
+<div class="page-bg"><div class="orb orb1"></div><div class="orb orb2"></div><div class="orb orb3"></div></div>
 
-<!-- ===== NAVIGATION ===== -->
-<nav class="nav">
-<div class="nav-inner">
-    <a class="nav-logo" href="/">
-        <img src="https://sbia1.github.io/512x512.png" alt="talyvn" width="32" height="32" style="border-radius:6px">
-        <span class="nav-logo-text">talyvn</span>
-    </a>
-    <div class="nav-links">
-        <!-- Product Mega Menu -->
-        <div class="nav-item">
-            <a class="nav-link" href="/product/">Product <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></a>
-            <div class="nav-dropdown">
-                <div class="dropdown-grid dropdown-grid-2">
-                    <div class="dropdown-section">
-                        <div class="dropdown-label">Overview</div>
-                        <a href="/product/time-tracking-software" class="dropdown-link">Time-tracking Software</a>
-                        <a href="/product/hr-software" class="dropdown-link">HR Software</a>
-                        <a href="/product/employee-management-software" class="dropdown-link">Employee Management Software</a>
-                        <a href="/product/payroll" class="dropdown-link">Payroll</a>
-                        <a href="/product/employee-monitoring-software" class="dropdown-link">Employee Monitoring Software</a>
-                        <a href="/product/workforce-intelligence-platform" class="dropdown-link">Workforce Intelligence Platform</a>
-                    </div>
-                    <div class="dropdown-section">
-                        <div class="dropdown-label">Feature</div>
-                        <a href="/features/timesheets" class="dropdown-link">Timesheets</a>
-                        <a href="/features/productivity-insights" class="dropdown-link">Productivity Insights</a>
-                        <a href="/features/leave-management" class="dropdown-link">Leave Management</a>
-                        <a href="/features/reporting-analytics" class="dropdown-link">Reporting &amp; Analytics</a>
-                        <a href="/features/performance-management" class="dropdown-link">Performance Management</a>
-                        <a href="/features/activity-monitoring" class="dropdown-link">Activity Monitoring</a>
-                        <a href="/features/team-management" class="dropdown-link">Team Management</a>
-                        <a href="/features/ai-engine" class="dropdown-link">AI Engine</a>
-                        <a href="/features/scheduling" class="dropdown-link">Scheduling</a>
-                    </div>
-                    <div class="dropdown-section">
-                        <div class="dropdown-label">Integrations</div>
-                        <a href="/integrations/jira" class="dropdown-link">Jira</a>
-                        <a href="/integrations/slack" class="dropdown-link">Slack</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Solutions Mega Menu -->
-        <div class="nav-item">
-            <a class="nav-link" href="/solutions/">Solutions <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></a>
-            <div class="nav-dropdown">
-                <div class="dropdown-grid dropdown-grid-2">
-                    <div class="dropdown-section">
-                        <div class="dropdown-label">By use case</div>
-                        <a href="/solutions/remote-work" class="dropdown-link">Remote Work</a>
-                        <a href="/solutions/hybrid-work" class="dropdown-link">Hybrid Work</a>
-                        <a href="/solutions/small-business" class="dropdown-link">Small Business</a>
-                        <a href="/solutions/employee-productivity" class="dropdown-link">Employee Productivity</a>
-                        <a href="/solutions/workforce-compliance" class="dropdown-link">Workforce Compliance</a>
-                        <a href="/solutions/client-billing-reporting" class="dropdown-link">Client Billing &amp; Reporting</a>
-                    </div>
-                    <div class="dropdown-section">
-                        <div class="dropdown-label">By industry</div>
-                        <a href="/industries/startups" class="dropdown-link">Startups</a>
-                        <a href="/industries/it-services" class="dropdown-link">IT Services</a>
-                        <a href="/industries/finance-teams" class="dropdown-link">Finance Teams</a>
-                        <a href="/industries/agencies" class="dropdown-link">Agencies</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <a class="nav-link" href="/pricing/">Pricing</a>
-        <div class="nav-item">
-            <a class="nav-link" href="/resources/">Resources <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></a>
-            <div class="nav-dropdown">
-                <div class="dropdown-grid dropdown-grid-1">
-                    <div class="dropdown-section">
-                        <div class="dropdown-label">Resources</div>
-                        <a href="/resources/templates" class="dropdown-link">Templates</a>
-                        <a href="/resources/glossary" class="dropdown-link">Glossary</a>
-                        <a href="/resources/guides" class="dropdown-link">Guides</a>
-                        <a href="/blog" class="dropdown-link">Blog</a>
-                        <a href="/resources/calculators" class="dropdown-link">Calculators</a>
-                        <a href="/resources/case-studies" class="dropdown-link">Case Studies</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <a class="nav-link" href="/apps/">Download</a>
-        <a class="btn-about" href="/about">About Us</a>
-    </div>
-    <div class="nav-actions">
-        <button aria-label="Toggle theme" class="btn btn-ghost theme-toggle" id="themeToggle" type="button">
-            <span aria-hidden="true" class="theme-toggle-icon">
-                <svg class="icon-sun" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12Z"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
-                <svg class="icon-moon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 12.8A8.5 8.5 0 0 1 11.2 3a6.5 6.5 0 1 0 9.8 9.8Z"/></svg>
-            </span>
-        </button>
-        <a class="btn btn-ghost" href="/login/">Log in</a>
-        <a class="btn btn-primary" href="/signup/">Start Free Trial</a>
-    </div>
-    <div class="mobile-nav-actions" id="mobileNavActions">
-        <a class="btn btn-nav-cta" href="/demo/">Get a Demo</a>
-        <button aria-label="Toggle theme" class="btn btn-ghost theme-toggle" id="themeToggleMobileNav" type="button">
-            <span aria-hidden="true" class="theme-toggle-icon">
-                <svg class="icon-sun" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12Z"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
-                <svg class="icon-moon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 12.8A8.5 8.5 0 0 1 11.2 3a6.5 6.5 0 1 0 9.8 9.8Z"/></svg>
-            </span>
-        </button>
-        <button aria-label="Menu" class="mobile-toggle" id="mobileToggle">
-            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
-        </button>
-    </div>
+<!-- NAV -->
+<nav class="nav"><div class="nav-inner">
+<a class="nav-logo" href="/"><img src="https://sbia1.github.io/512x512.png" alt="talyvn" width="32" height="32" style="border-radius:6px"><span class="nav-logo-text">talyvn</span></a>
+<div class="nav-links">
+<div class="nav-item"><a class="nav-link" href="/product/">Product <svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></a><div class="nav-dd"><div class="dd-grid dd-3"><div class="dd-sec"><div class="dd-lbl">Overview</div><a href="/product/time-tracking-software" class="dd-a">Time-tracking Software</a><a href="/product/hr-software" class="dd-a">HR Software</a><a href="/product/employee-management-software" class="dd-a">Employee Management Software</a><a href="/product/payroll" class="dd-a">Payroll</a><a href="/product/employee-monitoring-software" class="dd-a">Employee Monitoring Software</a><a href="/product/workforce-intelligence-platform" class="dd-a">Workforce Intelligence Platform</a></div><div class="dd-sec"><div class="dd-lbl">Features</div><a href="/features/timesheets" class="dd-a">Timesheets</a><a href="/features/productivity-insights" class="dd-a">Productivity Insights</a><a href="/features/leave-management" class="dd-a">Leave Management</a><a href="/features/reporting-analytics" class="dd-a">Reporting &amp; Analytics</a><a href="/features/performance-management" class="dd-a">Performance Management</a><a href="/features/activity-monitoring" class="dd-a">Activity Monitoring</a><a href="/features/team-management" class="dd-a">Team Management</a><a href="/features/ai-engines" class="dd-a">AI Engines</a><a href="/features/behavioral-risk-detection" class="dd-a">Behavioral Risk Detection</a><a href="/features/hr-ticketing" class="dd-a">HR Ticketing</a><a href="/features/e-signatures" class="dd-a">E-signatures</a><a href="/features/employee-profile" class="dd-a">Employee Profile</a></div><div class="dd-sec"><div class="dd-lbl">Integrations</div><a href="/integrations/jira" class="dd-a">Jira</a><a href="/integrations/slack" class="dd-a">Slack</a></div></div></div></div>
+<div class="nav-item"><a class="nav-link" href="/solutions/">Solutions <svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></a><div class="nav-dd"><div class="dd-grid dd-2"><div class="dd-sec"><div class="dd-lbl">By use case</div><a href="/solutions/remote-work" class="dd-a">Remote Work</a><a href="/solutions/hybrid-work" class="dd-a">Hybrid Work</a><a href="/solutions/small-business" class="dd-a">Small Business</a><a href="/solutions/employee-productivity" class="dd-a">Employee Productivity</a><a href="/solutions/workforce-compliance" class="dd-a">Workforce Compliance</a><a href="/solutions/client-billing-reporting" class="dd-a">Client Billing &amp; Reporting</a><a href="/solutions/invoicing-billing" class="dd-a">Invoicing &amp; Billing</a><a href="/solutions/project-management" class="dd-a">Project Management</a><a href="/solutions/budget-cost-control" class="dd-a">Budget &amp; Cost Control</a></div><div class="dd-sec"><div class="dd-lbl">By industry</div><a href="/industries/startups" class="dd-a">Startups</a><a href="/industries/it-services" class="dd-a">IT Services</a><a href="/industries/finance-teams" class="dd-a">Finance Teams</a><a href="/industries/agencies" class="dd-a">Agencies</a></div></div></div></div>
+<a class="nav-link" href="/pricing/">Pricing</a>
+<div class="nav-item"><a class="nav-link" href="/resources/">Resources <svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></a><div class="nav-dd"><div class="dd-grid dd-1"><div class="dd-sec"><div class="dd-lbl">Resources</div><a href="/resources/templates" class="dd-a">Templates</a><a href="/resources/glossary" class="dd-a">Glossary</a><a href="/resources/guides" class="dd-a">Guides</a><a href="/blog" class="dd-a">Blog</a><a href="/resources/calculators" class="dd-a">Calculators</a><a href="/resources/case-studies" class="dd-a">Case Studies</a><a href="/resources/software-reviews" class="dd-a">Software Reviews</a></div></div></div></div>
+<a class="nav-link" href="/apps/">Download</a>
+<a class="btn-about" href="/about">About Us</a>
 </div>
-</nav>
+<div class="nav-actions">
+<button class="btn btn-ghost theme-toggle" id="thT"><span class="theme-toggle-icon"><svg class="icon-sun" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12Z"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg><svg class="icon-moon" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M21 12.8A8.5 8.5 0 0 1 11.2 3a6.5 6.5 0 1 0 9.8 9.8Z"/></svg></span></button>
+<a class="btn btn-ghost" href="/login/">Log in</a>
+<a class="btn btn-pri" href="/signup/">Start Free Trial</a>
+</div>
+<div class="mob-nav-a" id="mNA">
+<a class="btn-ncta" href="/demo/">Get a Demo</a>
+<button class="btn btn-ghost theme-toggle" id="thTM"><span class="theme-toggle-icon"><svg class="icon-sun" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12Z"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg><svg class="icon-moon" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M21 12.8A8.5 8.5 0 0 1 11.2 3a6.5 6.5 0 1 0 9.8 9.8Z"/></svg></span></button>
+<button class="mob-tog" id="mTog"><svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+</div>
+</div></nav>
+
+<!-- MOBILE MENU -->
+<div class="mob-menu" id="mMenu"><div class="mob-bd" id="mBd"></div><div class="mob-panel"><div class="mob-hd"><a class="nav-logo" href="/"><img src="https://sbia1.github.io/512x512.png" alt="talyvn" width="28" height="28" style="border-radius:5px"><span class="nav-logo-text">talyvn</span></a><button class="mob-cls" id="mCls"><svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="20" height="20"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div><div class="mob-links"><a class="mob-link" href="/product/">Product</a><a class="mob-link" href="/solutions/">Solutions</a><a class="mob-link" href="/pricing/">Pricing</a><a class="mob-link" href="/resources/">Resources</a><a class="mob-link" href="/apps/">Download</a><a class="mob-link" href="/about">About Us</a></div><div class="mob-acts"><a class="btn btn-pri" href="/signup/">Start Free Trial</a><a class="btn btn-sec" href="/demo/">Book a Demo</a></div></div></div>
 
 <main>
 
-<!-- ===== HERO ===== -->
-<section class="hero-section">
-    <div class="container">
-        <div class="hero-top">
-            <div class="hero-badge">
-                <span class="hero-badge-dot"></span>
-                Reporting and Analytics
-            </div>
-            <h1 class="hero-title">
-                Reporting and Analytics that Turn <span class="hero-title-accent">Workforce Data Into Smart Decisions</span>
-            </h1>
-        </div>
-        <p class="hero-desc-centered">
-            Managing a team generates a lot of data. Without proper reporting and analytics tools, that data stays trapped in disconnected spreadsheets. Talyvn can help you turn raw workforce data into clear insights you can actually use.
-        </p>
-
-        <!-- Analytics dashboard mockup -->
-        <div class="hero-screen-mockup" style="margin-top:48px;">
-            <div class="hero-screen-frame">
-                <div class="hero-screen-bar">
-                    <span class="hero-screen-dot" style="background:#ff5f57"></span>
-                    <span class="hero-screen-dot" style="background:#febc2e"></span>
-                    <span class="hero-screen-dot" style="background:#28c840"></span>
-                    <span class="hero-screen-url">app.talyvn.io/analytics</span>
-                </div>
-                <div class="hero-screen-body">
-                    <!-- Sidebar -->
-                    <div class="dash-sidebar">
-                        <div class="dash-logo-sm">
-                            <img src="https://sbia1.github.io/512x512.png" alt="talyvn" width="22" height="22" style="border-radius:4px">
-                        </div>
-                        <div class="dash-nav-item dash-nav-active">
-                            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
-                            Analytics
-                        </div>
-                        <div class="dash-nav-item">
-                            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
-                            Attendance
-                        </div>
-                        <div class="dash-nav-item">
-                            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-                            Shifts
-                        </div>
-                        <div class="dash-nav-item">
-                            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-                            Overtime
-                        </div>
-                        <div class="dash-nav-item">
-                            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-                            Reports
-                        </div>
-                    </div>
-                    <!-- Main analytics content -->
-                    <div class="dash-main">
-                        <div class="dash-header-row">
-                            <span class="dash-greeting">Workforce Analytics — March 2025</span>
-                            <div class="dash-avatar">M</div>
-                        </div>
-                        <div class="dash-stats-row">
-                            <div class="dash-stat-card">
-                                <div class="dash-stat-label">Shifts Completed</div>
-                                <div class="dash-stat-value">312</div>
-                                <div class="dash-stat-badge dash-badge-green">↑ 94.2%</div>
-                            </div>
-                            <div class="dash-stat-card">
-                                <div class="dash-stat-label">Late Arrivals</div>
-                                <div class="dash-stat-value">18</div>
-                                <div class="dash-stat-badge dash-badge-orange">5.4%</div>
-                            </div>
-                            <div class="dash-stat-card">
-                                <div class="dash-stat-label">Overtime Hours</div>
-                                <div class="dash-stat-value">47h</div>
-                                <div class="dash-stat-badge dash-badge-blue">↓ 12%</div>
-                            </div>
-                            <div class="dash-stat-card">
-                                <div class="dash-stat-label">No-shows</div>
-                                <div class="dash-stat-value">4</div>
-                                <div class="dash-stat-badge dash-badge-red">1.2%</div>
-                            </div>
-                        </div>
-                        <div class="dash-chart-row">
-                            <div class="dash-chart-block">
-                                <div class="dash-chart-title">Attendance Trend (Weekly)</div>
-                                <div class="dash-chart-bars">
-                                    <div class="dash-bar-wrap"><div class="dash-bar" style="height:72%;background:rgba(7,91,236,0.35)"></div><span>W1</span></div>
-                                    <div class="dash-bar-wrap"><div class="dash-bar" style="height:85%;background:rgba(7,91,236,0.45)"></div><span>W2</span></div>
-                                    <div class="dash-bar-wrap"><div class="dash-bar" style="height:68%;background:rgba(7,91,236,0.35)"></div><span>W3</span></div>
-                                    <div class="dash-bar-wrap"><div class="dash-bar" style="height:91%;background:#075BEC"></div><span>W4</span></div>
-                                    <div class="dash-bar-wrap"><div class="dash-bar" style="height:78%;background:rgba(7,91,236,0.4)"></div><span>W5</span></div>
-                                    <div class="dash-bar-wrap"><div class="dash-bar" style="height:94%;background:#00EFD3"></div><span>W6</span></div>
-                                </div>
-                            </div>
-                            <div class="dash-mini-block">
-                                <div class="dash-chart-title">Shift Status</div>
-                                <div class="dash-donut">
-                                    <svg class="dash-donut-ring" viewBox="0 0 44 44">
-                                        <circle cx="22" cy="22" r="15" fill="none" stroke="var(--glass-border)" stroke-width="8"/>
-                                        <circle cx="22" cy="22" r="15" fill="none" stroke="#00EFD3" stroke-width="8" stroke-dasharray="59 35" stroke-dashoffset="-7" transform="rotate(-90 22 22)"/>
-                                        <circle cx="22" cy="22" r="15" fill="none" stroke="#075BEC" stroke-width="8" stroke-dasharray="21 73" stroke-dashoffset="-66" transform="rotate(-90 22 22)"/>
-                                        <circle cx="22" cy="22" r="15" fill="none" stroke="#ef4444" stroke-width="8" stroke-dasharray="7 87" stroke-dashoffset="-87" transform="rotate(-90 22 22)"/>
-                                    </svg>
-                                    <div class="dash-donut-legend">
-                                        <div class="dash-legend-item"><span class="dash-legend-dot" style="background:#00EFD3"></span>Completed 94%</div>
-                                        <div class="dash-legend-item"><span class="dash-legend-dot" style="background:#075BEC"></span>Delayed 4%</div>
-                                        <div class="dash-legend-item"><span class="dash-legend-dot" style="background:#ef4444"></span>Missed 2%</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="hero-screen-glow"></div>
-        </div>
-
-        <div class="hero-actions-centered">
-            <a class="btn-hero-primary" href="/request-demo">Book a Demo →</a>
-            <a class="btn-hero-ghost" href="/signup">Start a Trial</a>
-        </div>
+<!-- S1: HERO -->
+<section class="hero">
+<div class="container">
+  <div class="badge-wrap" style="margin-bottom:28px"><span class="hero-badge"><span class="hero-badge-dot"></span>Reporting and Analytics</span></div>
+  <div class="hero-c">
+    <h1 class="hero-title" style="max-width:800px;text-align:center">Reporting and Analytics that Turn <span class="hero-ta">Workforce Data Into Smart Decisions</span></h1>
+    <p class="hero-p" style="max-width:640px;text-align:center">Managing a team generates a lot of data. Without proper reporting and analytics tools, that data stays trapped in disconnected spreadsheets. Talyvn can help you turn raw workforce data into clear insights you can actually use.</p>
+    <div class="hero-cta">
+      <a class="btn-hp" href="/request-demo">Book a Demo &rarr;</a>
+      <a class="btn-hg" href="/signup">Start a Trial</a>
     </div>
+  </div>
+  <!-- Analytics dashboard mockup -->
+  <div class="hero-screen-mockup">
+    <div class="hero-screen-frame">
+      <div class="hero-screen-bar">
+        <span class="hero-screen-dot" style="background:#ff5f57"></span>
+        <span class="hero-screen-dot" style="background:#febc2e"></span>
+        <span class="hero-screen-dot" style="background:#28c840"></span>
+        <span class="hero-screen-url">app.talyvn.io/analytics</span>
+      </div>
+      <div class="hero-screen-body">
+        <div class="dash-sidebar">
+          <div class="dash-logo-sm"><img src="https://sbia1.github.io/512x512.png" alt="talyvn" width="22" height="22" style="border-radius:4px"></div>
+          <div class="dash-nav-item dash-nav-active"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Analytics</div>
+          <div class="dash-nav-item"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>Attendance</div>
+          <div class="dash-nav-item"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Shifts</div>
+          <div class="dash-nav-item"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>Overtime</div>
+          <div class="dash-nav-item"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Reports</div>
+        </div>
+        <div class="dash-main">
+          <div class="dash-header-row">
+            <span class="dash-greeting">Workforce Analytics — March 2025</span>
+            <div class="dash-avatar">M</div>
+          </div>
+          <div class="dash-stats-row">
+            <div class="dash-stat-card"><div class="dash-stat-label">Shifts Completed</div><div class="dash-stat-value">312</div><div class="dash-stat-badge dash-badge-green">↑ 94.2%</div></div>
+            <div class="dash-stat-card"><div class="dash-stat-label">Late Arrivals</div><div class="dash-stat-value">18</div><div class="dash-stat-badge dash-badge-orange">5.4%</div></div>
+            <div class="dash-stat-card"><div class="dash-stat-label">Overtime Hours</div><div class="dash-stat-value">47h</div><div class="dash-stat-badge dash-badge-blue">↓ 12%</div></div>
+            <div class="dash-stat-card"><div class="dash-stat-label">No-shows</div><div class="dash-stat-value">4</div><div class="dash-stat-badge dash-badge-red">1.2%</div></div>
+          </div>
+          <div class="dash-chart-row">
+            <div class="dash-chart-block">
+              <div class="dash-chart-title">Attendance Trend (Weekly)</div>
+              <div class="dash-chart-bars">
+                <div class="dash-bar-wrap"><div class="dash-bar" style="height:72%;background:rgba(7,91,236,.35)"></div><span>W1</span></div>
+                <div class="dash-bar-wrap"><div class="dash-bar" style="height:85%;background:rgba(7,91,236,.45)"></div><span>W2</span></div>
+                <div class="dash-bar-wrap"><div class="dash-bar" style="height:68%;background:rgba(7,91,236,.35)"></div><span>W3</span></div>
+                <div class="dash-bar-wrap"><div class="dash-bar" style="height:91%;background:#075BEC"></div><span>W4</span></div>
+                <div class="dash-bar-wrap"><div class="dash-bar" style="height:78%;background:rgba(7,91,236,.4)"></div><span>W5</span></div>
+                <div class="dash-bar-wrap"><div class="dash-bar" style="height:94%;background:#00EFD3"></div><span>W6</span></div>
+              </div>
+            </div>
+            <div class="dash-mini-block">
+              <div class="dash-chart-title">Shift Status</div>
+              <div class="dash-donut">
+                <svg class="dash-donut-ring" viewBox="0 0 44 44"><circle cx="22" cy="22" r="15" fill="none" stroke="var(--gbdr)" stroke-width="8"/><circle cx="22" cy="22" r="15" fill="none" stroke="#00EFD3" stroke-width="8" stroke-dasharray="59 35" stroke-dashoffset="-7" transform="rotate(-90 22 22)"/><circle cx="22" cy="22" r="15" fill="none" stroke="#075BEC" stroke-width="8" stroke-dasharray="21 73" stroke-dashoffset="-66" transform="rotate(-90 22 22)"/><circle cx="22" cy="22" r="15" fill="none" stroke="#ef4444" stroke-width="8" stroke-dasharray="7 87" stroke-dashoffset="-87" transform="rotate(-90 22 22)"/></svg>
+                <div class="dash-donut-legend">
+                  <div class="dash-legend-item"><span class="dash-legend-dot" style="background:#00EFD3"></span>Completed 94%</div>
+                  <div class="dash-legend-item"><span class="dash-legend-dot" style="background:#075BEC"></span>Delayed 4%</div>
+                  <div class="dash-legend-item"><span class="dash-legend-dot" style="background:#ef4444"></span>Missed 2%</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-screen-glow"></div>
+  </div>
+</div>
 </section>
 
-<!-- ===== OPERATIONAL DATA + GUESSWORK (split two-column) ===== -->
-<section class="operational-section reveal">
-    <div class="container">
-
-        <!-- Centered header above both columns -->
-        <div class="operational-header">
-            <span class="section-label">Overview</span>
-        </div>
-
-        <div class="operational-grid">
-
-            <!-- Left: Turn Operational Data -->
-            <div class="operational-left">
-                <h2 class="section-title">Turn Operational Data into Meaningful Insights with <span class="text-accent">Talyvn</span></h2>
-                <p class="section-desc">Through structured reports and visual dashboards, you can see exactly what's happening across your workspace, instead of guessing. Talyvn collects data from your operations and transforms it into accurate reports that cover:</p>
-                <ul class="operational-list">
-                    <li class="operational-item">
-                        <span class="op-item-icon" style="background:rgba(7,91,236,0.12);">📋</span>
-                        <span class="op-item-text"><a href="/features/attendance-tracking-software" style="color:var(--color-accent);font-weight:500;">Attendance tracking</a></span>
-                    </li>
-                    <li class="operational-item">
-                        <span class="op-item-icon" style="background:rgba(0,239,211,0.12);">🔄</span>
-                        <span class="op-item-text">Shift performance</span>
-                    </li>
-                    <li class="operational-item">
-                        <span class="op-item-icon" style="background:rgba(138,58,251,0.12);">📈</span>
-                        <span class="op-item-text">Workforce productivity</span>
-                    </li>
-                    <li class="operational-item">
-                        <span class="op-item-icon" style="background:rgba(249,115,22,0.12);">⏰</span>
-                        <span class="op-item-text">Overtime activity</span>
-                    </li>
-                    <li class="operational-item">
-                        <span class="op-item-icon" style="background:rgba(0,187,210,0.12);">👥</span>
-                        <span class="op-item-text">Team operations</span>
-                    </li>
-                </ul>
-                <p class="section-desc" style="margin-top:8px;">With Talyvn's reporting and analytics software, you can gain a complete view of your workforce performance in one place.</p>
-            </div>
-
-            <!-- Right: Why Smart Companies Don't Run on Guesswork -->
-            <div>
-                <div class="guesswork-card">
-                    <span class="section-label section-label--green" style="margin-bottom:20px;display:inline-flex;">Insight</span>
-                    <h2 class="guesswork-title">Why Smart Companies Don't Run on <span class="text-green">Guesswork</span></h2>
-                    <p class="guesswork-desc">Managing teams without clear operational data can get really messy sooner or later. It can lead to unnoticed issues, inefficient <a href="/features/scheduling" style="color:var(--color-accent);text-decoration:none;font-weight:500;">scheduling</a>, rising overtime costs, and a slow decision-making process.</p>
-                    <p class="guesswork-desc">With Talyvn's instant visibility feature, you can access real-time workforce activity reports so that you can respond faster and fix those issues.</p>
-                    <div class="guesswork-highlight">
-                        <span class="guesswork-highlight-icon">💡</span>
-                        <p class="guesswork-highlight-text">When you understand what's happening across your teams, <strong>better decisions come naturally</strong>. It doesn't require any additional spreadsheets and manual calculations — just smart reporting built directly into your workflow.</p>
-                    </div>
-                </div>
-            </div>
-
-        </div>
+<!-- S2: OPERATIONAL DATA -->
+<section class="section"><div class="container">
+  <div style="text-align:center;margin-bottom:48px">
+    <div class="badge-wrap"><span class="badge b-blu"><span class="badge-dot"></span>Overview</span></div>
+    <h2 class="sec-title tc">Turn Operational Data into Meaningful Insights with <span class="t-acc">Talyvn</span></h2>
+  </div>
+  <div class="what-g">
+    <div class="what-t">
+      <p>Through structured reports and visual dashboards, you can see exactly what's happening across your workspace, instead of guessing. Talyvn collects data from your operations and transforms it into accurate reports that cover:</p>
+      <div class="what-list">
+        <div class="what-list-item"><span style="background:rgba(7,91,236,.12);width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:15px">📋</span><span><a class="inline-link" href="/features/attendance-tracking-software">Attendance tracking</a></span></div>
+        <div class="what-list-item"><span style="background:rgba(0,239,211,.12);width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:15px">🔄</span><span>Shift performance</span></div>
+        <div class="what-list-item"><span style="background:rgba(138,58,251,.12);width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:15px">📈</span><span>Workforce productivity</span></div>
+        <div class="what-list-item"><span style="background:rgba(249,115,22,.12);width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:15px">⏰</span><span>Overtime activity</span></div>
+        <div class="what-list-item"><span style="background:rgba(0,187,210,.12);width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:15px">👥</span><span>Team operations</span></div>
+      </div>
+      <p style="margin-top:16px">With Talyvn's reporting and analytics software, you can gain a complete view of your workforce performance in one place.</p>
     </div>
-</section>
-
-<!-- ===== BENEFITS ORBIT SECTION ===== -->
-<section class="benefits-section reveal">
-    <div class="container">
-        <div class="section-header-centered">
-            <span class="section-label section-label--purple">Benefits</span>
-            <h2 class="section-title">Benefits of <span class="text-purple">Workday Reporting and Analytics</span></h2>
-            <p class="section-sub">Four core ways Talyvn's analytics tools give you operational clarity.</p>
-        </div>
-
-        <div class="benefits-orbit-wrap">
-            <!-- Decorative tracks -->
-            <div class="benefits-orbit-track"></div>
-            <div class="benefits-orbit-track-inner"></div>
-
-            <!-- Center badge -->
-            <div class="benefits-center">
-                <div class="benefits-center-inner">
-                    <div class="benefits-center-emoji">📊</div>
-                    <div class="benefits-center-title">Talyvn Analytics</div>
-                    <div class="benefits-center-sub">Real-time workforce data at your fingertips</div>
-                </div>
-            </div>
-
-            <!-- Card 1: Top -->
-            <div class="benefit-orbit-card boc-top">
-                <div class="benefit-icon">🔭</div>
-                <div class="benefit-card-title">See What's Happening Across Your Teams</div>
-            </div>
-
-            <!-- Card 2: Right -->
-            <div class="benefit-orbit-card boc-right">
-                <div class="benefit-icon">🚨</div>
-                <div class="benefit-card-title">Spot Problems Early On</div>
-            </div>
-
-            <!-- Card 3: Bottom -->
-            <div class="benefit-orbit-card boc-bottom">
-                <div class="benefit-icon">📝</div>
-                <div class="benefit-card-title">Make HR Reporting Less Painful</div>
-            </div>
-
-            <!-- Card 4: Left -->
-            <div class="benefit-orbit-card boc-left">
-                <div class="benefit-icon">🎯</div>
-                <div class="benefit-card-title">Run Your Workforce with Real Data</div>
-            </div>
-
-            <!-- Cycle arrows between cards -->
-            <!-- Top → Right -->
-            <div class="cycle-arrow ca-tr">
-                <svg fill="none" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="18" cy="18" r="12" fill="rgba(138,58,251,0.15)" stroke="rgba(138,58,251,0.5)" stroke-width="1.5"/>
-                    <path d="M13 18 L22 18 M18 13 L23 18 L18 23" stroke="rgba(138,58,251,0.95)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </div>
-            <!-- Right → Bottom -->
-            <div class="cycle-arrow ca-br">
-                <svg fill="none" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="18" cy="18" r="12" fill="rgba(7,91,236,0.15)" stroke="rgba(7,91,236,0.5)" stroke-width="1.5"/>
-                    <path d="M13 18 L22 18 M18 13 L23 18 L18 23" stroke="rgba(7,91,236,0.95)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </div>
-            <!-- Bottom → Left -->
-            <div class="cycle-arrow ca-bl">
-                <svg fill="none" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="18" cy="18" r="12" fill="rgba(0,239,211,0.15)" stroke="rgba(0,239,211,0.5)" stroke-width="1.5"/>
-                    <path d="M13 18 L22 18 M18 13 L23 18 L18 23" stroke="rgba(0,239,211,0.95)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </div>
-            <!-- Left → Top -->
-            <div class="cycle-arrow ca-tl">
-                <svg fill="none" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="18" cy="18" r="12" fill="rgba(0,187,210,0.15)" stroke="rgba(0,187,210,0.5)" stroke-width="1.5"/>
-                    <path d="M13 18 L22 18 M18 13 L23 18 L18 23" stroke="rgba(0,187,210,0.95)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </div>
-
-        </div>
+    <div class="sv">
+      <div class="sv-lbl">Insight</div>
+      <div class="gw-title">Why Smart Companies Don't Run on <span class="t-grn">Guesswork</span></div>
+      <p class="gw-desc">Managing teams without clear operational data can get really messy sooner or later. It can lead to unnoticed issues, inefficient <a class="inline-link" href="/features/scheduling">scheduling</a>, rising overtime costs, and a slow decision-making process.</p>
+      <p class="gw-desc">With Talyvn's instant visibility feature, you can access real-time workforce activity reports so that you can respond faster and fix those issues.</p>
+      <div class="gw-highlight">
+        <span class="gw-highlight-icon">💡</span>
+        <p class="gw-highlight-text">When you understand what's happening across your teams, <strong>better decisions come naturally</strong>. It doesn't require any additional spreadsheets and manual calculations — just smart reporting built directly into your workflow.</p>
+      </div>
     </div>
-</section>
+  </div>
+</div></section>
 
-<!-- ===== SIDEBAR ANALYTICS SECTIONS ===== -->
-<section class="analytics-section reveal">
-    <div class="container">
-        <div class="section-header-centered">
-            <span class="section-label">Analytics Tools</span>
-            <h2 class="section-title">Complete <span class="text-accent">Workforce Analytics</span> Suite</h2>
-            <p class="section-sub">Every report you need — from shift performance to overtime trends — built directly into Talyvn.</p>
-        </div>
-
-        <div class="features-body">
-            <!-- Sidebar -->
-            <nav class="features-sidebar">
-                <div class="sidebar-group-label">Dashboards</div>
-                <button class="sidebar-btn active" onclick="showPanel('dashboard', this)">
-                    <span class="sidebar-icon">📊</span> Workforce Analytics Dashboard
-                </button>
-
-                <div class="sidebar-divider"></div>
-                <div class="sidebar-group-label">Reports</div>
-                <button class="sidebar-btn" onclick="showPanel('shift', this)">
-                    <span class="sidebar-icon">🔄</span> Shift Reporting
-                </button>
-                <button class="sidebar-btn s-green" onclick="showPanel('attendance', this)">
-                    <span class="sidebar-icon">📋</span> Attendance Analytics
-                </button>
-                <button class="sidebar-btn s-purple" onclick="showPanel('overtime', this)">
-                    <span class="sidebar-icon">⏰</span> Overtime Trends
-                </button>
-                <button class="sidebar-btn s-sky" onclick="showPanel('productivity', this)">
-                    <span class="sidebar-icon">⚡</span> Productivity Insights
-                </button>
-
-                <div class="sidebar-divider"></div>
-                <div class="sidebar-group-label">Export &amp; Trust</div>
-                <button class="sidebar-btn" onclick="showPanel('custom', this)">
-                    <span class="sidebar-icon">🛠</span> Build Your Reports
-                </button>
-                <button class="sidebar-btn s-green" onclick="showPanel('trusted', this)">
-                    <span class="sidebar-icon">🔒</span> Trusted Reporting
-                </button>
-            </nav>
-
-            <!-- Panels -->
-            <div class="features-content">
-
-                <!-- Dashboard Panel -->
-                <div class="feature-panel active" id="fpanel-dashboard">
-                    <div class="panel-inner">
-                        <div class="panel-header">
-                            <div class="panel-icon pi-blue">📊</div>
-                            <div>
-                                <div class="panel-group-tag">Dashboards</div>
-                                <div class="panel-title">Workforce Analytics Dashboard for Easy Access</div>
-                            </div>
-                        </div>
-                        <p class="panel-desc">Managers get real-time snapshots of their workforce and operations with Talyvn's HR reporting and analytics dashboard. In the <a href="/product/workforce-analytics-software" style="color:var(--color-accent);text-decoration:none;font-weight:500;">workforce analytics</a> dashboard, managers can view:</p>
-                        <div class="panel-cards">
-                            <div class="panel-card">
-                                <div class="panel-card-title">⚡ Instant KPI Snapshots</div>
-                                <div class="panel-card-desc">Real-time metrics on attendance, shift completion, and overtime at a glance.</div>
-                            </div>
-                            <div class="panel-card">
-                                <div class="panel-card-title">📉 Visual Reports</div>
-                                <div class="panel-card-desc">Charts and graphs that make workforce data easy to read and interpret.</div>
-                            </div>
-                            <div class="panel-card">
-                                <div class="panel-card-title">🎭 Role-based Insights</div>
-                                <div class="panel-card-desc">Tailored views for managers, HR staff, and executives based on their needs.</div>
-                            </div>
-                            <div class="panel-card">
-                                <div class="panel-card-title">🗓 Historical Data</div>
-                                <div class="panel-card-desc">Access past workforce records to understand trends and plan ahead.</div>
-                            </div>
-                        </div>
-                        <div class="panel-placeholder">
-                            <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24" opacity="0.25"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9l4-4 4 4 4-6 4 6"/></svg>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Shift Reporting Panel -->
-                <div class="feature-panel" id="fpanel-shift">
-                    <div class="panel-inner">
-                        <div class="panel-header">
-                            <div class="panel-icon pi-blue">🔄</div>
-                            <div>
-                                <div class="panel-group-tag">Reports</div>
-                                <div class="panel-title">Employee Shift Reporting and Analytics</div>
-                            </div>
-                        </div>
-                        <p class="panel-desc">Talyvn helps managers see how shifts are performing — from completions to missed starts — with accurate, real-time shift data.</p>
-                        <div class="panel-cards">
-                            <div class="panel-card">
-                                <div class="panel-card-title">✅ See Completed Shifts</div>
-                                <div class="panel-card-desc">Talyvn helps managers see how many shifts have been completed compared with the scheduled ones.</div>
-                            </div>
-                            <div class="panel-card">
-                                <div class="panel-card-title">⚠️ Spot Missed or Delayed Shifts</div>
-                                <div class="panel-card-desc">Talyvn's accurate reports highlight shift issues, including missed shifts, delayed starts, and no-activity shifts.</div>
-                            </div>
-                            <div class="panel-card" style="grid-column:1/-1;">
-                                <div class="panel-card-title">📈 Understand Shift Trends Over Time</div>
-                                <div class="panel-card-desc">Talyvn helps managers to understand shift trends by revealing patterns in workforce behavior and shift performance across weeks and months.</div>
-                            </div>
-                        </div>
-                        <div class="panel-placeholder">
-                            <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24" opacity="0.25"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9l4-4 4 4 4-6 4 6"/></svg>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Attendance Analytics Panel -->
-                <div class="feature-panel" id="fpanel-attendance">
-                    <div class="panel-inner">
-                        <div class="panel-header">
-                            <div class="panel-icon pi-green">📋</div>
-                            <div>
-                                <div class="panel-group-tag">Reports</div>
-                                <div class="panel-title">Attendance Analytics for Deeper Insights</div>
-                            </div>
-                        </div>
-                        <p class="panel-desc">Go beyond basic attendance tracking. Talyvn's attendance analytics give managers the visibility they need to understand reliability trends and take action.</p>
-                        <div class="panel-cards">
-                            <div class="panel-card">
-                                <div class="panel-card-title">🔔 Detect Delays Automatically</div>
-                                <div class="panel-card-desc">Talyvn automatically detects late arrivals by comparing the scheduled shift start time with the employee's actual activity.</div>
-                            </div>
-                            <div class="panel-card">
-                                <div class="panel-card-title">🚫 Identify No-shows Instantly</div>
-                                <div class="panel-card-desc">With Talyvn's reporting and analytics solutions, managers can gain insights into which employees fail to start assigned shifts.</div>
-                            </div>
-                            <div class="panel-card" style="grid-column:1/-1;">
-                                <div class="panel-card-title">📅 View Attendance Patterns</div>
-                                <div class="panel-card-desc">While using Talyvn, managers can view attendance reports to analyze reliability trends across various teams.</div>
-                            </div>
-                        </div>
-                        <div class="panel-placeholder">
-                            <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24" opacity="0.25"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9l4-4 4 4 4-6 4 6"/></svg>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Overtime Panel -->
-                <div class="feature-panel" id="fpanel-overtime">
-                    <div class="panel-inner">
-                        <div class="panel-header">
-                            <div class="panel-icon pi-purple">⏰</div>
-                            <div>
-                                <div class="panel-group-tag">Reports</div>
-                                <div class="panel-title">Overtime Trends You Can See Before They Hit Your Budget</div>
-                            </div>
-                        </div>
-                        <p class="panel-desc">Talyvn gives managers full visibility into overtime — track every hour, every request, and every payroll impact before costs spiral.</p>
-                        <div class="panel-cards">
-                            <div class="panel-card">
-                                <div class="panel-card-title">📊 See Total Overtime Hours</div>
-                                <div class="panel-card-desc">Talyvn helps managers to <a href="/features/overtime-tracking" style="color:var(--color-accent);text-decoration:none;font-weight:500;">view overtime usage</a> across the company.</div>
-                            </div>
-                            <div class="panel-card">
-                                <div class="panel-card-title">📝 Track Every Overtime Request</div>
-                                <div class="panel-card-desc">Talyvn provides reports that include approved overtime requests, giving managers complete visibility.</div>
-                            </div>
-                            <div class="panel-card" style="grid-column:1/-1;">
-                                <div class="panel-card-title">💰 Track the Payroll</div>
-                                <div class="panel-card-desc">Managers can configure this feature to include overtime at adjusted rates in payroll, ensuring accurate compensation calculations.</div>
-                            </div>
-                        </div>
-                        <div class="panel-placeholder">
-                            <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24" opacity="0.25"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9l4-4 4 4 4-6 4 6"/></svg>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Productivity Panel -->
-                <div class="feature-panel" id="fpanel-productivity">
-                    <div class="panel-inner">
-                        <div class="panel-header">
-                            <div class="panel-icon pi-sky">⚡</div>
-                            <div>
-                                <div class="panel-group-tag">Reports</div>
-                                <div class="panel-title">Productivity Insights Hidden in Time Tracking Data</div>
-                            </div>
-                        </div>
-                        <p class="panel-desc">Uncover how your team truly spends their time. Talyvn's productivity analytics help managers identify imbalances and prepare accurate payroll.</p>
-                        <div class="panel-cards">
-                            <div class="panel-card">
-                                <div class="panel-card-title">🕐 Understand How Work Hours Are Spent</div>
-                                <div class="panel-card-desc">Talyvn provides managers with time reports that allow them to see how employees spend their time during a shift.</div>
-                            </div>
-                            <div class="panel-card">
-                                <div class="panel-card-title">⚖️ Detect Workload Imbalances</div>
-                                <div class="panel-card-desc">Our reporting and analytics software helps managers to identify individuals/teams that are overworked or underutilized.</div>
-                            </div>
-                            <div class="panel-card" style="grid-column:1/-1;">
-                                <div class="panel-card-title">💳 Simplify Payroll Preparation</div>
-                                <div class="panel-card-desc">Payroll calculations are a breeze with Talyvn, which provides accurate time tracking reports for the workforce — maintaining <a href="/features/productivity-insights" style="color:var(--color-accent);text-decoration:none;font-weight:500;">productive performance</a>.</div>
-                            </div>
-                        </div>
-                        <div class="panel-placeholder">
-                            <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24" opacity="0.25"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9l4-4 4 4 4-6 4 6"/></svg>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Custom Reports Panel -->
-                <div class="feature-panel" id="fpanel-custom">
-                    <div class="panel-inner">
-                        <div class="panel-header">
-                            <div class="panel-icon pi-orange">🛠</div>
-                            <div>
-                                <div class="panel-group-tag">Export &amp; Share</div>
-                                <div class="panel-title">Build the Reports You Actually Need</div>
-                            </div>
-                        </div>
-                        <p class="panel-desc">Every team is different. Talyvn lets you filter, customize, export, and share reports so the right people see exactly the data they need.</p>
-                        <div class="panel-cards">
-                            <div class="panel-card">
-                                <div class="panel-card-title">🔍 Filter Data for Convenience</div>
-                                <div class="panel-card-desc">You can filter the reports in Talyvn by employee, team, shift status, and date range.</div>
-                            </div>
-                            <div class="panel-card">
-                                <div class="panel-card-title">📤 Export in Different Formats</div>
-                                <div class="panel-card-desc">With Talyvn, you can export reports as CSV or PDF files for easy sharing and record-keeping.</div>
-                            </div>
-                            <div class="panel-card" style="grid-column:1/-1;">
-                                <div class="panel-card-title">📢 Share Insights Across the Company</div>
-                                <div class="panel-card-desc">Clean and accurate report layouts make comprehensive data easy to share with higher-ups and stakeholders.</div>
-                            </div>
-                        </div>
-                        <div class="panel-placeholder">
-                            <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24" opacity="0.25"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9l4-4 4 4 4-6 4 6"/></svg>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Trusted Reporting Panel -->
-                <div class="feature-panel" id="fpanel-trusted">
-                    <div class="panel-inner">
-                        <div class="panel-header">
-                            <div class="panel-icon pi-green">🔒</div>
-                            <div>
-                                <div class="panel-group-tag">Data Integrity</div>
-                                <div class="panel-title">Web Analytics and Reporting You Can Trust</div>
-                            </div>
-                        </div>
-                        <p class="panel-desc">Talyvn's reporting infrastructure is built on data integrity. Every report is accurate, tamper-proof, and audit-ready.</p>
-                        <div class="panel-cards">
-                            <div class="panel-card">
-                                <div class="panel-card-title">✅ Accurate Workforce Reports</div>
-                                <div class="panel-card-desc">Talyvn's accurate reporting feature ensures that completed shifts and overtime entries cannot be edited.</div>
-                            </div>
-                            <div class="panel-card">
-                                <div class="panel-card-title">📁 Audit-ready Data</div>
-                                <div class="panel-card-desc">With Talyvn, historical records will remain available in the system for HR reviews and compliance checks.</div>
-                            </div>
-                            <div class="panel-card" style="grid-column:1/-1;">
-                                <div class="panel-card-title">🕰 Transparent Workforce History</div>
-                                <div class="panel-card-desc">Talyvn provides reliable reports to managers that allow them to review the team's operational history whenever needed.</div>
-                            </div>
-                        </div>
-                        <div class="panel-placeholder">
-                            <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24" opacity="0.25"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9l4-4 4 4 4-6 4 6"/></svg>
-                        </div>
-                    </div>
-                </div>
-
-            </div><!-- /features-content -->
-        </div><!-- /features-body -->
+<!-- S3: BENEFITS -->
+<section class="section"><div class="container">
+  <div style="text-align:center;margin-bottom:56px">
+    <div class="badge-wrap"><span class="badge b-pur"><span class="badge-dot"></span>Benefits</span></div>
+    <h2 class="sec-title tc">Benefits of <span class="t-pur">Workday Reporting and Analytics</span></h2>
+    <p class="sec-sub">Four core ways Talyvn's analytics tools give you operational clarity.</p>
+  </div>
+  <div class="benefits-orbit-wrap">
+    <div class="benefits-orbit-track"></div>
+    <div class="benefits-orbit-track-inner"></div>
+    <div class="benefits-center">
+      <div class="benefits-center-inner">
+        <div class="benefits-center-emoji">📊</div>
+        <div class="benefits-center-title">Talyvn Analytics</div>
+        <div class="benefits-center-sub">Real-time workforce data at your fingertips</div>
+      </div>
     </div>
-</section>
+    <div class="benefit-orbit-card boc-top"><div class="benefit-icon">🔭</div><div class="benefit-card-title">See What's Happening Across Your Teams</div></div>
+    <div class="benefit-orbit-card boc-right"><div class="benefit-icon">🚨</div><div class="benefit-card-title">Spot Problems Early On</div></div>
+    <div class="benefit-orbit-card boc-bottom"><div class="benefit-icon">📝</div><div class="benefit-card-title">Make HR Reporting Less Painful</div></div>
+    <div class="benefit-orbit-card boc-left"><div class="benefit-icon">🎯</div><div class="benefit-card-title">Run Your Workforce with Real Data</div></div>
+    <div class="cycle-arrow ca-tr"><svg fill="none" viewBox="0 0 36 36"><circle cx="18" cy="18" r="12" fill="rgba(138,58,251,.15)" stroke="rgba(138,58,251,.5)" stroke-width="1.5"/><path d="M13 18L22 18M18 13L23 18L18 23" stroke="rgba(138,58,251,.95)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="cycle-arrow ca-br"><svg fill="none" viewBox="0 0 36 36"><circle cx="18" cy="18" r="12" fill="rgba(7,91,236,.15)" stroke="rgba(7,91,236,.5)" stroke-width="1.5"/><path d="M13 18L22 18M18 13L23 18L18 23" stroke="rgba(7,91,236,.95)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="cycle-arrow ca-bl"><svg fill="none" viewBox="0 0 36 36"><circle cx="18" cy="18" r="12" fill="rgba(0,239,211,.15)" stroke="rgba(0,239,211,.5)" stroke-width="1.5"/><path d="M13 18L22 18M18 13L23 18L18 23" stroke="rgba(0,239,211,.95)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="cycle-arrow ca-tl"><svg fill="none" viewBox="0 0 36 36"><circle cx="18" cy="18" r="12" fill="rgba(0,187,210,.15)" stroke="rgba(0,187,210,.5)" stroke-width="1.5"/><path d="M13 18L22 18M18 13L23 18L18 23" stroke="rgba(0,187,210,.95)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  </div>
+</div></section>
 
-<!-- ===== FINAL CTA ===== -->
-<section class="final-cta-section reveal">
-    <div class="container">
-        <div class="final-cta-inner">
-            <div class="final-cta-glow final-cta-glow-left"></div>
-            <div class="final-cta-glow final-cta-glow-right"></div>
-            <div class="final-cta-content">
-                <span class="section-label">Get Started</span>
-                <h2 class="final-cta-title">Turn Workforce Data Into<br><span class="text-accent">Smarter Decisions</span></h2>
-                <p class="final-cta-desc">Without advanced analytics and reporting solutions, it is impossible to gain real-time workforce insights that you can utilize. Talyvn provides you with reporting and analytics tools that deliver smarter insights, enabling you to maintain productive performance and make better decisions as you run your business.</p>
-                <div class="final-cta-actions">
-                    <a class="btn-hero-primary" href="/request-demo">Book a Demo →</a>
-                    <a class="btn-hero-ghost" href="/signup">Start Now</a>
-                </div>
-            </div>
-        </div>
+<!-- S4: SIDEBAR ANALYTICS -->
+<section class="section"><div class="container">
+  <div style="text-align:center;margin-bottom:48px">
+    <div class="badge-wrap"><span class="badge b-sky"><span class="badge-dot"></span>Analytics Tools</span></div>
+    <h2 class="sec-title tc">Complete <span class="t-sky">Workforce Analytics</span> Suite</h2>
+    <p class="sec-sub">Every report you need — from shift performance to overtime trends — built directly into Talyvn.</p>
+  </div>
+  <div class="sb-wrap">
+    <div class="sb-nav">
+      <div class="sb-lbl">Dashboards</div>
+      <button class="sb-btn active" data-sb="dashboard"><span class="sb-icon">📊</span>Workforce Analytics Dashboard</button>
+      <div class="sb-divider"></div>
+      <div class="sb-lbl">Reports</div>
+      <button class="sb-btn" data-sb="shift"><span class="sb-icon">🔄</span>Shift Reporting</button>
+      <button class="sb-btn" data-sb="attendance"><span class="sb-icon">📋</span>Attendance Analytics</button>
+      <button class="sb-btn" data-sb="overtime"><span class="sb-icon">⏰</span>Overtime Trends</button>
+      <button class="sb-btn" data-sb="productivity"><span class="sb-icon">⚡</span>Productivity Insights</button>
+      <div class="sb-divider"></div>
+      <div class="sb-lbl">Export &amp; Trust</div>
+      <button class="sb-btn" data-sb="custom"><span class="sb-icon">🛠</span>Build Your Reports</button>
+      <button class="sb-btn" data-sb="trusted"><span class="sb-icon">🔒</span>Trusted Reporting</button>
     </div>
-</section>
+    <div class="fp-wrap">
+
+      <div class="fp active" id="fp-dashboard"><div class="panel">
+        <div class="p-hd"><div class="p-ico pib">📊</div><div><div class="p-eye">Dashboards</div><div class="p-ttl">Workforce Analytics Dashboard for Easy Access</div></div></div>
+        <p class="p-desc">Managers get real-time snapshots of their workforce and operations with Talyvn's HR reporting and analytics dashboard. In the <a class="inline-link" href="/product/workforce-analytics-software">workforce analytics</a> dashboard, managers can view:</p>
+        <div class="p-cards">
+          <div class="p-card"><div class="p-card-title">⚡ Instant KPI Snapshots</div><div class="p-card-desc">Real-time metrics on attendance, shift completion, and overtime at a glance.</div></div>
+          <div class="p-card"><div class="p-card-title">📉 Visual Reports</div><div class="p-card-desc">Charts and graphs that make workforce data easy to read and interpret.</div></div>
+          <div class="p-card"><div class="p-card-title">🎭 Role-based Insights</div><div class="p-card-desc">Tailored views for managers, HR staff, and executives based on their needs.</div></div>
+          <div class="p-card"><div class="p-card-title">🗓 Historical Data</div><div class="p-card-desc">Access past workforce records to understand trends and plan ahead.</div></div>
+        </div>
+        <div class="p-ph"><svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24" opacity="0.25"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9l4-4 4 4 4-6 4 6"/></svg></div>
+      </div></div>
+
+      <div class="fp" id="fp-shift"><div class="panel">
+        <div class="p-hd"><div class="p-ico pib">🔄</div><div><div class="p-eye">Reports</div><div class="p-ttl">Employee Shift Reporting and Analytics</div></div></div>
+        <p class="p-desc">Talyvn helps managers see how shifts are performing — from completions to missed starts — with accurate, real-time shift data.</p>
+        <div class="p-cards">
+          <div class="p-card"><div class="p-card-title">✅ See Completed Shifts</div><div class="p-card-desc">Talyvn helps managers see how many shifts have been completed compared with the scheduled ones.</div></div>
+          <div class="p-card"><div class="p-card-title">⚠️ Spot Missed or Delayed Shifts</div><div class="p-card-desc">Talyvn's accurate reports highlight shift issues, including missed shifts, delayed starts, and no-activity shifts.</div></div>
+          <div class="p-card" style="grid-column:1/-1"><div class="p-card-title">📈 Understand Shift Trends Over Time</div><div class="p-card-desc">Talyvn helps managers to understand shift trends by revealing patterns in workforce behavior and shift performance across weeks and months.</div></div>
+        </div>
+        <div class="p-ph"><svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24" opacity="0.25"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9l4-4 4 4 4-6 4 6"/></svg></div>
+      </div></div>
+
+      <div class="fp" id="fp-attendance"><div class="panel">
+        <div class="p-hd"><div class="p-ico pig">📋</div><div><div class="p-eye">Reports</div><div class="p-ttl">Attendance Analytics for Deeper Insights</div></div></div>
+        <p class="p-desc">Go beyond basic attendance tracking. Talyvn's attendance analytics give managers the visibility they need to understand reliability trends and take action.</p>
+        <div class="p-cards">
+          <div class="p-card"><div class="p-card-title">🔔 Detect Delays Automatically</div><div class="p-card-desc">Talyvn automatically detects late arrivals by comparing the scheduled shift start time with the employee's actual activity.</div></div>
+          <div class="p-card"><div class="p-card-title">🚫 Identify No-shows Instantly</div><div class="p-card-desc">With Talyvn's reporting and analytics solutions, managers can gain insights into which employees fail to start assigned shifts.</div></div>
+          <div class="p-card" style="grid-column:1/-1"><div class="p-card-title">📅 View Attendance Patterns</div><div class="p-card-desc">While using Talyvn, managers can view attendance reports to analyze reliability trends across various teams.</div></div>
+        </div>
+        <div class="p-ph"><svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24" opacity="0.25"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9l4-4 4 4 4-6 4 6"/></svg></div>
+      </div></div>
+
+      <div class="fp" id="fp-overtime"><div class="panel">
+        <div class="p-hd"><div class="p-ico pip">⏰</div><div><div class="p-eye">Reports</div><div class="p-ttl">Overtime Trends You Can See Before They Hit Your Budget</div></div></div>
+        <p class="p-desc">Talyvn gives managers full visibility into overtime — track every hour, every request, and every payroll impact before costs spiral.</p>
+        <div class="p-cards">
+          <div class="p-card"><div class="p-card-title">📊 See Total Overtime Hours</div><div class="p-card-desc">Talyvn helps managers to <a class="inline-link" href="/features/overtime-tracking">view overtime usage</a> across the company.</div></div>
+          <div class="p-card"><div class="p-card-title">📝 Track Every Overtime Request</div><div class="p-card-desc">Talyvn provides reports that include approved overtime requests, giving managers complete visibility.</div></div>
+          <div class="p-card" style="grid-column:1/-1"><div class="p-card-title">💰 Track the Payroll</div><div class="p-card-desc">Managers can configure this feature to include overtime at adjusted rates in payroll, ensuring accurate compensation calculations.</div></div>
+        </div>
+        <div class="p-ph"><svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24" opacity="0.25"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9l4-4 4 4 4-6 4 6"/></svg></div>
+      </div></div>
+
+      <div class="fp" id="fp-productivity"><div class="panel">
+        <div class="p-hd"><div class="p-ico pis">⚡</div><div><div class="p-eye">Reports</div><div class="p-ttl">Productivity Insights Hidden in Time Tracking Data</div></div></div>
+        <p class="p-desc">Uncover how your team truly spends their time. Talyvn's productivity analytics help managers identify imbalances and prepare accurate payroll.</p>
+        <div class="p-cards">
+          <div class="p-card"><div class="p-card-title">🕐 Understand How Work Hours Are Spent</div><div class="p-card-desc">Talyvn provides managers with time reports that allow them to see how employees spend their time during a shift.</div></div>
+          <div class="p-card"><div class="p-card-title">⚖️ Detect Workload Imbalances</div><div class="p-card-desc">Our reporting and analytics software helps managers to identify individuals/teams that are overworked or underutilized.</div></div>
+          <div class="p-card" style="grid-column:1/-1"><div class="p-card-title">💳 Simplify Payroll Preparation</div><div class="p-card-desc">Payroll calculations are a breeze with Talyvn, which provides accurate time tracking reports for the workforce — maintaining <a class="inline-link" href="/features/productivity-insights">productive performance</a>.</div></div>
+        </div>
+        <div class="p-ph"><svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24" opacity="0.25"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9l4-4 4 4 4-6 4 6"/></svg></div>
+      </div></div>
+
+      <div class="fp" id="fp-custom"><div class="panel">
+        <div class="p-hd"><div class="p-ico pio">🛠</div><div><div class="p-eye">Export &amp; Share</div><div class="p-ttl">Build the Reports You Actually Need</div></div></div>
+        <p class="p-desc">Every team is different. Talyvn lets you filter, customize, export, and share reports so the right people see exactly the data they need.</p>
+        <div class="p-cards">
+          <div class="p-card"><div class="p-card-title">🔍 Filter Data for Convenience</div><div class="p-card-desc">You can filter the reports in Talyvn by employee, team, shift status, and date range.</div></div>
+          <div class="p-card"><div class="p-card-title">📤 Export in Different Formats</div><div class="p-card-desc">With Talyvn, you can export reports as CSV or PDF files for easy sharing and record-keeping.</div></div>
+          <div class="p-card" style="grid-column:1/-1"><div class="p-card-title">📢 Share Insights Across the Company</div><div class="p-card-desc">Clean and accurate report layouts make comprehensive data easy to share with higher-ups and stakeholders.</div></div>
+        </div>
+        <div class="p-ph"><svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24" opacity="0.25"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9l4-4 4 4 4-6 4 6"/></svg></div>
+      </div></div>
+
+      <div class="fp" id="fp-trusted"><div class="panel">
+        <div class="p-hd"><div class="p-ico pig">🔒</div><div><div class="p-eye">Data Integrity</div><div class="p-ttl">Web Analytics and Reporting You Can Trust</div></div></div>
+        <p class="p-desc">Talyvn's reporting infrastructure is built on data integrity. Every report is accurate, tamper-proof, and audit-ready.</p>
+        <div class="p-cards">
+          <div class="p-card"><div class="p-card-title">✅ Accurate Workforce Reports</div><div class="p-card-desc">Talyvn's accurate reporting feature ensures that completed shifts and overtime entries cannot be edited.</div></div>
+          <div class="p-card"><div class="p-card-title">📁 Audit-ready Data</div><div class="p-card-desc">With Talyvn, historical records will remain available in the system for HR reviews and compliance checks.</div></div>
+          <div class="p-card" style="grid-column:1/-1"><div class="p-card-title">🕰 Transparent Workforce History</div><div class="p-card-desc">Talyvn provides reliable reports to managers that allow them to review the team's operational history whenever needed.</div></div>
+        </div>
+        <div class="p-ph"><svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24" opacity="0.25"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9l4-4 4 4 4-6 4 6"/></svg></div>
+      </div></div>
+
+    </div>
+  </div>
+</div></section>
+
+<!-- CTA -->
+<section class="cta-s"><div class="container"><div class="cta-in">
+  <div class="cta-glow cta-g1"></div><div class="cta-glow cta-g2"></div>
+  <div class="cta-cnt">
+    <div class="badge-wrap"><span class="badge b-org"><span class="badge-dot"></span>Get Started</span></div>
+    <h2 class="cta-ttl">Turn Workforce Data Into <span class="t-acc">Smarter Decisions</span></h2>
+    <p class="cta-dsc">Without advanced analytics and reporting solutions, it is impossible to gain real-time workforce insights that you can utilize. Talyvn provides you with reporting and analytics tools that deliver smarter insights, enabling you to maintain productive performance and make better decisions as you run your business.</p>
+    <div class="cta-acts"><a class="btn-hp" href="/request-demo">Book a Demo &rarr;</a><a class="btn-hg" href="/signup">Start Now</a></div>
+  </div>
+</div></div></section>
 
 </main>
 
-<!-- ===== FOOTER ===== -->
-<footer class="footer">
-<div class="container">
-<div class="footer-grid">
-<div>
-    <div class="footer-logo">
-        <img src="https://sbia1.github.io/512x512.png" alt="talyvn" width="32" height="32" style="border-radius:6px">
-        <span class="footer-logo-text">talyvn</span>
-    </div>
-    <p class="footer-brand-text">Workforce management built for modern teams.</p>
-    <div class="footer-social">
-        <a aria-label="Twitter" href="https://twitter.com/talyvn"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
-        <a aria-label="LinkedIn" href="https://linkedin.com/company/talyvn"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
-        <a aria-label="GitHub" href="https://github.com/talyvn"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
-    </div>
+<!-- FOOTER -->
+<footer class="footer"><div class="container">
+<div class="ft-g">
+<div><div class="ft-logo"><img src="https://sbia1.github.io/512x512.png" alt="talyvn" width="32" height="32" style="border-radius:6px"><span class="ft-logo-t">talyvn</span></div><p class="ft-brand">Workforce management built for modern teams.</p><div class="ft-soc"><a aria-label="Twitter" href="https://twitter.com/talyvn"><svg fill="currentColor" viewbox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a><a aria-label="LinkedIn" href="https://linkedin.com/company/talyvn"><svg fill="currentColor" viewbox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a><a aria-label="GitHub" href="https://github.com/talyvn"><svg fill="currentColor" viewbox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a></div></div>
+<div class="ft-col"><div class="ft-col-t">Product</div><a href="/product">Product Overview</a><a href="/product/time-tracking-software">Time Tracking Software</a><a href="/product/employee-monitoring-software">Employee Monitoring Software</a><a href="/product/workforce-intelligence-platform">Workforce Intelligence Platform</a><a href="/product/hr-software">HR Software</a><a href="/product/payroll">Payroll</a><a href="/product/employee-management-software">Employee Management Software</a></div>
+<div class="ft-col"><div class="ft-col-t">Features</div><a href="/features">Features Hub</a><a href="/features/timesheets">Timesheets</a><a href="/features/productivity-insights">Productivity Insights</a><a href="/features/leave-management">Leave Management</a><a href="/features/performance-management">Performance Management</a><a href="/features/activity-monitoring">Activity Monitoring</a><a href="/features/team-management">Team Management</a><a href="/features/hr-ticketing">HR Ticketing</a><a href="/features/reporting-analytics">Reporting &amp; Analytics</a><a href="/features/ai-engines">AI Engines</a><a href="/features/e-signatures">E-signatures</a><a href="/features/employee-profile">Employee Profile</a></div>
+<div class="ft-col"><div class="ft-col-t">Solutions</div><a href="/solutions">Solutions Overview</a><a href="/solutions/remote-work">Remote Work</a><a href="/solutions/hybrid-work">Hybrid Work</a><a href="/solutions/small-business">Small Business</a><a href="/solutions/employee-productivity">Employee Productivity</a><a href="/solutions/workforce-compliance">Workforce Compliance</a><a href="/solutions/client-billing-reporting">Client Billing &amp; Reporting</a><a href="/solutions/invoicing-billing">Invoicing &amp; Billing</a><a href="/solutions/project-management">Project Management</a><a href="/solutions/budget-cost-control">Budget &amp; Cost Control</a></div>
+<div class="ft-col"><div class="ft-col-t">Industries</div><a href="/industries">Industries Overview</a><a href="/industries/startups">Startups</a><a href="/industries/it-services">IT Services</a><a href="/industries/finance-teams">Finance Teams</a><a href="/industries/agencies">Agencies</a></div>
+<div class="ft-col"><div class="ft-col-t">Resources</div><a href="/resources">Resources Overview</a><a href="/resources/guides">Guides</a><a href="/resources/templates">Templates</a><a href="/resources/glossary">Glossary</a><a href="/resources/calculators">Calculators</a><a href="/resources/case-studies">Case Studies</a><a href="/resources/software-reviews">Software Reviews</a><a href="/blog">Blog</a></div>
+<div class="ft-col"><div class="ft-col-t">Compare</div><a href="/compare">Compare Overview</a><a href="/compare/talyvn-vs-clockify">Talyvn vs Clockify</a><a href="/compare/talyvn-vs-hubstaff">Talyvn vs Hubstaff</a><a href="/compare/talyvn-vs-toggl">Talyvn vs Toggl</a><a href="/compare/talyvn-vs-time-doctor">Talyvn vs Time Doctor</a></div>
+<div class="ft-col"><div class="ft-col-t">Support</div><a href="/help">Help Center</a><a href="/faq">FAQ</a><a href="/contact">Contact</a></div>
+<div class="ft-col"><div class="ft-col-t">Legal</div><a href="/about">About</a><a href="/customers">Customers</a><a href="/terms">Terms</a><a href="/privacy-policy">Privacy Policy</a><a href="/legal/compliance-security">Compliance &amp; Security</a><a href="/legal/ethical-employee-monitoring">Ethical Employee Monitoring</a></div>
 </div>
-<div class="footer-col">
-    <div class="footer-col-title">Product</div>
-    <a href="/product">Product Overview</a>
-    <a href="/product/time-tracking-software">Time Tracking Software</a>
-    <a href="/product/employee-monitoring-software">Employee Monitoring Software</a>
-    <a href="/product/workforce-intelligence-platform">Workforce Intelligence Platform</a>
-    <a href="/product/hr-software">HR Software</a>
-    <a href="/product/payroll">Payroll</a>
-    <a href="/product/employee-management-software">Employee Management Software</a>
-</div>
-<div class="footer-col">
-    <div class="footer-col-title">Features</div>
-    <a href="/features">Features Hub</a>
-    <a href="/features/timesheets">Timesheets</a>
-    <a href="/features/productivity-insights">Productivity Insights</a>
-    <a href="/features/leave-management">Leave Management</a>
-    <a href="/features/performance-management">Performance Management</a>
-    <a href="/features/activity-monitoring">Activity Monitoring</a>
-    <a href="/features/team-management">Team Management</a>
-    <a href="/features/hr-ticketing">HR Ticketing</a>
-    <a href="/features/reporting-analytics">Reporting &amp; Analytics</a>
-    <a href="/features/ai-engines">AI Engines</a>
-</div>
-<div class="footer-col">
-    <div class="footer-col-title">Solutions</div>
-    <a href="/solutions">Solutions Overview</a>
-    <a href="/solutions/remote-work">Remote Work</a>
-    <a href="/solutions/hybrid-work">Hybrid Work</a>
-    <a href="/solutions/small-business">Small Business</a>
-    <a href="/solutions/employee-productivity">Employee Productivity</a>
-    <a href="/solutions/workforce-compliance">Workforce Compliance</a>
-</div>
-<div class="footer-col">
-    <div class="footer-col-title">Industries</div>
-    <a href="/industries">Industries Overview</a>
-    <a href="/industries/startups">Startups</a>
-    <a href="/industries/it-services">IT Services</a>
-    <a href="/industries/finance-teams">Finance Teams</a>
-    <a href="/industries/agencies">Agencies</a>
-</div>
-<div class="footer-col">
-    <div class="footer-col-title">Resources</div>
-    <a href="/resources">Resources Overview</a>
-    <a href="/resources/guides">Guides</a>
-    <a href="/resources/templates">Templates</a>
-    <a href="/resources/glossary">Glossary</a>
-    <a href="/resources/calculators">Calculators</a>
-    <a href="/resources/case-studies">Case Studies</a>
-    <a href="/blog">Blog</a>
-</div>
-<div class="footer-col">
-    <div class="footer-col-title">Compare</div>
-    <a href="/compare">Compare Overview</a>
-    <a href="/compare/talyvn-vs-clockify">Talyvn vs Clockify</a>
-    <a href="/compare/talyvn-vs-hubstaff">Talyvn vs Hubstaff</a>
-    <a href="/compare/talyvn-vs-toggl">Talyvn vs Toggl</a>
-    <a href="/compare/talyvn-vs-time-doctor">Talyvn vs Time Doctor</a>
-</div>
-<div class="footer-col">
-    <div class="footer-col-title">Support</div>
-    <a href="/help">Help Center</a>
-    <a href="/faq">FAQ</a>
-    <a href="/contact">Contact</a>
-</div>
-<div class="footer-col">
-    <div class="footer-col-title">Company</div>
-    <a href="/about">About</a>
-    <a href="/customers">Customers</a>
-</div>
-<div class="footer-col">
-    <div class="footer-col-title">Legal</div>
-    <a href="/terms">Terms</a>
-    <a href="/privacy-policy">Privacy Policy</a>
-    <a href="/legal/compliance-security">Compliance &amp; Security</a>
-</div>
-</div>
-<div class="footer-bottom">
-    <p class="footer-copyright">© 2025 Talyvn. All rights reserved.</p>
-    <div class="footer-legal">
-        <a href="/privacy-policy">Privacy</a>
-        <a href="/terms">Terms</a>
-        <a href="/legal/compliance-security">Security</a>
-    </div>
-</div>
-</div>
-</footer>
+<div class="ft-bot"><p class="ft-copy">&copy; 2025 Talyvn. All rights reserved.</p><div class="ft-leg"><a href="/privacy-policy">Privacy</a><a href="/terms">Terms</a><a href="/legal/compliance-security">Security</a></div></div>
+</div></footer>
 
 <script>
-// Theme toggle
-const allThemeToggles = document.querySelectorAll('.theme-toggle');
-const savedTheme = localStorage.getItem('theme') || 'dark';
-document.documentElement.setAttribute('data-theme', savedTheme);
+/* Theme toggle */
+const allT=document.querySelectorAll('.theme-toggle');const sv=localStorage.getItem('theme')||'dark';document.documentElement.setAttribute('data-theme',sv);
+function upIco(t){allT.forEach(tg=>{const s=tg.querySelector('.icon-sun'),m=tg.querySelector('.icon-moon');if(s&&m){s.style.display=t==='dark'?'none':'block';m.style.display=t==='dark'?'block':'none'}})}
+upIco(sv);allT.forEach(tg=>tg.addEventListener('click',()=>{const c=document.documentElement.getAttribute('data-theme');const n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('theme',n);upIco(n)}));
 
-function updateThemeIcons(theme) {
-    allThemeToggles.forEach(toggle => {
-        const sunIcon = toggle.querySelector('.icon-sun');
-        const moonIcon = toggle.querySelector('.icon-moon');
-        if (sunIcon && moonIcon) {
-            if (theme === 'dark') { sunIcon.style.display='none'; moonIcon.style.display='block'; }
-            else { sunIcon.style.display='block'; moonIcon.style.display='none'; }
-        }
-    });
-}
-updateThemeIcons(savedTheme);
-allThemeToggles.forEach(toggle => {
-    toggle.addEventListener('click', () => {
-        const currentTheme = document.documentElement.getAttribute('data-theme');
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        document.documentElement.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
-        updateThemeIcons(newTheme);
-    });
-});
+/* Mobile menu */
+const mTog=document.getElementById('mTog'),mMenu=document.getElementById('mMenu'),mCls=document.getElementById('mCls'),mBd=document.getElementById('mBd');
+if(mTog)mTog.addEventListener('click',()=>{mMenu.classList.add('open');document.body.style.overflow='hidden'});
+[mCls,mBd].forEach(el=>{if(el)el.addEventListener('click',()=>{mMenu.classList.remove('open');document.body.style.overflow=''})});
 
-// Sidebar panel switching
-function showPanel(id, btn) {
-    document.querySelectorAll('.feature-panel').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.sidebar-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById('fpanel-' + id).classList.add('active');
-    btn.classList.add('active');
-}
-
-// Auto-rotate sidebar panels every 4 seconds
-const sidebarBtns = document.querySelectorAll('.sidebar-btn');
-let currentPanelIndex = 0;
-const panelIds = ['dashboard','shift','attendance','overtime','productivity','custom','trusted'];
-
-function autoRotate() {
-    currentPanelIndex = (currentPanelIndex + 1) % panelIds.length;
-    const id = panelIds[currentPanelIndex];
-    document.querySelectorAll('.feature-panel').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.sidebar-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById('fpanel-' + id).classList.add('active');
-    // Activate the matching button
-    sidebarBtns.forEach(btn => {
-        if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes("'" + id + "'")) {
-            btn.classList.add('active');
-        }
-    });
-}
-
-let rotateInterval = setInterval(autoRotate, 4000);
-
-// Pause on hover over sidebar
-const sidebar = document.querySelector('.features-sidebar');
-if (sidebar) {
-    sidebar.addEventListener('mouseenter', () => clearInterval(rotateInterval));
-    sidebar.addEventListener('mouseleave', () => {
-        rotateInterval = setInterval(autoRotate, 4000);
-    });
-}
-
-// Reveal on scroll
-const reveals = document.querySelectorAll('.reveal');
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
-}, { threshold: 0.1 });
-reveals.forEach(el => observer.observe(el));
+/* Sidebar tabs — stops permanently on user click */
+(function(){
+  const btns=document.querySelectorAll('.sb-btn');
+  const ids=['dashboard','shift','attendance','overtime','productivity','custom','trusted'];
+  let idx=0,userPicked=false,timer=null;
+  function show(id,byUser){
+    btns.forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.fp-wrap .fp').forEach(p=>p.classList.remove('active'));
+    const btn=document.querySelector('[data-sb="'+id+'"]');
+    const panel=document.getElementById('fp-'+id);
+    if(btn)btn.classList.add('active');
+    if(panel)panel.classList.add('active');
+    idx=ids.indexOf(id);
+    if(byUser){userPicked=true;if(timer)clearInterval(timer)}
+  }
+  btns.forEach(btn=>btn.addEventListener('click',()=>show(btn.dataset.sb,true)));
+  timer=setInterval(()=>{if(!userPicked)show(ids[(idx+1)%ids.length],false)},2500);
+})();
 </script>
 </body>
 </html>
