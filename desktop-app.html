@@ -77,8 +77,9 @@ a{color:inherit;text-decoration:none}ul{list-style:none}button{font-family:inher
 /* ── MOBILE MENU ── */
 .mob-nav-a{display:none;align-items:center;gap:4px;z-index:2}.mob-tog{display:flex;z-index:2;width:36px;height:36px;align-items:center;justify-content:center;color:var(--txt)}.mob-tog svg{width:22px;height:22px}
 .mob-menu{position:fixed;inset:0;z-index:1200;display:none}.mob-menu.open{display:block}.mob-bd{position:absolute;inset:0;background:rgba(2,6,23,.28)}
+[data-theme="dark"] .mob-bd{background:rgba(0,0,0,.55)}
 .mob-panel{position:absolute;top:14px;left:14px;right:14px;border-radius:var(--rxl);border:1px solid var(--gbdr);background:rgba(255,255,255,.62);box-shadow:0 20px 60px rgba(17,17,39,.18);overflow:hidden;transform:translateY(-8px);opacity:0;transition:all .28s var(--ease)}
-[data-theme="dark"] .mob-panel{background:rgba(10,11,15,.62);box-shadow:0 20px 60px rgba(0,0,0,.35)}.mob-menu.open .mob-panel{transform:translateY(0);opacity:1}
+[data-theme="dark"] .mob-panel{background:rgba(10,11,15,.92);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);box-shadow:0 20px 60px rgba(0,0,0,.5)}.mob-menu.open .mob-panel{transform:translateY(0);opacity:1}
 .mob-hd{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid var(--bdr)}
 .mob-cls{width:40px;height:40px;display:inline-flex;align-items:center;justify-content:center;border-radius:12px;color:var(--txt);background:rgba(255,255,255,.35);border:1px solid rgba(255,255,255,.55)}[data-theme="dark"] .mob-cls{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12)}
 .mob-links{display:grid;padding:10px 10px 4px;gap:6px}.mob-link{padding:12px;border-radius:14px;font-weight:600;color:var(--txt);background:rgba(255,255,255,.35);border:1px solid rgba(255,255,255,.55)}[data-theme="dark"] .mob-link{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12)}
@@ -213,6 +214,33 @@ a{color:inherit;text-decoration:none}ul{list-style:none}button{font-family:inher
 
 /* Download button inside card */
 .dl-btn{display:inline-flex;align-items:center;gap:8px;margin-top:12px;padding:10px 20px;font-size:14px;font-weight:600;border-radius:var(--rmd);color:#fff;background:var(--acc);transition:all .25s var(--ease)}.dl-btn:hover{background:#2E75F0;transform:translateY(-1px)}
+
+/* ── Download Cards Row ── */
+.dl-row{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:48px}
+.dl-card{background:var(--gb);border:1px solid var(--gbdr);border-radius:var(--rlg);padding:28px 24px;transition:all .35s var(--ease);position:relative;overflow:hidden;display:flex;flex-direction:column}
+.dl-card:hover{transform:translateY(-6px);box-shadow:0 12px 40px var(--gsh)}
+.dl-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:var(--rlg) var(--rlg) 0 0;opacity:0;transition:opacity .3s}
+.dl-card:hover::before{opacity:1}
+.dl-card.dl-win::before{background:var(--acc)}
+.dl-card.dl-mac::before{background:var(--pur)}
+.dl-card.dl-lin::before{background:var(--grn)}
+.dl-card.dl-ext::before{background:var(--org)}
+.dl-card-top{display:flex;flex-direction:column;align-items:flex-start;gap:12px;margin-bottom:20px}
+.dl-card-ico{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center}
+.dl-card-name{font-size:20px;font-weight:700;letter-spacing:-.02em}
+.dl-card-compat{font-size:12px;color:var(--txt3);font-weight:500;margin-top:-6px}
+.dl-card-reqs{flex:1;display:flex;flex-direction:column;gap:8px;padding:16px;background:rgba(255,255,255,.02);border:1px solid var(--gbdr);border-radius:var(--rmd)}
+.dl-card-reqs-lbl{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--txt3);margin-bottom:2px}
+.dl-card-req{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--txt2);line-height:1.4}
+.dl-chk{width:16px;height:16px;color:var(--txt3);flex-shrink:0}
+.dl-card-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;margin-top:16px;padding:11px 20px;font-size:14px;font-weight:600;border-radius:var(--rmd);color:#fff;background:var(--acc);transition:all .25s var(--ease);text-align:center}.dl-card-btn:hover{background:#2E75F0;transform:translateY(-1px)}
+.dl-footnote{margin-top:32px;font-size:13px;color:var(--txt3);line-height:1.7;text-align:center;max-width:860px;margin-left:auto;margin-right:auto}
+.dl-footnote strong{color:var(--txt2);font-weight:600}
+
+[data-theme="light"] .dl-card{background:rgba(255,255,255,.7);border-color:rgba(17,17,39,.08)}
+[data-theme="light"] .dl-card:hover{box-shadow:0 12px 40px rgba(17,17,39,.1)}
+[data-theme="light"] .dl-card-reqs{background:rgba(17,17,39,.02);border-color:rgba(17,17,39,.06)}
+[data-theme="light"] .dl-chk{color:var(--acc)}
 
 /* ── S3: Team Environment Cards (ben-g, 3-col) ── */
 
@@ -349,9 +377,11 @@ a{color:inherit;text-decoration:none}ul{list-style:none}button{font-family:inher
   .pref-g{grid-template-columns:1fr}
   .cal-g{grid-template-columns:1fr}
   .htab-content{grid-template-columns:1fr}
+  .dl-row{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:640px){
   .ben-g{grid-template-columns:1fr !important}
+  .dl-row{grid-template-columns:1fr}
   .cmp-table{font-size:13px}
   .cmp-table thead th,.cmp-table tbody td{padding:12px 14px}
 }
@@ -418,48 +448,84 @@ a{color:inherit;text-decoration:none}ul{list-style:none}button{font-family:inher
   <h2 class="sec-title tc">Pick Your <span class="t-acc">Desktop App</span></h2>
   <p class="sec-sub tc">Choose the version that fits how your team works. Whether you need a desktop time tracking app or a browser-based time track app, Talyvn keeps everything connected inside one system.</p>
 
-  <div class="ben-g" style="grid-template-columns:repeat(2,1fr)">
+  <div class="dl-row">
     <!-- Windows -->
-    <div class="ben-c dl-win">
-      <div class="ben-ico ico-acc">
-        <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill="currentColor" d="M3 12.5L10.3 11.6V4.6L3 5.5V12.5ZM3 19.4L10.3 20.3V13.3L3 13.3V19.4ZM11.1 20.4L21 21.8V13.3H11.1V20.4ZM11.1 4.5V11.5L21 11.5V3.1L11.1 4.5Z"/></svg>
+    <div class="dl-card dl-win">
+      <div class="dl-card-top">
+        <div class="dl-card-ico ico-acc">
+          <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill="currentColor" d="M3 12.5L10.3 11.6V4.6L3 5.5V12.5ZM3 19.4L10.3 20.3V13.3L3 13.3V19.4ZM11.1 20.4L21 21.8V13.3H11.1V20.4ZM11.1 4.5V11.5L21 11.5V3.1L11.1 4.5Z"/></svg>
+        </div>
+        <div class="dl-card-name">Windows</div>
       </div>
-      <div class="ben-role">Desktop</div>
-      <div class="ben-ttl">Windows App</div>
-      <div class="ben-desc">Built to fit naturally into Windows business environments, with a focus on stability and performance. It runs quietly in the background while capturing accurate time and activity data.</div>
-      <a class="dl-btn" href="#">Download for Windows →</a>
+      <div class="dl-card-reqs">
+        <div class="dl-card-reqs-lbl">Minimum Requirements</div>
+        <div class="dl-card-req"><svg class="dl-chk" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Windows 10 (64-bit)</div>
+        <div class="dl-card-req"><svg class="dl-chk" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Intel i3 or equivalent</div>
+        <div class="dl-card-req"><svg class="dl-chk" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>4 GB RAM*</div>
+        <div class="dl-card-req"><svg class="dl-chk" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>100 MB available storage</div>
+        <div class="dl-card-req"><svg class="dl-chk" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Internet connection</div>
+      </div>
+      <a class="dl-card-btn" href="#">Download for Windows →</a>
     </div>
+
     <!-- macOS -->
-    <div class="ben-c dl-mac">
-      <div class="ben-ico ico-pur">
-        <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill="currentColor" d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11Z"/></svg>
+    <div class="dl-card dl-mac">
+      <div class="dl-card-top">
+        <div class="dl-card-ico ico-pur">
+          <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill="currentColor" d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11Z"/></svg>
+        </div>
+        <div class="dl-card-name">macOS</div>
       </div>
-      <div class="ben-role">Desktop</div>
-      <div class="ben-ttl">macOS App</div>
-      <div class="ben-desc">Designed to feel native on macOS, with a smooth user experience and alignment with system permissions and security expectations. It blends into daily workflows while keeping tracking transparent and reliable.</div>
-      <a class="dl-btn" href="#">Download for macOS →</a>
+      <div class="dl-card-reqs">
+        <div class="dl-card-reqs-lbl">Minimum Requirements</div>
+        <div class="dl-card-req"><svg class="dl-chk" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>macOS 11 (Big Sur) or later</div>
+        <div class="dl-card-req"><svg class="dl-chk" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Intel or Apple Silicon (M1+)</div>
+        <div class="dl-card-req"><svg class="dl-chk" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>4 GB RAM*</div>
+        <div class="dl-card-req"><svg class="dl-chk" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>100 MB available storage</div>
+        <div class="dl-card-req"><svg class="dl-chk" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Internet connection</div>
+      </div>
+      <a class="dl-card-btn" href="#">Download for macOS →</a>
     </div>
+
     <!-- Linux -->
-    <div class="ben-c dl-lin">
-      <div class="ben-ico ico-grn">
-        <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill="currentColor" d="M12.5 2C10.5 2 9 4 9 6c0 .5.1 1 .2 1.5C7.3 8.5 6 10.5 6 13c0 1.7.6 3 1.5 4-.5.5-.8 1-1.2 1.5-.5.7-.8 1.5-.8 2.5h2c0-.5.2-1 .5-1.3.5-.5 1-1 1.5-1.5.8.4 1.8.8 3 .8s2.2-.4 3-.8c.5.5 1 1 1.5 1.5.3.3.5.8.5 1.3h2c0-1-.3-1.8-.8-2.5-.4-.5-.7-1-1.2-1.5.9-1 1.5-2.3 1.5-4 0-2.5-1.3-4.5-3.2-5.5.1-.5.2-1 .2-1.5 0-2-1.5-4-3.5-4zm0 2c.8 0 1.5 1.2 1.5 2s-.7 1.5-1.5 1.5S11 7.8 11 7s.7-2 1.5-2z"/></svg>
+    <div class="dl-card dl-lin">
+      <div class="dl-card-top">
+        <div class="dl-card-ico ico-grn">
+          <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill="currentColor" d="M12.5 2C10.5 2 9 4 9 6c0 .5.1 1 .2 1.5C7.3 8.5 6 10.5 6 13c0 1.7.6 3 1.5 4-.5.5-.8 1-1.2 1.5-.5.7-.8 1.5-.8 2.5h2c0-.5.2-1 .5-1.3.5-.5 1-1 1.5-1.5.8.4 1.8.8 3 .8s2.2-.4 3-.8c.5.5 1 1 1.5 1.5.3.3.5.8.5 1.3h2c0-1-.3-1.8-.8-2.5-.4-.5-.7-1-1.2-1.5.9-1 1.5-2.3 1.5-4 0-2.5-1.3-4.5-3.2-5.5.1-.5.2-1 .2-1.5 0-2-1.5-4-3.5-4z"/></svg>
+        </div>
+        <div class="dl-card-name">Linux</div>
       </div>
-      <div class="ben-role">Desktop</div>
-      <div class="ben-ttl">Linux App</div>
-      <div class="ben-desc">Tailored for teams working across flexible and diverse environments. It integrates cleanly into Linux workflows while supporting consistent time tracking and workforce insights.</div>
-      <a class="dl-btn" href="#">Download for Linux →</a>
+      <div class="dl-card-reqs">
+        <div class="dl-card-reqs-lbl">Minimum Requirements</div>
+        <div class="dl-card-req"><svg class="dl-chk" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Ubuntu 20.04 or Debian-based</div>
+        <div class="dl-card-req"><svg class="dl-chk" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Dual-core processor</div>
+        <div class="dl-card-req"><svg class="dl-chk" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>4 GB RAM*</div>
+        <div class="dl-card-req"><svg class="dl-chk" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>100 MB available storage</div>
+        <div class="dl-card-req"><svg class="dl-chk" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Internet connection</div>
+      </div>
+      <a class="dl-card-btn" href="#">Download for Linux →</a>
     </div>
+
     <!-- Browser Extension -->
-    <div class="ben-c dl-ext">
-      <div class="ben-ico ico-org">
-        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+    <div class="dl-card dl-ext">
+      <div class="dl-card-top">
+        <div class="dl-card-ico ico-org">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </div>
+        <div class="dl-card-name">Browser Extension</div>
+        <div class="dl-card-compat">Chrome &amp; Chromium-based</div>
       </div>
-      <div class="ben-role">Browser</div>
-      <div class="ben-ttl">Browser Extension</div>
-      <div class="ben-desc">For teams that primarily work inside browsers, Talyvn offers a unique option for tracking time directly within supported browsers. It tracks time and activity signals, and automatically syncs with dashboards.</div>
-      <a class="dl-btn" href="#">Get the Browser Extension →</a>
+      <div class="dl-card-reqs">
+        <div class="dl-card-reqs-lbl">Minimum Requirements</div>
+        <div class="dl-card-req"><svg class="dl-chk" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Latest version of Chrome (100+)</div>
+        <div class="dl-card-req"><svg class="dl-chk" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Or Chromium-based (Edge, Brave)</div>
+        <div class="dl-card-req"><svg class="dl-chk" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Internet connection</div>
+      </div>
+      <a class="dl-card-btn" href="#">Get the Extension →</a>
     </div>
   </div>
+
+  <p class="dl-footnote">* <strong>Note:</strong> These are the minimum requirements for running Talyvn. If your system experiences slowness, this is typically caused by other running applications consuming system resources. For the best overall experience, we recommend 8 GB RAM or more.</p>
 </div></section>
 
 <!-- ═══ S3: DESIGNED FOR REMOTE, HYBRID & OFFICE TEAMS ═══ -->
@@ -532,10 +598,10 @@ a{color:inherit;text-decoration:none}ul{list-style:none}button{font-family:inher
           <p class="p-desc">Built to fit naturally into Windows business environments, with a focus on stability and performance. It runs quietly in the background while capturing accurate time and activity data.</p>
           <div class="req-list">
             <div style="font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--txt3);margin-bottom:4px">Minimum Requirements</div>
-            <div class="req-item"><svg class="req-ico" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Windows 10+ (64-bit)</div>
-            <div class="req-item"><svg class="req-ico" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Intel i3 / AMD Ryzen 3 or equivalent</div>
+            <div class="req-item"><svg class="req-ico" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Windows 10 (64-bit)</div>
+            <div class="req-item"><svg class="req-ico" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Intel i3 or equivalent</div>
             <div class="req-item"><svg class="req-ico" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>4 GB RAM</div>
-            <div class="req-item"><svg class="req-ico" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>200 MB available storage</div>
+            <div class="req-item"><svg class="req-ico" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>100 MB available storage</div>
             <div class="req-item"><svg class="req-ico" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Internet connection</div>
           </div>
           <a class="dl-btn" href="#" style="margin-top:24px">Download the Windows App →</a>
@@ -562,10 +628,10 @@ a{color:inherit;text-decoration:none}ul{list-style:none}button{font-family:inher
           <p class="p-desc">Designed to feel native on macOS, with a smooth user experience and alignment with system permissions and security expectations. It blends into daily workflows while keeping tracking transparent and reliable.</p>
           <div class="req-list">
             <div style="font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--txt3);margin-bottom:4px">Minimum Requirements</div>
-            <div class="req-item"><svg class="req-ico" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>macOS 12.0+ (Monterey)</div>
+            <div class="req-item"><svg class="req-ico" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>macOS 11 (Big Sur) or later</div>
             <div class="req-item"><svg class="req-ico" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Intel or Apple Silicon (M1+)</div>
             <div class="req-item"><svg class="req-ico" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>4 GB RAM</div>
-            <div class="req-item"><svg class="req-ico" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>200 MB available storage</div>
+            <div class="req-item"><svg class="req-ico" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>100 MB available storage</div>
             <div class="req-item"><svg class="req-ico" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Internet connection</div>
           </div>
           <a class="dl-btn" href="#" style="margin-top:24px">Download the macOS App →</a>
@@ -592,10 +658,10 @@ a{color:inherit;text-decoration:none}ul{list-style:none}button{font-family:inher
           <p class="p-desc">Tailored for teams working across flexible and diverse environments. It integrates cleanly into Linux workflows while supporting consistent time tracking and workforce insights.</p>
           <div class="req-list">
             <div style="font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--txt3);margin-bottom:4px">Minimum Requirements</div>
-            <div class="req-item"><svg class="req-ico" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Ubuntu 22.04+ or other Debian-based distribution</div>
+            <div class="req-item"><svg class="req-ico" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Ubuntu 20.04 or other Debian-based distribution</div>
             <div class="req-item"><svg class="req-ico" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Dual-core processor</div>
             <div class="req-item"><svg class="req-ico" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>4 GB RAM</div>
-            <div class="req-item"><svg class="req-ico" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>200 MB available storage</div>
+            <div class="req-item"><svg class="req-ico" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>100 MB available storage</div>
             <div class="req-item"><svg class="req-ico" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Internet connection</div>
           </div>
           <a class="dl-btn" href="#" style="margin-top:24px">Download the Linux App →</a>
