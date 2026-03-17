@@ -40,7 +40,7 @@ a{color:inherit;text-decoration:none}ul{list-style:none}button{font-family:inher
 .nav-link{display:flex;align-items:center;gap:4px;padding:8px 14px;font-size:14px;font-weight:500;color:var(--txt2);border-radius:var(--rsm);transition:all .2s}.nav-link:hover{color:var(--txt);background:var(--surf-h)}.nav-link svg{width:14px;height:14px;opacity:.5;transition:transform .2s}.nav-link:hover svg{transform:rotate(180deg)}
 .nav-item{position:relative;display:inline-block}
 .nav-dd{position:absolute;top:calc(100% + 16px);left:50%;transform:translateX(-50%) translateY(-8px);min-width:700px;background:rgba(26,27,36,.98);backdrop-filter:blur(32px);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:28px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .3s,visibility .3s,transform .3s;z-index:9999;box-shadow:0 20px 60px rgba(0,0,0,.6)}
-:root .nav-dd{background:rgba(255,255,255,.96);border-color:rgba(17,17,39,.12);box-shadow:0 20px 60px rgba(17,17,39,.15)}
+[data-theme="light"] .nav-dd{background:rgba(255,255,255,.96);border-color:rgba(17,17,39,.12);box-shadow:0 20px 60px rgba(17,17,39,.15)}
 .nav-item:hover .nav-dd{opacity:1;visibility:visible;pointer-events:auto;transform:translateX(-50%) translateY(0)}
 .dd-grid{display:grid;gap:0 24px}.dd-3{grid-template-columns:repeat(3,1fr)}.dd-2{grid-template-columns:repeat(2,1fr)}.dd-1{grid-template-columns:1fr}
 .dd-sec{display:flex;flex-direction:column;gap:3px}.dd-lbl{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--txt3);padding:8px 0 6px;border-bottom:1px solid var(--bdr);margin-bottom:5px}
@@ -71,7 +71,7 @@ a{color:inherit;text-decoration:none}ul{list-style:none}button{font-family:inher
 
 /* ── SECTIONS & TEXT ── */
 .sec-title{font-size:clamp(28px,3.5vw,44px);font-weight:800;letter-spacing:-.03em;line-height:1.15;margin-bottom:16px}.tc{text-align:center}
-.sec-sub{font-size:16px;color:var(--txt2);max-width:600px;margin:0 auto;line-height:1.7}
+.sec-sub{font-size:16px;color:var(--txt2);max-width:760px;margin:0 auto;line-height:1.7}
 .t-acc{background:linear-gradient(135deg,var(--acc) 0%,var(--sky) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .t-grn{background:linear-gradient(135deg,var(--grn) 0%,#66FFE8 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .t-org{background:linear-gradient(135deg,var(--org) 0%,#fbbf24 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
@@ -226,6 +226,20 @@ a{color:inherit;text-decoration:none}ul{list-style:none}button{font-family:inher
 [data-theme="light"] .mob-link{background:rgba(17,17,39,.04);border-color:rgba(17,17,39,.1)}
 [data-theme="light"] .why-list-item:hover{border-color:rgba(0,239,211,.4)}
 [data-theme="light"] .sub-feat{background:#fff;border-color:rgba(17,17,39,.1)}[data-theme="light"] .sub-feat:hover{border-color:rgba(7,91,236,.25)}
+/* Teal/Cyan light mode visibility */
+[data-theme="light"] .b-grn{color:#00897B;border-color:rgba(0,137,123,.3);background:rgba(0,137,123,.08)}
+[data-theme="light"] .b-grn .badge-dot{background:#00897B;box-shadow:0 0 7px rgba(0,137,123,.3)}
+[data-theme="light"] .b-sky{color:#00838F;border-color:rgba(0,131,143,.3);background:rgba(0,131,143,.08)}
+[data-theme="light"] .b-sky .badge-dot{background:#00838F;box-shadow:0 0 7px rgba(0,131,143,.3)}
+[data-theme="light"] .hero-badge{color:#00897B;border-color:rgba(0,137,123,.3);background:rgba(0,137,123,.08)}
+[data-theme="light"] .hero-badge-dot{background:#00897B;box-shadow:0 0 7px rgba(0,137,123,.3)}
+[data-theme="light"] .t-grn{background:linear-gradient(135deg,#00897B 0%,#26A69A 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+[data-theme="light"] .t-sky{background:linear-gradient(135deg,#00838F 0%,#0097A7 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+/* .cg chip light mode: #00EFD3 invisible on white */
+[data-theme="light"] .cg{background:rgba(0,137,123,.1);color:#00897B}
+/* .acc-num uses --sky color */
+[data-theme="light"] .acc-num{color:#00838F}
+[data-theme="light"] .acc-item.active .acc-num{background:#00838F;color:#fff}
 
 /* ── RESPONSIVE ── */
 @media(max-width:1000px){.ft-g{grid-template-columns:repeat(4,1fr)}.what-g,.why-g{grid-template-columns:1fr;gap:40px}.ben-g{grid-template-columns:1fr}.sb-wrap{grid-template-columns:1fr}.sb-nav{position:static;flex-direction:row;flex-wrap:wrap}.sb-lbl{display:none}.acc-wrap{grid-template-columns:1fr}.acc-ph-wrap{position:static;margin-top:24px}}
@@ -429,7 +443,7 @@ a{color:inherit;text-decoration:none}ul{list-style:none}button{font-family:inher
 <!-- S6: REMOTE TEAM MANAGEMENT — ACCORDION + IMAGE -->
 <section class="section"><div class="container">
   <div style="text-align:center;margin-bottom:48px">
-    <div class="badge-wrap"><span class="badge b-grn"><span class="badge-dot"></span>Remote Teams</span></div>
+    <div class="badge-wrap"><span class="badge b-blu"><span class="badge-dot"></span>Remote Teams</span></div>
     <h2 class="sec-title tc">Remote Team Management <span class="t-grn">Made Simple</span></h2>
     <p class="sec-sub">Managing distributed teams is easier than ever by using Talyvn's remote team management tools. These tools offer clear communication and full visibility across teams. Talyvn supports remote team management efforts by providing</p>
   </div>
